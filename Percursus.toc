@@ -22,7 +22,7 @@
 
 ## X-BuildDate: @build-date@
 ## X-E-Mail: feedback@wow-addon.dev
-## X-Github: https://github.com/wow-addon-dev/Percursus
+## X-Github: https://github.com/arcane-wizard-dev/Percursus
 ## X-Curseforge: https://www.curseforge.com/wow/addons/percursus
 ## X-Wago: https://addons.wago.io/addons/percursus
 
