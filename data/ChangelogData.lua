@@ -8,6 +8,13 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Updated: GitHub links following the organization rename to 'arcane-wizard-dev'"
+		}
+	},
+	{
+		version = "v2.25",
+		date = "2026-09-06",
+		entries = {
 			"Added: TOC version for patch 12.1.5 [retail]"
 		}
 	},
@@ -69,13 +76,6 @@ PER.CHANGELOG = {
 		date = "2026-07-12",
 		entries = {
 			"Added: Wago project page button"
-		}
-	},
-	{
-		version = "v2.16",
-		date = "2026-07-09",
-		entries = {
-			"Minor code adjustments"
 		}
 	}
 }
