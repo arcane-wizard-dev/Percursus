@@ -8,6 +8,14 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Changed: Character profiles now use GUIDs",
+			"Changed: Addon initialization stops if the player identity is unavailable"
+		}
+	},
+	{
+		version = "v2.26",
+		date = "2026-09-13",
+		entries = {
 			"Updated: GitHub links following the organization rename to 'arcane-wizard-dev'"
 		}
 	},
@@ -69,13 +77,6 @@ PER.CHANGELOG = {
 		date = "2026-07-18",
 		entries = {
 			"Minor code adjustments"
-		}
-	},
-	{
-		version = "v2.17",
-		date = "2026-07-12",
-		entries = {
-			"Added: Wago project page button"
 		}
 	}
 }
