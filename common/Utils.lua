@@ -42,45 +42,49 @@ function Utils:OpenSettings()
 end
 
 function Utils:IsAccountProfile()
-	local characterRealmKey = AWL.Utils:GetCharacterRealmKey()
+	local characterGUID = AWL.Utils:GetCharacterGUID()
 
-	return Percursus_Options_v3.profileKeys[characterRealmKey]["use-account"]
+	return Percursus_Options_v4.profileKeys[characterGUID]["use-account"]
 end
 
 function Utils:OpenSettingsOnLoading()
-	local characterRealmKey = AWL.Utils:GetCharacterRealmKey()
+	local characterGUID = AWL.Utils:GetCharacterGUID()
 
-	if Percursus_Options_v3.profileKeys[characterRealmKey]["open-settings"] then
+	if Percursus_Options_v4.profileKeys[characterGUID]["open-settings"] then
 		if not self:OpenSettings() then
 			return
 		end
 
-		Percursus_Options_v3.profileKeys[characterRealmKey]["open-settings"] = false
+		Percursus_Options_v4.profileKeys[characterGUID]["open-settings"] = false
 	end
 end
 
 function Utils:ToggleProfileMode()
-	local characterRealmKey = AWL.Utils:GetCharacterRealmKey()
+	local characterGUID = AWL.Utils:GetCharacterGUID()
 	local useAccountProfile = self:IsAccountProfile()
 
-	Percursus_Options_v3.profileKeys[characterRealmKey]["use-account"] = not useAccountProfile
-	Percursus_Options_v3.profileKeys[characterRealmKey]["open-settings"] = true
+	Percursus_Options_v4.profileKeys[characterGUID]["use-account"] = not useAccountProfile
+	Percursus_Options_v4.profileKeys[characterGUID]["open-settings"] = true
 end
 
 function Utils:ResetAllCharacterProfiles()
-	local characterRealmKey = AWL.Utils:GetCharacterRealmKey()
+	local characterGUID = AWL.Utils:GetCharacterGUID()
 
-	Percursus_Options_v3.profiles = {}
-	Percursus_Options_v3.profileKeys = {}
+	Percursus_Options_v4.profiles = {}
+	Percursus_Options_v4.profileKeys = {}
 
-	Percursus_Options_v3.profileKeys[characterRealmKey] = {
+	Percursus_Options_v4.profileKeys[characterGUID] = {
 		["use-account"] = true,
 		["open-settings"] = true
 	}
 end
 
 function Utils:InitializeDatabase()
-	local characterRealmKey = AWL.Utils:GetCharacterRealmKey()
+	local characterGUID = AWL.Utils:GetCharacterGUID()
+
+	if not characterGUID then
+		return nil
+	end
 
 	local createdProfile = false
 	local createdProfileKey = false
@@ -95,41 +99,41 @@ function Utils:InitializeDatabase()
 		["race-tracker"] = {}
 	}
 
-	if not Percursus_Options_v3 then
-		Percursus_Options_v3 = {
+	if not Percursus_Options_v4 then
+		Percursus_Options_v4 = {
 			["account"] = AWL.Utils:CopyTable(defaults),
 			["profiles"] = {},
 			["profileKeys"] = {}
 		}
 	end
 
-	if not Percursus_Options_v3.profiles[characterRealmKey] then
-		Percursus_Options_v3.profiles[characterRealmKey] = AWL.Utils:CopyTable(defaults)
+	if not Percursus_Options_v4.profiles[characterGUID] then
+		Percursus_Options_v4.profiles[characterGUID] = AWL.Utils:CopyTable(defaults)
 		createdProfile = true
 	end
 
-	if not Percursus_Options_v3.profileKeys[characterRealmKey] then
-		Percursus_Options_v3.profileKeys[characterRealmKey] = {
+	if not Percursus_Options_v4.profileKeys[characterGUID] then
+		Percursus_Options_v4.profileKeys[characterGUID] = {
 			["use-account"] = true,
 			["open-settings"] = false
 		}
 		createdProfileKey = true
 	end
 
-	local useAccountProfile = Percursus_Options_v3.profileKeys[characterRealmKey]["use-account"]
+	local useAccountProfile = Percursus_Options_v4.profileKeys[characterGUID]["use-account"]
 
 	if useAccountProfile then
-		PER.Settings.general = Percursus_Options_v3.account["general"]
-		PER.Settings.raceTimeOverview = Percursus_Options_v3.account["race-time-overview"]
-		PER.Settings.raceTracker = Percursus_Options_v3.account["race-tracker"]
+		PER.Settings.general = Percursus_Options_v4.account["general"]
+		PER.Settings.raceTimeOverview = Percursus_Options_v4.account["race-time-overview"]
+		PER.Settings.raceTracker = Percursus_Options_v4.account["race-tracker"]
 	else
-		PER.Settings.general = Percursus_Options_v3.profiles[characterRealmKey]["general"]
-		PER.Settings.raceTimeOverview = Percursus_Options_v3.profiles[characterRealmKey]["race-time-overview"]
-		PER.Settings.raceTracker = Percursus_Options_v3.profiles[characterRealmKey]["race-tracker"]
+		PER.Settings.general = Percursus_Options_v4.profiles[characterGUID]["general"]
+		PER.Settings.raceTimeOverview = Percursus_Options_v4.profiles[characterGUID]["race-time-overview"]
+		PER.Settings.raceTracker = Percursus_Options_v4.profiles[characterGUID]["race-tracker"]
 	end
 
 	return {
-		characterRealmKey = characterRealmKey,
+		characterGUID = characterGUID,
 		createdProfile = createdProfile,
 		createdProfileKey = createdProfileKey,
 		activeProfile = useAccountProfile and "account" or "character"

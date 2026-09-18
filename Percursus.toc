@@ -14,7 +14,7 @@
 ## Notes-zhCN: 此插件会在竞速（例如驭龙术和驭空术）期间显示实时计时器，并提供所有已完成竞速的详细时间总览。
 
 ## LoadSavedVariablesFirst: 1
-## SavedVariables: Percursus_Options_v3
+## SavedVariables: Percursus_Options_v4
 
 ## AddonCompartmentFuncOnEnter: Percursus_CompartmentOnEnter
 ## AddonCompartmentFuncOnLeave: Percursus_CompartmentOnLeave

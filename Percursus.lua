@@ -10,6 +10,7 @@ local RaceTracker = PER.Modules.RaceTracker
 local Utils = PER.Modules.Utils
 
 -- Variables
+local isInitialized = false
 local raceDataTable = PER.RACE_DATA
 
 local activeTracker = false
@@ -63,6 +64,8 @@ local function GetRaceData(questID)
 end
 
 local function SlashCommand(msg)
+	if not isInitialized then return end
+
 	local command = strtrim(msg or "")
 
 	if command == "" then
@@ -83,21 +86,29 @@ function PercursusFrame:OnEvent(event, ...)
 end
 
 function PercursusFrame:ADDON_LOADED(_, addOnName)
-	if addOnName == addonName then
-		local dbInit = Utils:InitializeDatabase()
-		Utils:InitializeMinimapButton()
-		Options:Initialize()
-		RaceTracker:Initialize()
-		RaceTimeOverview:Initialize()
+	if addOnName ~= addonName or isInitialized then return end
 
-		Utils:OpenSettingsOnLoading()
+	local dbInit = Utils:InitializeDatabase()
 
-		Utils:PrintDebug(string.format(
-			"InitializeDatabase: key=%s, createdProfile=%s, createdProfileKey=%s, activeProfile=%s",
-			tostring(dbInit.characterRealmKey), tostring(dbInit.createdProfile), tostring(dbInit.createdProfileKey), tostring(dbInit.activeProfile)
-		))
-		Utils:PrintDebug("Addon fully loaded.")
+	if not dbInit then
+		AWL:GetAddon(addonName):AbortInitialization(self)
+		return
 	end
+
+	Utils:InitializeMinimapButton()
+	Options:Initialize()
+	RaceTracker:Initialize()
+	RaceTimeOverview:Initialize()
+
+	Utils:OpenSettingsOnLoading()
+
+	isInitialized = true
+
+	Utils:PrintDebug(string.format(
+		"InitializeDatabase: key=%s, createdProfile=%s, createdProfileKey=%s, activeProfile=%s",
+		tostring(dbInit.characterGUID), tostring(dbInit.createdProfile), tostring(dbInit.createdProfileKey), tostring(dbInit.activeProfile)
+	))
+	Utils:PrintDebug("Addon fully loaded.")
 end
 
 function PercursusFrame:QUEST_ACCEPTED(_, questID)
@@ -180,6 +191,8 @@ function PercursusFrame:ZONE_CHANGED_NEW_AREA()
 end
 
 hooksecurefunc(GossipFrame, "HandleShow", function ()
+	if not isInitialized then return end
+
 	local unitGUID = UnitGUID("target")
 
 	if unitGUID == nil then
@@ -204,6 +217,8 @@ hooksecurefunc(GossipFrame, "HandleShow", function ()
 end)
 
 hooksecurefunc(GossipFrame, "Hide", function ()
+	if not isInitialized then return end
+
 	RaceTimeOverview:HideRaceOverview()
 end)
 
