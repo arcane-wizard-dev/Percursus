@@ -1,3 +1,7 @@
+**v2.28 (2026-09-22)**
+- Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility
+- Minor code adjustments
+
 **v2.27 (2026-09-18)**
 - Changed: Character profiles now use GUIDs
 - Changed: Addon initialization stops if the player identity is unavailable
