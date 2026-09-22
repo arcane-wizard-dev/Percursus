@@ -8,6 +8,14 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility",
+			"Minor code adjustments"
+		}
+	},
+	{
+		version = "v2.27",
+		date = "2026-09-18",
+		entries = {
 			"Changed: Character profiles now use GUIDs",
 			"Changed: Addon initialization stops if the player identity is unavailable"
 		}
@@ -68,13 +76,6 @@ PER.CHANGELOG = {
 	{
 		version = "v2.19",
 		date = "2026-07-21",
-		entries = {
-			"Minor code adjustments"
-		}
-	},
-	{
-		version = "v2.18",
-		date = "2026-07-18",
 		entries = {
 			"Minor code adjustments"
 		}
