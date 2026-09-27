@@ -8,6 +8,13 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Minor code adjustments"
+		}
+	},
+	{
+		version = "v2.28",
+		date = "2026-09-22",
+		entries = {
 			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility",
 			"Minor code adjustments"
 		}
@@ -71,13 +78,6 @@ PER.CHANGELOG = {
 		date = "2026-07-28",
 		entries = {
 			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
-		}
-	},
-	{
-		version = "v2.19",
-		date = "2026-07-21",
-		entries = {
-			"Minor code adjustments"
 		}
 	}
 }
