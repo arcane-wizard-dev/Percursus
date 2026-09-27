@@ -14,7 +14,6 @@ local Options = PER.Modules.Options
 local Utils = PER.Modules.Utils
 
 -- Variables
-local defaults = PER.OPTIONS_DEFAULTS
 local minimapButtonProxy = setmetatable({}, {
 	__index = function(_, key)
 		if key == "hide" then
@@ -58,7 +57,7 @@ function Options:Initialize()
 		variableName	= "hide",
 		name			= L["options.general.minimap-button.name"],
 		tooltip			= L["options.general.minimap-button.tooltip"],
-		default			= not defaults.general["minimap-button"].hide
+		default			= not PER.OPTIONS_DEFAULTS.general["minimap-button"].hide
 	})
 
 	-- Debug Mode
@@ -68,7 +67,7 @@ function Options:Initialize()
 		variableName	= "debug-mode",
 		name			= L["options.general.debug-mode.name"],
 		tooltip			= L["options.general.debug-mode.tooltip"],
-		default			= defaults["general"]["debug-mode"]
+		default			= PER.OPTIONS_DEFAULTS["general"]["debug-mode"]
 	})
 
 	layout:AddInitializer(CreateSettingsListSectionHeaderInitializer(L["options.race-tracker"]))
@@ -80,7 +79,7 @@ function Options:Initialize()
 		variableName	= "active",
 		name			= L["options.race-tracker.active.name"],
 		tooltip			= L["options.race-tracker.active.tooltip"],
-		default			= defaults["race-tracker"]["active"]
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["active"]
 	})
 
 	-- Mode
@@ -90,7 +89,7 @@ function Options:Initialize()
 		variableName	= "mode",
 		name			= L["options.race-tracker.mode.name"],
 		tooltip			= L["options.race-tracker.mode.tooltip"],
-		default			= defaults["race-tracker"]["mode"],
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["mode"],
 		options			= {
 			{ value = 0, label = L["options.race-tracker.mode.value.0"] },
 			{ value = 1, label = L["options.race-tracker.mode.value.1"] },
@@ -105,7 +104,7 @@ function Options:Initialize()
 		variableName	= "background-type",
 		name			= L["options.race-tracker.background-type.name"],
 		tooltip			= L["options.race-tracker.background-type.tooltip"],
-		default			= defaults["race-tracker"]["background-type"],
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["background-type"],
 		options			= {
 			{ value = 0, label = L["options.race-tracker.background-type.value.0"] },
 			{ value = 1, label = L["options.race-tracker.background-type.value.1"] },
@@ -127,7 +126,7 @@ function Options:Initialize()
 		variableName	= "horizontal-shift",
 		name			= L["options.race-tracker.horizontal-shift.name"],
 		tooltip			= L["options.race-tracker.horizontal-shift.tooltip"],
-		default			= defaults["race-tracker"]["horizontal-shift"], minValue = -500, maxValue = 500, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["horizontal-shift"], minValue = -500, maxValue = 500, step = 10,
 		formatter		= function(value) return value end,
 	})
 
@@ -138,7 +137,7 @@ function Options:Initialize()
 		variableName	= "vertical-shift",
 		name			= L["options.race-tracker.vertical-shift.name"],
 		tooltip			= L["options.race-tracker.vertical-shift.tooltip"],
-		default			= defaults["race-tracker"]["vertical-shift"], minValue = -400, maxValue = 400, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["vertical-shift"], minValue = -400, maxValue = 400, step = 10,
 		formatter		= function(value) return value end,
 	})
 
@@ -149,7 +148,7 @@ function Options:Initialize()
 		variableName	= "hide-area-names",
 		name			= L["options.race-tracker.hide-area-names.name"],
 		tooltip			= L["options.race-tracker.hide-area-names.tooltip"],
-		default			= defaults["race-tracker"]["hide-area-names"]
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["hide-area-names"]
 	})
 
 	-- Result Display
@@ -159,13 +158,13 @@ function Options:Initialize()
 		checkboxVariableName	= "result-display",
 		checkboxName			= L["options.race-tracker.result-display.name"],
 		checkboxTooltip			= L["options.race-tracker.result-display.tooltip"],
-		checkboxDefault			= defaults["race-tracker"]["result-display"],
+		checkboxDefault			= PER.OPTIONS_DEFAULTS["race-tracker"]["result-display"],
 
 		sliderSettingKey		= addonName .. "_fadeout-delay",
 		sliderVariableName		= "fadeout-delay",
 		sliderName				= L["options.race-tracker.fadeout-delay.name"],
 		sliderTooltip			= L["options.race-tracker.fadeout-delay.tooltip"],
-		sliderDefault			= defaults["race-tracker"]["fadeout-delay"], sliderMin = 1, sliderMax = 10, sliderStep = 1,
+		sliderDefault			= PER.OPTIONS_DEFAULTS["race-tracker"]["fadeout-delay"], sliderMin = 1, sliderMax = 10, sliderStep = 1,
 		sliderFormatter			= function(value) return value .. " " .. L["race.seconds-short"] end
 	})
 
@@ -176,7 +175,7 @@ function Options:Initialize()
 		variableName	= "speed-display",
 		name			= L["options.race-tracker.speed-display.name"],
 		tooltip			= L["options.race-tracker.speed-display.tooltip"],
-		default			= defaults["race-tracker"]["speed-display"]
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display"]
 	})
 
 	-- Speed Display: Horizontal Shift
@@ -186,7 +185,7 @@ function Options:Initialize()
 		variableName	= "speed-display-horizontal-shift",
 		name			= L["options.race-tracker.speed-display-horizontal-shift.name"],
 		tooltip			= L["options.race-tracker.speed-display-horizontal-shift.tooltip"],
-		default			= defaults["race-tracker"]["speed-display-horizontal-shift"], minValue = -500, maxValue = 500, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-horizontal-shift"], minValue = -500, maxValue = 500, step = 10,
 		formatter		= function(value) return value end,
 		parentInit		= initializerSpeed,
 		parentCondition	= function() return GetVal(settingSpeed) end
@@ -199,7 +198,7 @@ function Options:Initialize()
 		variableName	= "speed-display-vertical-shift",
 		name			= L["options.race-tracker.speed-display-vertical-shift.name"],
 		tooltip			= L["options.race-tracker.speed-display-vertical-shift.tooltip"],
-		default			= defaults["race-tracker"]["speed-display-vertical-shift"], minValue = -400, maxValue = 400, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-vertical-shift"], minValue = -400, maxValue = 400, step = 10,
 		formatter		= function(value) return value end,
 		parentInit		= initializerSpeed,
 		parentCondition	= function() return GetVal(settingSpeed) end
@@ -214,7 +213,7 @@ function Options:Initialize()
 		variableName	= "active",
 		name			= L["options.race-time-overview.active.name"],
 		tooltip			= L["options.race-time-overview.active.tooltip"],
-		default			= defaults["race-time-overview"]["active"]
+		default			= PER.OPTIONS_DEFAULTS["race-time-overview"]["active"]
 	})
 
 	-- Profiles Section
