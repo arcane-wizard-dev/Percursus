@@ -8,6 +8,14 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Updated: Race Tracker background 'Classic'",
+			"Updated: Logo"
+		}
+	},
+	{
+		version = "v2.29",
+		date = "2026-09-27",
+		entries = {
 			"Minor code adjustments"
 		}
 	},
@@ -71,13 +79,6 @@ PER.CHANGELOG = {
 		date = "2026-08-04",
 		entries = {
 			"Minor code adjustments"
-		}
-	},
-	{
-		version = "v2.20",
-		date = "2026-07-28",
-		entries = {
-			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
 		}
 	}
 }
