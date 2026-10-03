@@ -336,7 +336,7 @@ local function InitializeFrames()
 
 		RaceOverviewFrame.portrait = RaceOverviewFrame:GetPortrait()
 		RaceOverviewFrame.portrait:SetPoint('TOPLEFT', -5, 8)
-		RaceOverviewFrame.portrait:SetTexture(Addon:GetMediaPath("icon-round.blp"))
+		RaceOverviewFrame.portrait:SetTexture(Addon:GetMediaPath("icon-round.tga"))
 
 		local background = CreateFrame("Frame", nil, RaceOverviewFrame, "InsetFrameTemplate4")
 		background:SetSize(322, 330)
