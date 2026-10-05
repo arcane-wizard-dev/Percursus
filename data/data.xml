@@ -12,6 +12,7 @@
 	<Script file="expansion\Midnight.lua" />
 
 	<Script file="RaceTrackerData.lua" />
+	<Script file="RaceTimeOverviewData.lua" />
 	<Script file="CommonData.lua" />
 	<Script file="ChangelogData.lua" />
 </Ui>

@@ -6,5 +6,4 @@
 	<Include file="RaceTracker.xml" />
 
 	<Script file="RaceTimeOverview.lua" />
-	<Include file="RaceTimeOverview.xml" />
 </Ui>

@@ -13,6 +13,7 @@ local RaceTimeOverview = PER.Modules.RaceTimeOverview
 -- Variables
 local raceDataTable = PER.RACE_DATA
 local sortedRaceDataTable = PER.SORTED_RACE_DATA
+local OverviewData = PER.RACE_TIME_OVERVIEW_DATA
 
 --------------
 --- Frames ---
@@ -20,7 +21,6 @@ local sortedRaceDataTable = PER.SORTED_RACE_DATA
 
 local RaceOverviewFrame
 local ZoneOverviewFrame
-local GobalOverviewFrame
 
 -----------------------
 --- Frame Functions ---
@@ -47,7 +47,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 		RaceOverviewFrame.openButton:Disable()
 
 		local npc = scrollFrame:CreateFontString(nil, "OVERLAY", "Fancy16Font")
-		npc:SetPoint("TOP", 5, 40)
+		npc:SetPoint("TOP", scrollFrame.scrollFrame, "TOP", 5, 40)
 
 		local function GetNPCNameByIDAsync(npcID, callback)
 			if not npcID or type(callback) ~= "function" then return end
@@ -111,7 +111,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 					racePersonalTime = C_CurrencyInfo.GetCurrencyInfo(raceDataTable[npcID][4][modeKey][2]).quantity / 1000
 				end
 
-				local mode = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+				local mode = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				mode:SetPoint("TOPLEFT", 0, offsetY)
 				mode:SetJustifyH("LEFT")
 
@@ -122,7 +122,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 
 				offsetY = offsetY - 20
 
-				local bestTime = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontWhite")
+				local bestTime = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontWhite")
 				bestTime:SetPoint("TOPLEFT", 0, offsetY)
 				bestTime:SetJustifyH("LEFT")
 
@@ -146,7 +146,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 
 				offsetY = offsetY - 20
 
-				local goldSilverTime = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontWhite")
+				local goldSilverTime = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontWhite")
 				goldSilverTime:SetPoint("TOPLEFT", 0, offsetY)
 				goldSilverTime:SetJustifyH("LEFT")
 				goldSilverTime:SetText(L["race.gold-time"]:format(raceGoldTime) .. " - " .. L["race.silver-time"]:format(raceSilverTime))
@@ -162,7 +162,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 		local questID = raceDataTable[npcID][4].NORMAL[1]
 
 		local quest = scrollFrame:CreateFontString(nil, "OVERLAY", "Fancy16Font")
-		quest:SetPoint("TOP", 5, 40)
+		quest:SetPoint("TOP", scrollFrame.scrollFrame, "TOP", 5, 40)
 
 		QuestEventListener:AddCallback(questID, function()
 			local name = C_QuestLog.GetTitleForQuestID(questID)
@@ -185,14 +185,14 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 					racePersonalTime = C_CurrencyInfo.GetCurrencyInfo(raceDataTable[npcID][4][modeKey][2]).quantity / 1000
 				end
 
-				local mode = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+				local mode = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				mode:SetPoint("TOPLEFT", 0, offsetY)
 				mode:SetJustifyH("LEFT")
 				mode:SetText(L[lookupKey])
 
 				offsetY = offsetY - 20
 
-				local bestTime = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontWhite")
+				local bestTime = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontWhite")
 				bestTime:SetPoint("TOPLEFT", 0, offsetY)
 				bestTime:SetJustifyH("LEFT")
 
@@ -216,7 +216,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 
 				offsetY = offsetY - 20
 
-				local goldSilverTime = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontWhite")
+				local goldSilverTime = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontWhite")
 				goldSilverTime:SetPoint("TOPLEFT", 0, offsetY)
 				goldSilverTime:SetJustifyH("LEFT")
 				goldSilverTime:SetText(L["race.gold-time"]:format(raceGoldTime) .. " - " .. L["race.silver-time"]:format(raceSilverTime))
@@ -228,6 +228,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 		end
 	end
 
+	scrollFrame:SetContentHeight(math.abs(offsetY))
 	return zoneID
 end
 
@@ -244,7 +245,7 @@ local function UpdateZoneOverview(zoneID, scrollFrame)
 	scrollFrame.rows = {}
 
 	local zone = scrollFrame:CreateFontString(nil, "OVERLAY", "Fancy16Font")
-	zone:SetPoint("TOP", 5, 40)
+	zone:SetPoint("TOP", scrollFrame.scrollFrame, "TOP", 5, 40)
 	zone:SetText("|cnNORMAL_FONT_COLOR:".. C_Map.GetMapInfo(zoneID).name .. "|r")
 	table.insert(scrollFrame.rows, {zone})
 
@@ -256,7 +257,7 @@ local function UpdateZoneOverview(zoneID, scrollFrame)
 			local modes = raceData.modes
 			local questID = modes.NORMAL[1]
 
-			local header = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			local header = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 			header:SetPoint("TOPLEFT", 0, offsetY)
 			header:SetJustifyH("LEFT")
 			table.insert(scrollFrame.rows, {header})
@@ -297,7 +298,7 @@ local function UpdateZoneOverview(zoneID, scrollFrame)
 						difficulty = L["race.type-storm-gryphon"]
 					end
 
-					local text = scrollFrame.scrollView:CreateFontString(nil, "OVERLAY", "GameFontWhite")
+					local text = scrollFrame.content:CreateFontString(nil, "OVERLAY", "GameFontWhite")
 					text:SetPoint("TOPLEFT", 0, offsetY)
 					text:SetJustifyH("LEFT")
 					table.insert(scrollFrame.rows, {text})
@@ -323,83 +324,70 @@ local function UpdateZoneOverview(zoneID, scrollFrame)
 			offsetY = offsetY - 16
 		end
 	end
+	scrollFrame:SetContentHeight(math.abs(offsetY))
+end
+
+local function CreateOverviewScrollFrame(window, offsetX)
+	local insetConfig = AWL.Utils:CopyTable(OverviewData.inset)
+	insetConfig.parent = window
+	local background = AWL.Frames:CreateInset(insetConfig)
+	background:SetPoint("BOTTOM", window, "BOTTOM", offsetX, OverviewData.inset.bottom)
+	window.scrollFrame = AWL.ScrollFrames:CreateScrollFrame({
+		parent = window,
+		width = OverviewData.inset.width,
+		height = OverviewData.inset.height,
+		backgroundAlpha = 0,
+		showBorder = false,
+		contentInsets = OverviewData.contentInsets
+	})
+	window.scrollFrame:SetAllPoints(background)
+	return background
 end
 
 local function InitializeFrames()
 	do
-		RaceOverviewFrame = CreateFrame("Frame", nil, GossipFrame, "PortraitFrameTemplate")
-		RaceOverviewFrame:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", 15, 0)
-		RaceOverviewFrame:SetSize(338, 430)
-		RaceOverviewFrame:SetFrameStrata("MEDIUM")
-		RaceOverviewFrame:SetTitle(addonName)
-		RaceOverviewFrame:Hide()
-
-		RaceOverviewFrame.portrait = RaceOverviewFrame:GetPortrait()
-		RaceOverviewFrame.portrait:SetPoint('TOPLEFT', -5, 8)
+		local config = AWL.Utils:CopyTable(OverviewData.raceWindow)
+		config.title = addonName
+		RaceOverviewFrame = AWL.Frames:CreateWindow(config)
+		RaceOverviewFrame:SetParent(GossipFrame)
+		RaceOverviewFrame:ClearAllPoints()
+		RaceOverviewFrame:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", OverviewData.raceOffsetX, 0)
+		RaceOverviewFrame.portrait:SetPoint("TOPLEFT", -5, 8)
 		RaceOverviewFrame.portrait:SetTexture(Addon:GetMediaPath("icon-round.tga"))
 
-		local background = CreateFrame("Frame", nil, RaceOverviewFrame, "InsetFrameTemplate4")
-		background:SetSize(322, 330)
-		background:SetPoint("BOTTOM", RaceOverviewFrame, "BOTTOM", 0, 37)
-		background.texture = background:CreateTexture(nil, "BACKGROUND")
-		background.texture:SetAllPoints(background)
-		background.texture:SetPoint("CENTER")
-		background.texture:SetAtlas("character-panel-background", false)
-
-		RaceOverviewFrame.scrollFrame = CreateFrame("ScrollFrame", nil, RaceOverviewFrame, "PercursusOverviewScrollFrameTemplate")
-		RaceOverviewFrame.scrollFrame:SetPoint("TOPLEFT", background, "TOPLEFT", 15, -15)
-		RaceOverviewFrame.scrollFrame:SetPoint("BOTTOMRIGHT", background, "BOTTOMRIGHT", -25, 15)
-
-		RaceOverviewFrame.scrollFrame.scrollView = CreateFrame("Frame")
-		RaceOverviewFrame.scrollFrame.scrollView:SetSize(1, 1)
-		RaceOverviewFrame.scrollFrame:SetScrollChild(RaceOverviewFrame.scrollFrame.scrollView)
-
-		RaceOverviewFrame.openButton = CreateFrame("Button", nil, RaceOverviewFrame, "UIPanelButtonTemplate")
-		RaceOverviewFrame.openButton:SetPoint("TOPRIGHT", background, "BOTTOMRIGHT", -5, -5)
-		RaceOverviewFrame.openButton:SetSize(130, 22)
-		RaceOverviewFrame.openButton:SetText(L["race.button.zone-overview"])
-
-		RaceOverviewFrame.openButton:SetScript("OnClick", function()
-			if ZoneOverviewFrame:IsShown() then
-				ZoneOverviewFrame:Hide()
-			else
-				ZoneOverviewFrame:Show()
-				ZoneOverviewFrame.scrollFrame:SetVerticalScroll(0)
+		local background = CreateOverviewScrollFrame(RaceOverviewFrame, 0)
+		RaceOverviewFrame.openButton = AWL.Controls:CreateButton({
+			parent = RaceOverviewFrame,
+			width = OverviewData.openButtonWidth,
+			label = L["race.button.zone-overview"],
+			onClick = function()
+				if ZoneOverviewFrame:IsShown() then
+					ZoneOverviewFrame:Hide()
+				else
+					ZoneOverviewFrame:Show()
+					ZoneOverviewFrame.scrollFrame:ScrollToTop()
+				end
 			end
-		end)
+		})
+		RaceOverviewFrame.openButton:SetPoint("TOPRIGHT", background, "BOTTOMRIGHT", -5, -5)
 	end
 
 	do
-		ZoneOverviewFrame = CreateFrame("Frame", nil, RaceOverviewFrame, "DefaultPanelTemplate")
-		ZoneOverviewFrame:SetPoint("TOPLEFT", RaceOverviewFrame, "TOPRIGHT", 10, 0)
-		ZoneOverviewFrame:SetSize(343, 430)
-		ZoneOverviewFrame:SetTitle(L["race.title.zone-overview"])
-		ZoneOverviewFrame:Hide()
+		local config = AWL.Utils:CopyTable(OverviewData.zoneWindow)
+		config.title = L["race.title.zone-overview"]
+		ZoneOverviewFrame = AWL.Frames:CreateWindow(config)
+		ZoneOverviewFrame:SetParent(RaceOverviewFrame)
+		ZoneOverviewFrame:ClearAllPoints()
+		ZoneOverviewFrame:SetPoint("TOPLEFT", RaceOverviewFrame, "TOPRIGHT", OverviewData.zoneOffsetX, 0)
 
-		local background = CreateFrame("Frame", nil, ZoneOverviewFrame, "InsetFrameTemplate4")
-		background:SetSize(322, 330)
-		background:SetPoint("BOTTOM", ZoneOverviewFrame, "BOTTOM", 2.5, 37)
-		background.texture = background:CreateTexture(nil, "BACKGROUND")
-		background.texture:SetAllPoints(background)
-		background.texture:SetPoint("CENTER")
-		background.texture:SetAtlas("character-panel-background", false)
-
-		ZoneOverviewFrame.scrollFrame = CreateFrame("ScrollFrame", nil, ZoneOverviewFrame, "PercursusOverviewScrollFrameTemplate")
-		ZoneOverviewFrame.scrollFrame:SetPoint("TOPLEFT", background, "TOPLEFT", 15, -15)
-		ZoneOverviewFrame.scrollFrame:SetPoint("BOTTOMRIGHT", background, "BOTTOMRIGHT", -25, 15)
-
-		ZoneOverviewFrame.scrollFrame.scrollView = CreateFrame("Frame")
-		ZoneOverviewFrame.scrollFrame.scrollView:SetSize(1, 1)
-		ZoneOverviewFrame.scrollFrame:SetScrollChild(ZoneOverviewFrame.scrollFrame.scrollView)
-
-		ZoneOverviewFrame.closeButton = CreateFrame("Button", nil, ZoneOverviewFrame, "UIPanelButtonTemplate")
-		ZoneOverviewFrame.closeButton:SetPoint("TOPRIGHT", background, "BOTTOMRIGHT", -5, -5)
-		ZoneOverviewFrame.closeButton:SetSize(100, 22)
-		ZoneOverviewFrame.closeButton:SetText(L["race.button.close"])
-
-		ZoneOverviewFrame.closeButton:SetScript("OnClick", function()
-			ZoneOverviewFrame:Hide()
-		end)
+		local background = CreateOverviewScrollFrame(ZoneOverviewFrame, OverviewData.zoneInsetOffsetX)
+		ZoneOverviewFrame.dismissButton = AWL.Controls:CreateButton({
+			parent = ZoneOverviewFrame,
+			width = OverviewData.closeButtonWidth,
+			label = L["race.button.close"],
+			onClick = function() ZoneOverviewFrame:Hide() end
+		})
+		ZoneOverviewFrame.dismissButton:SetPoint("TOPRIGHT", background, "BOTTOMRIGHT", -5, -5)
 	end
 end
 
