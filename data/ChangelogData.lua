@@ -8,6 +8,14 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Changed: Race and zone overviews now use the native Blizzard UI appearance",
+			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
+		}
+	},
+	{
+		version = "v2.30",
+		date = "2026-10-03",
+		entries = {
 			"Updated: Race Tracker background 'Classic'",
 			"Updated: Logo"
 		}
@@ -72,13 +80,6 @@ PER.CHANGELOG = {
 		entries = {
 			"Added: Race times for the event 'Northrend Cup'",
 			"Removed: TOC version for patch 12.0.7 [retail]"
-		}
-	},
-	{
-		version = "v2.21",
-		date = "2026-08-04",
-		entries = {
-			"Minor code adjustments"
 		}
 	}
 }
