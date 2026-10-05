@@ -1,3 +1,7 @@
+**v2.31 (2026-10-05)**
+- Changed: Race and zone overviews now use the native Blizzard UI appearance
+- Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility
+
 **v2.30 (2026-10-03)**
 - Updated: Race Tracker background 'Classic'
 - Updated: Logo
