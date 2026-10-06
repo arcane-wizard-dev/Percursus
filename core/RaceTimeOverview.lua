@@ -56,18 +56,22 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 
 			local function CheckForName()
 				local tooltipInfo = C_TooltipInfo.GetHyperlink(hyperlink)
+
 				if tooltipInfo and tooltipInfo.lines and tooltipInfo.lines[1] then
 					local name = tooltipInfo.lines[1].leftText
 					if name and name ~= "" then
 						return name
 					end
 				end
+
 				return nil
 			end
 
 			local immediateName = CheckForName()
+
 			if immediateName then
 				callback(immediateName)
+
 				return
 			end
 
@@ -229,6 +233,7 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 	end
 
 	scrollFrame:SetContentHeight(math.abs(offsetY))
+
 	return zoneID
 end
 
@@ -324,6 +329,7 @@ local function UpdateZoneOverview(zoneID, scrollFrame)
 			offsetY = offsetY - 16
 		end
 	end
+
 	scrollFrame:SetContentHeight(math.abs(offsetY))
 end
 
@@ -341,6 +347,7 @@ local function CreateOverviewScrollFrame(window, offsetX)
 		contentInsets = OverviewData.contentInsets
 	})
 	window.scrollFrame:SetAllPoints(background)
+
 	return background
 end
 
@@ -356,6 +363,7 @@ local function InitializeFrames()
 		RaceOverviewFrame.portrait:SetTexture(Addon:GetMediaPath("icon-round.tga"))
 
 		local background = CreateOverviewScrollFrame(RaceOverviewFrame, 0)
+
 		RaceOverviewFrame.openButton = AWL.Controls:CreateButton({
 			parent = RaceOverviewFrame,
 			width = OverviewData.openButtonWidth,
@@ -369,6 +377,7 @@ local function InitializeFrames()
 				end
 			end
 		})
+
 		RaceOverviewFrame.openButton:SetPoint("TOPRIGHT", background, "BOTTOMRIGHT", -5, -5)
 	end
 
@@ -381,12 +390,16 @@ local function InitializeFrames()
 		ZoneOverviewFrame:SetPoint("TOPLEFT", RaceOverviewFrame, "TOPRIGHT", OverviewData.zoneOffsetX, 0)
 
 		local background = CreateOverviewScrollFrame(ZoneOverviewFrame, OverviewData.zoneInsetOffsetX)
+
 		ZoneOverviewFrame.dismissButton = AWL.Controls:CreateButton({
 			parent = ZoneOverviewFrame,
 			width = OverviewData.closeButtonWidth,
 			label = L["race.button.close"],
-			onClick = function() ZoneOverviewFrame:Hide() end
+			onClick = function()
+				ZoneOverviewFrame:Hide()
+			end
 		})
+
 		ZoneOverviewFrame.dismissButton:SetPoint("TOPRIGHT", background, "BOTTOMRIGHT", -5, -5)
 	end
 end

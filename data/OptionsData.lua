@@ -1,6 +1,5 @@
 local _, PER = ...
 
--- Complete defaults for every supported WoW variant.
 PER.OPTIONS_DEFAULTS = {
 	["general"] = {
 		["minimap-button"] = {

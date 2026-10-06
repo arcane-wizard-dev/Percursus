@@ -126,7 +126,10 @@ function Options:Initialize()
 		variableName	= "horizontal-shift",
 		name			= L["options.race-tracker.horizontal-shift.name"],
 		tooltip			= L["options.race-tracker.horizontal-shift.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["horizontal-shift"], minValue = -500, maxValue = 500, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["horizontal-shift"],
+		minValue = -500,
+		maxValue = 500,
+		step = 10,
 		formatter		= function(value) return value end,
 	})
 
@@ -137,7 +140,10 @@ function Options:Initialize()
 		variableName	= "vertical-shift",
 		name			= L["options.race-tracker.vertical-shift.name"],
 		tooltip			= L["options.race-tracker.vertical-shift.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["vertical-shift"], minValue = -400, maxValue = 400, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["vertical-shift"],
+		minValue = -400,
+		maxValue = 400,
+		step = 10,
 		formatter		= function(value) return value end,
 	})
 
@@ -164,7 +170,10 @@ function Options:Initialize()
 		sliderVariableName		= "fadeout-delay",
 		sliderName				= L["options.race-tracker.fadeout-delay.name"],
 		sliderTooltip			= L["options.race-tracker.fadeout-delay.tooltip"],
-		sliderDefault			= PER.OPTIONS_DEFAULTS["race-tracker"]["fadeout-delay"], sliderMin = 1, sliderMax = 10, sliderStep = 1,
+		sliderDefault			= PER.OPTIONS_DEFAULTS["race-tracker"]["fadeout-delay"],
+		sliderMin = 1,
+		sliderMax = 10,
+		sliderStep = 1,
 		sliderFormatter			= function(value) return value .. " " .. L["race.seconds-short"] end
 	})
 
@@ -185,7 +194,10 @@ function Options:Initialize()
 		variableName	= "speed-display-horizontal-shift",
 		name			= L["options.race-tracker.speed-display-horizontal-shift.name"],
 		tooltip			= L["options.race-tracker.speed-display-horizontal-shift.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-horizontal-shift"], minValue = -500, maxValue = 500, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-horizontal-shift"],
+		minValue = -500,
+		maxValue = 500,
+		step = 10,
 		formatter		= function(value) return value end,
 		parentInit		= initializerSpeed,
 		parentCondition	= function() return GetVal(settingSpeed) end
@@ -198,7 +210,10 @@ function Options:Initialize()
 		variableName	= "speed-display-vertical-shift",
 		name			= L["options.race-tracker.speed-display-vertical-shift.name"],
 		tooltip			= L["options.race-tracker.speed-display-vertical-shift.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-vertical-shift"], minValue = -400, maxValue = 400, step = 10,
+		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-vertical-shift"],
+		minValue = -400,
+		maxValue = 400,
+		step = 10,
 		formatter		= function(value) return value end,
 		parentInit		= initializerSpeed,
 		parentCondition	= function() return GetVal(settingSpeed) end

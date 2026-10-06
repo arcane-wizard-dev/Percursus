@@ -31,7 +31,7 @@ Individual features and display options can be configured in the addon settings.
 
 ## Supported Languages & Flavors
 
-* Languages: English, German, Simplified Chinese
+* Languages: English, German, Russian, Simplified Chinese
 * Flavors: Retail
 
 ## Installation & Quick Start

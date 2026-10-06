@@ -11,6 +11,7 @@
 
 ## Notes: This addon displays a live timer during a race (e.g. dragonriding & skyriding) and provides a detailed time overview of all completed races.
 ## Notes-deDE: Dieses Addon zeigt einen Live-Timer während eines Rennens (z.B. Drachenreiten & Himmelsreiten) an und bietet eine detaillierte Zeitübersicht über alle absolvierten Rennen.
+## Notes-ruRU: Этот аддон показывает таймер во время гонок, например на драконах, и предоставляет подробный обзор времени всех завершённых гонок.
 ## Notes-zhCN: 此插件会在竞速（例如驭龙术和驭空术）期间显示实时计时器，并提供所有已完成竞速的详细时间总览。
 
 ## LoadSavedVariablesFirst: 1

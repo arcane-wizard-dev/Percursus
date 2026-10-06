@@ -2,5 +2,5 @@
 ### [@project-version@](https://github.com/arcane-wizard-dev/Percursus/tree/@project-version@) (@build-date@)
 [Full Changelog](@full-changelog@) - [Previous Releases](https://github.com/arcane-wizard-dev/Percursus/releases)
 
-- Changed: Race and zone overviews now use the native Blizzard UI appearance
-- Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility
+- Added: ruRU localization
+- Minor code adjustments

@@ -114,8 +114,13 @@ function RaceTracker:Start(raceQuestID, raceSpellID, raceGoldTime, raceSilverTim
 		local raceAura = C_UnitAuras.GetPlayerAuraBySpellID(369968)
 		local countdownAura = C_UnitAuras.GetPlayerAuraBySpellID(raceSpellID)
 
-		if raceAura then isRace = true end
-		if countdownAura then	isCountdown = true end
+		if raceAura then
+			isRace = true
+		end
+
+		if countdownAura then
+			isCountdown = true
+		end
 
 		if isCountdown and not isFirstTry and not isInit then
 			isInit = true

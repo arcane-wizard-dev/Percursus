@@ -34,6 +34,7 @@ local PercursusFrame = CreateFrame("Frame", "Percursus")
 local function CheckRaceQuest(questID)
 	for _, dataWrapper in pairs(raceDataTable) do
 		local _, _, _, modes = unpack(dataWrapper)
+
 		for _, data in pairs(modes) do
 			if data[1] == questID then
 				return true
@@ -47,6 +48,7 @@ end
 local function GetRaceData(questID)
 	for _, dataWrapper in pairs(raceDataTable) do
 		local _, _, _, modes = unpack(dataWrapper)
+
 		for mode, data in pairs(modes) do
 			if data[1] == questID then
 				return {
@@ -93,6 +95,7 @@ function PercursusFrame:ADDON_LOADED(_, addOnName)
 
 	if not dbInit then
 		Addon:AbortInitialization(self)
+
 		return
 	end
 
