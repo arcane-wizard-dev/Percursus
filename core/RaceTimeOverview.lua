@@ -13,7 +13,7 @@ local RaceTimeOverview = PER.Modules.RaceTimeOverview
 -- Variables
 local raceDataTable = PER.RACE_DATA
 local sortedRaceDataTable = PER.SORTED_RACE_DATA
-local OverviewData = PER.RACE_TIME_OVERVIEW_DATA
+local OverviewConfig = PER.UIConfig.RaceTimeOverview
 
 --------------
 --- Frames ---
@@ -140,9 +140,9 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 					if racePersonalTime <= raceGoldTime then
 						time = "|T616373:0|t |cnGOLD_FONT_COLOR:".. racePersonalTime .. "|r"
 					elseif racePersonalTime <= raceSilverTime then
-						time = "|T616375:0|t |c" .. PER.COLOR_SILVER .. racePersonalTime .. "|r"
+						time = "|T616375:0|t |c" .. OverviewConfig.colors.silver .. racePersonalTime .. "|r"
 					else
-						time = "|T616372:0|t |c" .. PER.COLOR_BRONZE .. racePersonalTime .. "|r"
+						time = "|T616372:0|t |c" .. OverviewConfig.colors.bronze .. racePersonalTime .. "|r"
 					end
 
 					bestTime:SetText(L["race.personal-best-time"]:format(time))
@@ -210,9 +210,9 @@ local function UpdateRaceOverview(npcID, scrollFrame)
 					if racePersonalTime <= raceGoldTime then
 						time = "|T616373:0|t |cnGOLD_FONT_COLOR:".. racePersonalTime .. "|r"
 					elseif racePersonalTime <= raceSilverTime then
-						time = "|T616375:0|t |c" .. PER.COLOR_SILVER .. racePersonalTime .. "|r"
+						time = "|T616375:0|t |c" .. OverviewConfig.colors.silver .. racePersonalTime .. "|r"
 					else
-						time = "|T616372:0|t |c" .. PER.COLOR_BRONZE .. racePersonalTime .. "|r"
+						time = "|T616372:0|t |c" .. OverviewConfig.colors.bronze .. racePersonalTime .. "|r"
 					end
 
 					bestTime:SetText(L["race.personal-best-time"]:format(time))
@@ -312,9 +312,9 @@ local function UpdateZoneOverview(zoneID, scrollFrame)
 						if racePersonalTime <= raceGoldTime then
 							time = "|T616373:0|t |cnGOLD_FONT_COLOR:" .. racePersonalTime .. "|r"
 						elseif racePersonalTime <= raceSilverTime then
-							time = "|T616375:0|t |c" .. PER.COLOR_SILVER .. racePersonalTime .. "|r"
+							time = "|T616375:0|t |c" .. OverviewConfig.colors.silver .. racePersonalTime .. "|r"
 						else
-							time = "|T616372:0|t |c" .. PER.COLOR_BRONZE .. racePersonalTime .. "|r"
+							time = "|T616372:0|t |c" .. OverviewConfig.colors.bronze .. racePersonalTime .. "|r"
 						end
 
 						text:SetText(difficulty .. ": " .. time .. " " .. L["race.seconds-short"])
@@ -334,17 +334,17 @@ local function UpdateZoneOverview(zoneID, scrollFrame)
 end
 
 local function CreateOverviewScrollFrame(window, offsetX)
-	local insetConfig = AWL.Utils:CopyTable(OverviewData.inset)
+	local insetConfig = AWL.Utils:CopyTable(OverviewConfig.inset)
 	insetConfig.parent = window
 	local background = AWL.Frames:CreateInset(insetConfig)
-	background:SetPoint("BOTTOM", window, "BOTTOM", offsetX, OverviewData.inset.bottom)
+	background:SetPoint("BOTTOM", window, "BOTTOM", offsetX, OverviewConfig.inset.bottom)
 	window.scrollFrame = AWL.ScrollFrames:CreateScrollFrame({
 		parent = window,
-		width = OverviewData.inset.width,
-		height = OverviewData.inset.height,
+		width = OverviewConfig.inset.width,
+		height = OverviewConfig.inset.height,
 		backgroundAlpha = 0,
 		showBorder = false,
-		contentInsets = OverviewData.contentInsets
+		contentInsets = OverviewConfig.contentInsets
 	})
 	window.scrollFrame:SetAllPoints(background)
 
@@ -353,12 +353,12 @@ end
 
 local function InitializeFrames()
 	do
-		local config = AWL.Utils:CopyTable(OverviewData.raceWindow)
+		local config = AWL.Utils:CopyTable(OverviewConfig.raceWindow)
 		config.title = addonName
 		RaceOverviewFrame = AWL.Frames:CreateWindow(config)
 		RaceOverviewFrame:SetParent(GossipFrame)
 		RaceOverviewFrame:ClearAllPoints()
-		RaceOverviewFrame:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", OverviewData.raceOffsetX, 0)
+		RaceOverviewFrame:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", OverviewConfig.raceOffsetX, 0)
 		RaceOverviewFrame.portrait:SetPoint("TOPLEFT", -5, 8)
 		RaceOverviewFrame.portrait:SetTexture(Addon:GetMediaPath("icon-round.tga"))
 
@@ -366,7 +366,7 @@ local function InitializeFrames()
 
 		RaceOverviewFrame.openButton = AWL.Controls:CreateButton({
 			parent = RaceOverviewFrame,
-			width = OverviewData.openButtonWidth,
+			width = OverviewConfig.openButtonWidth,
 			label = L["race.button.zone-overview"],
 			onClick = function()
 				if ZoneOverviewFrame:IsShown() then
@@ -382,18 +382,18 @@ local function InitializeFrames()
 	end
 
 	do
-		local config = AWL.Utils:CopyTable(OverviewData.zoneWindow)
+		local config = AWL.Utils:CopyTable(OverviewConfig.zoneWindow)
 		config.title = L["race.title.zone-overview"]
 		ZoneOverviewFrame = AWL.Frames:CreateWindow(config)
 		ZoneOverviewFrame:SetParent(RaceOverviewFrame)
 		ZoneOverviewFrame:ClearAllPoints()
-		ZoneOverviewFrame:SetPoint("TOPLEFT", RaceOverviewFrame, "TOPRIGHT", OverviewData.zoneOffsetX, 0)
+		ZoneOverviewFrame:SetPoint("TOPLEFT", RaceOverviewFrame, "TOPRIGHT", OverviewConfig.zoneOffsetX, 0)
 
-		local background = CreateOverviewScrollFrame(ZoneOverviewFrame, OverviewData.zoneInsetOffsetX)
+		local background = CreateOverviewScrollFrame(ZoneOverviewFrame, OverviewConfig.zoneInsetOffsetX)
 
 		ZoneOverviewFrame.dismissButton = AWL.Controls:CreateButton({
 			parent = ZoneOverviewFrame,
-			width = OverviewData.closeButtonWidth,
+			width = OverviewConfig.closeButtonWidth,
 			label = L["race.button.close"],
 			onClick = function()
 				ZoneOverviewFrame:Hide()

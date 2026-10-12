@@ -1,6 +1,10 @@
 local _, PER = ...
 
-PER.RACE_TIME_OVERVIEW_DATA = {
+PER.UIConfig.RaceTimeOverview = {
+	colors = {
+		silver = "ffC0C0C0",
+		bronze = "ffCD7F32"
+	},
 	raceWindow = {
 		width = 338,
 		height = 430,

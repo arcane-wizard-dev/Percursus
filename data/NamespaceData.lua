@@ -3,6 +3,7 @@ local addonName, PER = ...
 PER.Settings = PER.Settings or {}
 PER.Data = PER.Data or {}
 PER.State = PER.State or {}
+PER.UIConfig = PER.UIConfig or {}
 PER.Modules = PER.Modules or {}
 
 PER.Modules.Options = PER.Modules.Options or {}

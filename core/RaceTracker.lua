@@ -3,6 +3,8 @@ local _, PER = ...
 -- Localization
 local L = PER.Localization
 
+local RaceTrackerConfig = PER.UIConfig.RaceTracker
+
 -- Module imports
 local Utils = PER.Modules.Utils
 
@@ -37,7 +39,7 @@ local function ShowRaceTracker(raceQuestID, raceGoldTime, racePersonalTime)
 	SpeedDisplayFrame:SetPoint("CENTER", PER.Settings.raceTracker["speed-display-horizontal-shift"], PER.Settings.raceTracker["speed-display-vertical-shift"])
 
 	if PER.Settings.raceTracker["background-type"] ~= 0 then
-		local style = PER.RACE_TRACKER_BACKGROUNDS[PER.Settings.raceTracker["background-type"]]
+		local style = RaceTrackerConfig.backgrounds[PER.Settings.raceTracker["background-type"]]
 
 		RaceTrackerFrame:SetBackground(style)
 		ResultTrackerFrame:SetBackground(style)
