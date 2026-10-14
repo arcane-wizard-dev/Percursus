@@ -2,6 +2,8 @@ local _, PER = ...
 
 PER.Localization = setmetatable({},{
 	__index=function(self,key)
+		rawset(self, key, key)
+
 		geterrorhandler()("Percursus (Debug): Missing entry for '" .. tostring(key) .. "'")
 
 		return key
