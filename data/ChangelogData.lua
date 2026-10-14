@@ -8,6 +8,13 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Fixed: Repeated error messages for missing translations"
+		}
+	},
+	{
+		version = "v2.33",
+		date = "2026-10-12",
+		entries = {
 			"Refactoring of the addon structure and source code"
 		}
 	},
@@ -70,13 +77,6 @@ PER.CHANGELOG = {
 		date = "2026-09-06",
 		entries = {
 			"Added: TOC version for patch 12.1.5 [retail]"
-		}
-	},
-	{
-		version = "v2.24",
-		date = "2026-08-30",
-		entries = {
-			"Minor code adjustments"
 		}
 	}
 }
