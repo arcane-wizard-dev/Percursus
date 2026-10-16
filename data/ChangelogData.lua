@@ -9,6 +9,13 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
+		}
+	},
+	{
+		version = "v2.34",
+		date = "2026-10-14",
+		entries = {
 			"Fixed: Repeated error messages for missing translations"
 		}
 	},
@@ -71,13 +78,6 @@ PER.CHANGELOG = {
 		date = "2026-09-13",
 		entries = {
 			"Updated: GitHub links following the organization rename to 'arcane-wizard-dev'"
-		}
-	},
-	{
-		version = "v2.25",
-		date = "2026-09-06",
-		entries = {
-			"Added: TOC version for patch 12.1.5 [retail]"
 		}
 	}
 }
