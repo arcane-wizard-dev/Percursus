@@ -25,7 +25,7 @@ PER.UIConfig.RaceTimeOverview = {
 		movable = false,
 		closeOnEscape = false
 	},
-	inset = {width = 322, height = 330, bottom = 37, backgroundStyle = "character", backgroundAlpha = 1},
+	inset = {width = 322, height = 330, bottom = 37, backgroundStyle = "textured", backgroundAlpha = 1},
 	contentInsets = {left = 15, right = 25, top = 15, bottom = 15},
 	raceOffsetX = 15,
 	zoneOffsetX = 10,

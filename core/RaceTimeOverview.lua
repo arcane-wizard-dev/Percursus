@@ -354,6 +354,7 @@ end
 local function InitializeFrames()
 	do
 		local config = AWL.Utils:CopyTable(OverviewConfig.raceWindow)
+		config.addonName = addonName
 		config.title = addonName
 		RaceOverviewFrame = AWL.Frames:CreateWindow(config)
 		RaceOverviewFrame:SetParent(GossipFrame)
@@ -383,6 +384,7 @@ local function InitializeFrames()
 
 	do
 		local config = AWL.Utils:CopyTable(OverviewConfig.zoneWindow)
+		config.addonName = addonName
 		config.title = L["race.title.zone-overview"]
 		ZoneOverviewFrame = AWL.Frames:CreateWindow(config)
 		ZoneOverviewFrame:SetParent(RaceOverviewFrame)
