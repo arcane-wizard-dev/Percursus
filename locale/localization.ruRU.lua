@@ -55,11 +55,13 @@ L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "Определ
 
 -- General
 
-L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Щелкните правой кнопкой мыши|r, чтобы открыть настройки."
+L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Щелкните левой кнопкой мыши|r, чтобы открыть обзор всех гонок.\n|cnLINK_FONT_COLOR:Щелкните правой кнопкой мыши|r, чтобы открыть настройки."
 
--- Chat
+L["race.seconds-long"] = "Секунды"
+L["race.seconds-short"] = "сек."
+L["race.decimal-separator"] = ","
 
--- Race Tracker & Race Time Overview
+-- Race Tracker
 
 L["race.time"] = "Время: %.1f сек."
 L["race.gold-time"] = "|T616373:0|t Время для золота: %s сек."
@@ -69,13 +71,41 @@ L["race.no-time"] = "Время для медали недоступно"
 
 L["race.gliding-speed"] = "Текущая скорость гонки: %s%%"
 
-L["race.seconds-long"] = "Секунды"
-L["race.seconds-short"] = "сек."
+L["race.personal-best-time"] = "Личный рекорд: %s сек."
+L["race.personal-best-time-no-race"] = "Пока не завершено ни одной гонки"
+L["race.personal-best-time-not-available"] = "Личный рекорд недоступен"
+L["race.personal-best-time-failed"] = "Личный рекорд не побит"
 
-L["race.button.close"] = "Закрыть"
-L["race.button.zone-overview"] = "Обзор зоны"
+-- Race Time Overview
 
 L["race.title.zone-overview"] = "Обзор зоны"
+L["race.title.all-overview"] = "Азерот"
+
+L["race.tab.race"] = "Текущая гонка"
+L["race.tab.zone"] = "Зона"
+
+L["race.button.close"] = "Закрыть"
+L["race.button.all-overview"] = "Все гонки"
+
+L["race.menu.more"] = "Ещё"
+L["race.menu.show-separators"] = "Показывать разделители"
+L["race.expand-all"] = "Развернуть всё"
+L["race.collapse-all"] = "Свернуть всё"
+
+L["race.filter.all"] = "Показать все"
+L["race.filter.no-gold"] = "Без золотого времени"
+L["race.filter.no-time"] = "Без времени гонки"
+
+L["race.name-unavailable"] = "Гонка %s"
+L["race.zone-unavailable"] = "Регион %s"
+L["race.other-regions"] = "Другие регионы"
+
+L["race.column.mode"] = "Режим"
+L["race.column.race"] = "Гонка"
+L["race.column.race-mode"] = "Гонка / Режим"
+L["race.column.best-time"] = "Рекорд"
+L["race.column.gold"] = "Золото"
+L["race.column.silver"] = "Серебро"
 
 L["race.type-normal"] = "Обычная"
 L["race.type-advanced"] = "Продвинутая"
@@ -83,8 +113,3 @@ L["race.type-reverse"] = "Обратная"
 L["race.type-challenge"] = "Испытание"
 L["race.type-challenge-reverse"] = "Обратное испытание"
 L["race.type-storm-gryphon"] = "Грозовой грифон"
-
-L["race.personal-best-time"] = "Личный рекорд: %s сек."
-L["race.personal-best-time-no-race"] = "Пока не завершено ни одной гонки"
-L["race.personal-best-time-not-available"] = "Личный рекорд недоступен"
-L["race.personal-best-time-failed"] = "Личный рекорд не побит"

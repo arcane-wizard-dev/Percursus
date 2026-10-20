@@ -59,6 +59,7 @@ function Utils:InitializeDatabase()
 	PER.Settings.general = dbInit.settings["general"]
 	PER.Settings.raceTimeOverview = dbInit.settings["race-time-overview"]
 	PER.Settings.raceTracker = dbInit.settings["race-tracker"]
+	AWL.Utils:MergeMissingTableEntries(PER.Settings.raceTimeOverview, PER.OPTIONS_DEFAULTS["race-time-overview"])
 
 	return dbInit
 end
@@ -66,6 +67,9 @@ end
 function Utils:InitializeMinimapButton()
 	self.minimapButton = Addon:RegisterMinimapButton({
 		db = PER.Settings.general["minimap-button"],
-		tooltip = L["minimap-button.tooltip"]
+		tooltip = L["minimap-button.tooltip"],
+		onLeftClick = function()
+			PER.Modules.RaceTimeOverview:ToggleAllOverview()
+		end
 	})
 end

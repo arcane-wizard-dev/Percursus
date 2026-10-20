@@ -14,6 +14,14 @@ Percursus_Options_v4 = {
 		},
 		["race-time-overview"] = {
 			["active"] = false,
+			["table-zone"] = {
+				["show-separators"] = true,
+				["time-filter"] = "all",
+			},
+			["table-all"] = {
+				["show-separators"] = false,
+				["time-filter"] = "no-gold",
+			},
 		},
 		["race-tracker"] = {
 			["active"] = true,
@@ -55,6 +63,14 @@ Percursus_Options_v4 = {
 			},
 			["race-time-overview"] = {
 				["active"] = false,
+				["table-zone"] = {
+					["show-separators"] = false,
+					["time-filter"] = "no-time",
+				},
+				["table-all"] = {
+					["show-separators"] = true,
+					["time-filter"] = "all",
+				},
 			},
 			["race-tracker"] = {
 				["active"] = true,
@@ -82,6 +98,14 @@ Percursus_Options_v4 = {
 			},
 			["race-time-overview"] = {
 				["active"] = false,
+				["table-zone"] = {
+					["show-separators"] = true,
+					["time-filter"] = "no-gold",
+				},
+				["table-all"] = {
+					["show-separators"] = false,
+					["time-filter"] = "no-time",
+				},
 			},
 			["race-tracker"] = {
 				["active"] = true,

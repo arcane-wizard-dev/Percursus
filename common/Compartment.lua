@@ -9,7 +9,10 @@ local L = PER.Localization
 
 -- Variables
 local handlers = Addon:CreateCompartmentHandlers({
-	tooltip = L["minimap-button.tooltip"]
+	tooltip = L["minimap-button.tooltip"],
+	onLeftClick = function()
+		PER.Modules.RaceTimeOverview:ToggleAllOverview()
+	end
 })
 
 ------------------------

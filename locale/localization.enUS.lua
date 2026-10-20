@@ -63,11 +63,13 @@ L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "Indicates the 
 
 -- General
 
-L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Right-click|r to open the options."
+L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Left-click|r to open the overview of all races.\n|cnLINK_FONT_COLOR:Right-click|r to open the options."
 
--- Chat
+L["race.seconds-long"] = "Seconds"
+L["race.seconds-short"] = "sec"
+L["race.decimal-separator"] = "."
 
--- Race Tracker & Race Time Overview
+-- Race Tracker
 
 L["race.time"] = "Time: %.1f Seconds"
 L["race.gold-time"] = "|T616373:0|t Gold Time: %s sec"
@@ -77,13 +79,41 @@ L["race.no-time"] = "No Medal Time Available"
 
 L["race.gliding-speed"] = "Current Racing Speed: %s%%"
 
-L["race.seconds-long"] = "Seconds"
-L["race.seconds-short"] = "sec"
+L["race.personal-best-time"] = "Personal Best Time: %s sec"
+L["race.personal-best-time-no-race"] = "No Race Completed So Far"
+L["race.personal-best-time-not-available"] = "Personal Best Time Not Available"
+L["race.personal-best-time-failed"] = "New Personal Best Time Failed"
 
-L["race.button.close"] = "Close"
-L["race.button.zone-overview"] = "Zone Overview"
+-- Race Time Overview
 
 L["race.title.zone-overview"] = "Zone Overview"
+L["race.title.all-overview"] = "Azeroth"
+
+L["race.tab.race"] = "Current Race"
+L["race.tab.zone"] = "Zone"
+
+L["race.button.close"] = "Close"
+L["race.button.all-overview"] = "All Races"
+
+L["race.menu.more"] = "More"
+L["race.menu.show-separators"] = "Show Separators"
+L["race.expand-all"] = "Expand All"
+L["race.collapse-all"] = "Collapse All"
+
+L["race.filter.all"] = "Show All"
+L["race.filter.no-gold"] = "No Gold Time"
+L["race.filter.no-time"] = "No Recorded Time"
+
+L["race.name-unavailable"] = "Race %s"
+L["race.zone-unavailable"] = "Region %s"
+L["race.other-regions"] = "Other Regions"
+
+L["race.column.mode"] = "Mode"
+L["race.column.race"] = "Race"
+L["race.column.race-mode"] = "Race / Mode"
+L["race.column.best-time"] = "Best Time"
+L["race.column.gold"] = "Gold"
+L["race.column.silver"] = "Silver"
 
 L["race.type-normal"] = "Normal"
 L["race.type-advanced"] = "Advanced"
@@ -91,8 +121,3 @@ L["race.type-reverse"] = "Reverse"
 L["race.type-challenge"] = "Challenge"
 L["race.type-challenge-reverse"] = "Reverse Challenge"
 L["race.type-storm-gryphon"] = "Storm Gryphon"
-
-L["race.personal-best-time"] = "Personal Best Time: %s sec"
-L["race.personal-best-time-no-race"] = "No Race Completed So Far"
-L["race.personal-best-time-not-available"] = "Personal Best Time Not Available"
-L["race.personal-best-time-failed"] = "New Personal Best Time Failed"

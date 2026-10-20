@@ -73,6 +73,8 @@ local function SlashCommand(msg)
 
 	if command == "" then
 		Utils:OpenSettings()
+	elseif command == "overview" then
+		RaceTimeOverview:ToggleAllOverview()
 	elseif command == "changelog" then
 		AWL.Frames:OpenChangelog(addonName, PER.CHANGELOG)
 	else

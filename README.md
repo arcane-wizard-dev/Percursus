@@ -27,7 +27,9 @@ Individual features and display options can be configured in the addon settings.
 
 ### Race Time Overview
 
-* All race times of the current zone can be viewed in the Race Time Overview.
+* Current Race and Zone tabs show personal bests and medal targets.
+* All Races provides an overview grouped by continent and zone.
+* Table gear menus provide filters, separators, and expand/collapse actions.
 
 ## Supported Languages & Flavors
 
@@ -41,6 +43,7 @@ Individual features and display options can be configured in the addon settings.
 To manage the addon, use the following commands in your chat and press enter:
 
 * Type `/per` or `/percursus` to access the addon options menu.
+* Type `/per overview` or `/percursus overview` to manually display the All Races overview.
 * Type `/per changelog` or `/percursus changelog` to open the changelog.
 
 ## Bugs & Feedback

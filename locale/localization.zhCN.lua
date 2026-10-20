@@ -55,11 +55,13 @@ L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "设置速度�
 
 -- General
 
-L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:右键点击|r打开选项。"
+L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:左键点击|r打开全部竞速概览。\n|cnLINK_FONT_COLOR:右键点击|r打开选项。"
 
--- Chat
+L["race.seconds-long"] = "秒"
+L["race.seconds-short"] = "秒"
+L["race.decimal-separator"] = "."
 
--- Race Tracker & Race Time Overview
+-- Race Tracker
 
 L["race.time"] = "时间：%.1f 秒"
 L["race.gold-time"] = "|T616373:0|t 金牌时间：%s 秒"
@@ -69,13 +71,41 @@ L["race.no-time"] = "无可用奖牌时间"
 
 L["race.gliding-speed"] = "当前竞速速度：%s%%"
 
-L["race.seconds-long"] = "秒"
-L["race.seconds-short"] = "秒"
+L["race.personal-best-time"] = "个人最佳时间：%s 秒"
+L["race.personal-best-time-no-race"] = "尚未完成任何竞速"
+L["race.personal-best-time-not-available"] = "个人最佳时间不可用"
+L["race.personal-best-time-failed"] = "未能刷新个人最佳时间"
 
-L["race.button.close"] = "关闭"
-L["race.button.zone-overview"] = "区域概览"
+-- Race Time Overview
 
 L["race.title.zone-overview"] = "区域概览"
+L["race.title.all-overview"] = "艾泽拉斯"
+
+L["race.tab.race"] = "当前竞速"
+L["race.tab.zone"] = "区域"
+
+L["race.button.close"] = "关闭"
+L["race.button.all-overview"] = "所有竞速"
+
+L["race.menu.more"] = "更多"
+L["race.menu.show-separators"] = "显示分隔线"
+L["race.expand-all"] = "全部展开"
+L["race.collapse-all"] = "全部折叠"
+
+L["race.filter.all"] = "显示全部"
+L["race.filter.no-gold"] = "未达到金牌时间"
+L["race.filter.no-time"] = "无比赛记录"
+
+L["race.name-unavailable"] = "竞速 %s"
+L["race.zone-unavailable"] = "区域 %s"
+L["race.other-regions"] = "其他区域"
+
+L["race.column.mode"] = "模式"
+L["race.column.race"] = "竞速"
+L["race.column.race-mode"] = "竞速 / 模式"
+L["race.column.best-time"] = "最佳时间"
+L["race.column.gold"] = "金牌"
+L["race.column.silver"] = "银牌"
 
 L["race.type-normal"] = "普通"
 L["race.type-advanced"] = "高级"
@@ -83,8 +113,3 @@ L["race.type-reverse"] = "反向"
 L["race.type-challenge"] = "挑战"
 L["race.type-challenge-reverse"] = "反向挑战"
 L["race.type-storm-gryphon"] = "风暴狮鹫"
-
-L["race.personal-best-time"] = "个人最佳时间：%s 秒"
-L["race.personal-best-time-no-race"] = "尚未完成任何竞速"
-L["race.personal-best-time-not-available"] = "个人最佳时间不可用"
-L["race.personal-best-time-failed"] = "未能刷新个人最佳时间"

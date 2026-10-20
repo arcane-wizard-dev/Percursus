@@ -12,6 +12,14 @@ PER.OPTIONS_DEFAULTS = {
 	},
 	["race-time-overview"] = {
 		["active"] = true,
+		["table-zone"] = {
+			["show-separators"] = true,
+			["time-filter"] = "all",
+		},
+		["table-all"] = {
+			["show-separators"] = true,
+			["time-filter"] = "all",
+		},
 	},
 	["race-tracker"] = {
 		["active"] = true,

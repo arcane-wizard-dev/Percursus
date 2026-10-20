@@ -55,11 +55,13 @@ L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "Gibt die relat
 
 -- General
 
-L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Rechtsklick|r zum Öffnen der Einstellungen."
+L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Linksklick|r zum Öffnen der Übersicht aller Rennen.\n|cnLINK_FONT_COLOR:Rechtsklick|r zum Öffnen der Einstellungen."
 
--- Chat
+L["race.seconds-long"] = "Sekunden"
+L["race.seconds-short"] = "Sek."
+L["race.decimal-separator"] = ","
 
--- Race Tracker & Race Time Overview
+-- Race Tracker
 
 L["race.time"] = "Zeit: %.1f Sekunden"
 L["race.gold-time"] = "|T616373:0|t Goldzeit: %s Sek."
@@ -69,13 +71,41 @@ L["race.no-time"] = "keine Medaillenzeit abrufbar"
 
 L["race.gliding-speed"] = "aktuelle Renngeschwindigkeit: %s%%"
 
-L["race.seconds-long"] = "Sekunden"
-L["race.seconds-short"] = "Sek."
+L["race.personal-best-time"] = "persönliche Bestzeit: %s Sek."
+L["race.personal-best-time-no-race"] = "kein Rennen bisher absolviert"
+L["race.personal-best-time-not-available"] = "persönliche Bestzeit nicht abrufbar"
+L["race.personal-best-time-failed"] = "neue persönliche Bestzeit verfehlt"
 
-L["race.button.close"] = "Schließen"
-L["race.button.zone-overview"] = "Zonenübersicht"
+-- Race Time Overview
 
 L["race.title.zone-overview"] = "Zonenübersicht"
+L["race.title.all-overview"] = "Azeroth"
+
+L["race.tab.race"] = "Aktuelles Rennen"
+L["race.tab.zone"] = "Zone"
+
+L["race.button.close"] = "Schließen"
+L["race.button.all-overview"] = "Alle Rennen"
+
+L["race.menu.more"] = "Mehr"
+L["race.menu.show-separators"] = "Trennlinien anzeigen"
+L["race.expand-all"] = "Alle aufklappen"
+L["race.collapse-all"] = "Alle zuklappen"
+
+L["race.filter.all"] = "Alle anzeigen"
+L["race.filter.no-gold"] = "Nur ohne Goldzeit"
+L["race.filter.no-time"] = "Nur ohne Rennzeit"
+
+L["race.name-unavailable"] = "Rennen %s"
+L["race.zone-unavailable"] = "Region %s"
+L["race.other-regions"] = "Sonstige Regionen"
+
+L["race.column.mode"] = "Modus"
+L["race.column.race"] = "Rennen"
+L["race.column.race-mode"] = "Rennen / Modus"
+L["race.column.best-time"] = "Bestzeit"
+L["race.column.gold"] = "Gold"
+L["race.column.silver"] = "Silber"
 
 L["race.type-normal"] = "Normal"
 L["race.type-advanced"] = "Fortgeschritten"
@@ -83,8 +113,3 @@ L["race.type-reverse"] = "Umgekehrt"
 L["race.type-challenge"] = "Herausforderung"
 L["race.type-challenge-reverse"] = "Umgekehrte Herausforderung"
 L["race.type-storm-gryphon"] = "Sturmgreif"
-
-L["race.personal-best-time"] = "persönliche Bestzeit: %s Sek."
-L["race.personal-best-time-no-race"] = "kein Rennen bisher absolviert"
-L["race.personal-best-time-not-available"] = "persönliche Bestzeit nicht abrufbar"
-L["race.personal-best-time-failed"] = "neue persönliche Bestzeit verfehlt"

@@ -15,6 +15,9 @@ Percursus_Options_v4 = {
 			["enabled"] = true,
 		},
 		["race-time-overview"] = {
+			["show-separators"] = false,
+			["table-show-separators"] = false,
+			["table-time-filter"] = "no-time",
 			["active"] = false,
 			["obsolete-option"] = 1,
 		},
@@ -54,6 +57,9 @@ Percursus_Options_v4 = {
 				["enabled"] = true,
 			},
 			["race-time-overview"] = {
+				["show-separators"] = false,
+				["table-show-separators"] = false,
+				["table-time-filter"] = "no-time",
 				["active"] = false,
 				["obsolete-option"] = 1,
 			},
@@ -78,6 +84,9 @@ Percursus_Options_v4 = {
 				["enabled"] = true,
 			},
 			["race-time-overview"] = {
+				["show-separators"] = false,
+				["table-show-separators"] = false,
+				["table-time-filter"] = "no-time",
 				["active"] = false,
 				["obsolete-option"] = 1,
 			},
