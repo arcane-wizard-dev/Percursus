@@ -4,7 +4,7 @@
 
 _Master every course. Beat your time._
 
-Percursus is a World of Warcraft addon that displays a live timer during a race (e.g., Dragonriding & Skyriding) and provides a detailed time overview of all completed races. It is compatible with all race types, including Skyriding, Dragonriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It helps you track your performance in real-time and keep an eye on your records.
+Percursus is a World of Warcraft addon that displays a live timer during a race (e.g., Dragonriding & Skyriding) and provides a detailed time overview of all races. It is compatible with all race types, including Skyriding, Dragonriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It helps you track your performance in real-time and keep an eye on your records.
 
 > ⚠️ **Important!** This addon requires **Arcane Wizard: Library**. See Installation & Quick Start for installation details.
 
@@ -12,7 +12,9 @@ Percursus is a World of Warcraft addon that displays a live timer during a race 
 
 **Race Tracker** - During the race, an overlay is shown that allows you to track your current race time.
 
-**Race Time Overview** - Next to the quest window of each Bronze Timekeeper, your current race times, as well as the gold and silver medal times, are shown.
+**Race Time Overview** - Next to the quest window of each Bronze Timekeeper, your personal best times, as well as the gold and silver medal times, are shown.
+
+**All Races Overview** - View your personal bests and medal targets for all races, grouped by continent and zone.
 
 ## Features
 
@@ -28,6 +30,10 @@ Individual features and display options can be configured in the addon settings.
 ### Race Time Overview
 
 * <sup>✨ NEW</sup> Current Race and Zone tabs show personal bests and medal targets.
+* <sup>✨ NEW</sup> Table menus provide filters, separators, and expand/collapse actions.
+
+### All Races Overview
+
 * <sup>✨ NEW</sup> All Races provides an overview grouped by continent and zone.
 * <sup>✨ NEW</sup> Table menus provide filters, separators, and expand/collapse actions.
 
@@ -43,8 +49,8 @@ Individual features and display options can be configured in the addon settings.
 To manage the addon, use the following commands in your chat and press enter:
 
 * Type `/per` or `/percursus` to access the addon options menu.
-* Type `/per overview` or `/percursus overview` to manually display the All Races overview.
 * Type `/per changelog` or `/percursus changelog` to open the changelog.
+* Type `/per overview` or `/percursus overview` to manually display the All Races Overview.
 
 ## Bugs & Feedback
 
