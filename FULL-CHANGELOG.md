@@ -1,3 +1,8 @@
+**v2.36 (2026-10-21)**
+- Added: All Races overview grouped by continent and zone
+- Changed: Combined Current Race and Zone tabs with medal display
+- Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility
+
 **v2.35 (2026-10-16)**
 - Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility
 
