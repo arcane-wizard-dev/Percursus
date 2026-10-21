@@ -826,7 +826,7 @@ local function CreateOverviewWindow(kind)
 			column.text = L[column.text]
 		end
 
-		tableConfig.settingsMenu = function(_, root)
+		tableConfig.tableMenu = function(_, root)
 			local expand = root:CreateButton(L["race.expand-all"], function()
 				SetAllExpanded(window, true)
 			end)
