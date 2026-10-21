@@ -9,6 +9,15 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Added: All Races overview grouped by continent and zone",
+			"Changed: Combined Current Race and Zone tabs with medal display",
+			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
+		}
+	},
+	{
+		version = "v2.35",
+		date = "2026-10-16",
+		entries = {
 			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
 		}
 	},
@@ -71,13 +80,6 @@ PER.CHANGELOG = {
 		entries = {
 			"Changed: Character profiles now use GUIDs",
 			"Changed: Addon initialization stops if the player identity is unavailable"
-		}
-	},
-	{
-		version = "v2.26",
-		date = "2026-09-13",
-		entries = {
-			"Updated: GitHub links following the organization rename to 'arcane-wizard-dev'"
 		}
 	}
 }
