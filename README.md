@@ -29,7 +29,7 @@ Individual features and display options can be configured in the addon settings.
 
 * <sup>✨ NEW</sup> Current Race and Zone tabs show personal bests and medal targets.
 * <sup>✨ NEW</sup> All Races provides an overview grouped by continent and zone.
-* <sup>✨ NEW</sup> Table gear menus provide filters, separators, and expand/collapse actions.
+* <sup>✨ NEW</sup> Table menus provide filters, separators, and expand/collapse actions.
 
 ## Supported Languages & Flavors
 
