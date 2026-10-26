@@ -1,5 +1,7 @@
 local _, PER = ...
 
+if PER.State and PER.State.libraryIncompatible then return end
+
 if GetLocale() ~= "deDE" then return end
 
 local L = PER.Localization

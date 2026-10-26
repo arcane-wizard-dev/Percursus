@@ -1,5 +1,7 @@
 local _, PER = ...
 
+if PER.State and PER.State.libraryIncompatible then return end
+
 PER.Localization = setmetatable({},{
 	__index=function(self,key)
 		rawset(self, key, key)

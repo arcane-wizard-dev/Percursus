@@ -1,5 +1,7 @@
 local _, PER = ...
 
+if PER.State and PER.State.libraryIncompatible then return end
+
 -- Localization
 local L = PER.Localization
 
@@ -14,6 +16,7 @@ local RaceTracker = PER.Modules.RaceTracker
 -- Variables
 local canGlide = false
 local raceTicker
+local raceCountdownTimer
 
 --------------
 --- Frames ---
@@ -64,7 +67,9 @@ local function ShowRaceTracker(raceQuestID, raceGoldTime, racePersonalTime)
 		end
 	end
 
-	C_Timer.After(5, function()
+	raceCountdownTimer = C_Timer.NewTimer(5, function()
+		raceCountdownTimer = nil
+
 		if PER.Settings.raceTracker["mode"] == 0 or (PER.Settings.raceTracker["mode"] == 2 and racePersonalTime <= 0) then
 			RaceTrackerFrame:SetTimerText(string.format(L["race.time"], 0))
 		elseif PER.Settings.raceTracker["mode"] == 1 then
@@ -205,6 +210,11 @@ end
 
 function RaceTracker:Stop()
 	raceTicker:Cancel()
+
+	if raceCountdownTimer then
+		raceCountdownTimer:Cancel()
+		raceCountdownTimer = nil
+	end
 
 	SpeedDisplayFrame:HideFrame()
 

@@ -1,5 +1,7 @@
 local _, PER = ...
 
+if PER.State and PER.State.libraryIncompatible then return end
+
 PER.UIConfig.RaceTimeOverview = {
 	colors = {
 		separator = {0.65, 0.55, 0.35, 0.2}

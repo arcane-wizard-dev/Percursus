@@ -1,5 +1,10 @@
 local addonName, PER = ...
 
+Percursus_RaceTrackerMixin = {}
+Percursus_RaceTrackerSpeedDisplayMixin = {}
+
+if PER.State and PER.State.libraryIncompatible then return end
+
 -- Library
 local AWL = ArcaneWizardLibrary
 local Addon = AWL:GetAddon(addonName)
@@ -7,8 +12,6 @@ local Addon = AWL:GetAddon(addonName)
 -----------------------
 --- Mixin Functions ---
 -----------------------
-
-Percursus_RaceTrackerMixin = {}
 
 function Percursus_RaceTrackerMixin:SetTimerText(text)
 	self.Timer:SetText(text)
@@ -63,8 +66,6 @@ end
 function Percursus_RaceTrackerMixin:HideFrame()
 	self:Hide()
 end
-
-Percursus_RaceTrackerSpeedDisplayMixin = {}
 
 function Percursus_RaceTrackerSpeedDisplayMixin:SetSpeedBar(speed)
 	if speed == 0 then

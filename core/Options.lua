@@ -1,5 +1,7 @@
 local addonName, PER = ...
 
+if PER.State and PER.State.libraryIncompatible then return end
+
 -- Library
 local AWL = ArcaneWizardLibrary
 local Addon = AWL:GetAddon(addonName)

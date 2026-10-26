@@ -8,6 +8,7 @@
 ## DefaultState: enabled
 
 ## Dependencies: ArcaneWizardLibrary
+## X-Library-Revision: 1
 
 ## Notes: This addon displays a live timer during a race (e.g. dragonriding & skyriding) and provides a detailed time overview of all completed races.
 ## Notes-deDE: Dieses Addon zeigt einen Live-Timer während eines Rennens (z.B. Drachenreiten & Himmelsreiten) an und bietet eine detaillierte Zeitübersicht über alle absolvierten Rennen.
@@ -27,5 +28,6 @@
 ## X-Curseforge: https://www.curseforge.com/wow/addons/percursus
 ## X-Wago: https://addons.wago.io/addons/percursus
 
+LibraryCompatibility.lua
 Percursus.xml
 Percursus.lua

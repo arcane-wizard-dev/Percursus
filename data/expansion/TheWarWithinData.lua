@@ -1,5 +1,7 @@
 local _, PER = ...
 
+if PER.State and PER.State.libraryIncompatible then return end
+
 if PER.RACE_DATA == nil then
 	PER.RACE_DATA = {}
 end

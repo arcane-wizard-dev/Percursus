@@ -1,5 +1,7 @@
 local addonName, PER = ...
 
+if PER.State and PER.State.libraryIncompatible then return end
+
 PER.Settings = PER.Settings or {}
 PER.Data = PER.Data or {}
 PER.State = PER.State or {}

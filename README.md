@@ -4,17 +4,17 @@
 
 _Master every course. Beat your time._
 
-Percursus is a World of Warcraft addon that displays a live timer during a race (e.g., Dragonriding & Skyriding) and provides a detailed time overview of all races. It is compatible with all race types, including Skyriding, Dragonriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It helps you track your performance in real-time and keep an eye on your records.
+Percursus is a World of Warcraft addon that tracks supported races, including Dragonriding, Skyriding, Skyrocketing and Breakneck (D.R.I.V.E.) races. It shows a live timer during the race and provides overviews of your personal bests and gold and silver target times.
 
 > ⚠️ **Important!** This addon requires **Arcane Wizard: Library**. See Installation & Quick Start for installation details.
 
 ## Key Features
 
-**Race Tracker** - During the race, an overlay is shown that allows you to track your current race time.
+**Race Tracker** - Follow your elapsed race time or use a countdown to a medal target or your personal best.
 
-**Race Time Overview** - Next to the quest window of each Bronze Timekeeper, your personal best times, as well as the gold and silver medal times, are shown.
+**Race Time Overview** - View personal bests and gold and silver target times for the current race or zone next to the race quest window.
 
-**All Races Overview** - View your personal bests and medal targets for all races, grouped by continent and zone.
+**All Races Overview** - Browse personal bests and medal targets for supported races, grouped by continent and zone.
 
 ## Features
 
@@ -29,13 +29,13 @@ Individual features and display options can be configured in the addon settings.
 
 ### Race Time Overview
 
-* <sup>✨ NEW</sup> Current Race and Zone tabs show personal bests and medal targets.
-* <sup>✨ NEW</sup> Table menus provide filters, separators, and expand/collapse actions.
+* Current Race and Zone tabs show personal bests and medal targets.
+* Table menus provide filters, separators, and expand/collapse actions.
 
 ### All Races Overview
 
-* <sup>✨ NEW</sup> All Races provides an overview grouped by continent and zone.
-* <sup>✨ NEW</sup> Table menus provide filters, separators, and expand/collapse actions.
+* All Races provides an overview grouped by continent and zone.
+* Table menus provide filters, separators, and expand/collapse actions.
 
 ## Supported Languages & Flavors
 
