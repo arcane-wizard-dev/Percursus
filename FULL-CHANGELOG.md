@@ -1,3 +1,11 @@
+**v2.37 (2026-10-28)**
+- Added: Startup check for the minimum required Library revision
+- Updated: deDE, enUS, ruRU, zhCN localizations
+- Updated: Addon description
+- Fixed: Aborting a race during the countdown no longer causes the speed display to reappear
+- Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility
+- Minor code adjustments
+
 **v2.36 (2026-10-21)**
 - Added: All Races overview grouped by continent and zone
 - Changed: Combined Current Race and Zone tabs with medal display
