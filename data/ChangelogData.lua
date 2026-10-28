@@ -12,6 +12,18 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Added: Startup check for the minimum required Library revision",
+			"Updated: deDE, enUS, ruRU, zhCN localizations",
+			"Updated: Addon description",
+			"Fixed: Aborting a race during the countdown no longer causes the speed display to reappear",
+			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility",
+			"Minor code adjustments"
+		}
+	},
+	{
+		version = "v2.36",
+		date = "2026-10-21",
+		entries = {
 			"Added: All Races overview grouped by continent and zone",
 			"Changed: Combined Current Race and Zone tabs with medal display",
 			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
@@ -75,14 +87,6 @@ PER.CHANGELOG = {
 		entries = {
 			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility",
 			"Minor code adjustments"
-		}
-	},
-	{
-		version = "v2.27",
-		date = "2026-09-18",
-		entries = {
-			"Changed: Character profiles now use GUIDs",
-			"Changed: Addon initialization stops if the player identity is unavailable"
 		}
 	}
 	-- END GENERATED CHANGELOG
