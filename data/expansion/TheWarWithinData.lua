@@ -210,7 +210,7 @@ raceDataTable[219570] = {
 }
 
 -- Undermine Z6 (Lorenhall)
--- Skyrocketing Sprint R1 (Raktenrennen) - PTR-11.1.0
+-- Skyrocketing Sprint R1 (Raketenrennen) - PTR-11.1.0
 raceDataTable[231793] = {
 	110601, 2346, 0, {
 		NORMAL    = {85071, 3119, 466395, 32, 42},

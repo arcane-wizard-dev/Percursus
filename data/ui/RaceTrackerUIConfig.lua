@@ -3,6 +3,12 @@ local _, PER = ...
 if PER.State and PER.State.libraryIncompatible then return end
 
 PER.UIConfig.RaceTracker = {
+	plain = {
+		width = 256,
+		height = 64,
+		offsetY = {timer = 10, info = -10}
+	},
+	speedBarHeight = 18,
 	backgrounds = {
 		[1] = {
 			type = "file",

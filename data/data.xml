@@ -14,5 +14,6 @@
 	<Script file="ui/RaceTrackerUIConfig.lua" />
 	<Script file="ui/RaceTimeOverviewUIConfig.lua" />
 	<Script file="CommonData.lua" />
+	<Script file="RaceTrackerData.lua" />
 	<Script file="ChangelogData.lua" />
 </Ui>

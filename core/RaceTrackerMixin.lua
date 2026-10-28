@@ -9,6 +9,9 @@ if PER.State and PER.State.libraryIncompatible then return end
 local AWL = ArcaneWizardLibrary
 local Addon = AWL:GetAddon(addonName)
 
+-- Module imports
+local RaceTrackerConfig = PER.UIConfig.RaceTracker
+
 -----------------------
 --- Mixin Functions ---
 -----------------------
@@ -48,13 +51,14 @@ function Percursus_RaceTrackerMixin:SetBackground(style)
 end
 
 function Percursus_RaceTrackerMixin:RemoveBackground()
-	self:SetSize(256, 64)
+	local style = RaceTrackerConfig.plain
+	self:SetSize(style.width, style.height)
 
 	self.Timer:ClearAllPoints()
 	self.Info:ClearAllPoints()
 
-	self.Timer:SetPoint("CENTER", 0, 10)
-	self.Info:SetPoint("CENTER", 0, -10)
+	self.Timer:SetPoint("CENTER", 0, style.offsetY.timer)
+	self.Info:SetPoint("CENTER", 0, style.offsetY.info)
 
 	self.Background:Hide()
 end
@@ -69,10 +73,10 @@ end
 
 function Percursus_RaceTrackerSpeedDisplayMixin:SetSpeedBar(speed)
 	if speed == 0 then
-		self.SpeedBar:SetSize(1, 18)
+		self.SpeedBar:SetSize(1, RaceTrackerConfig.speedBarHeight)
 		self.SpeedBar:Hide()
 	else
-		self.SpeedBar:SetSize(speed, 18)
+		self.SpeedBar:SetSize(speed, RaceTrackerConfig.speedBarHeight)
 		self.SpeedBar:Show()
 	end
 end

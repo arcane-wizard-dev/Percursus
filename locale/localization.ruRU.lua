@@ -10,9 +10,9 @@ local L = PER.Localization
 
 L["options.general"] = "Общие параметры"
 L["options.general.minimap-button.name"] = "Кнопка у мини-карты"
-L["options.general.minimap-button.tooltip"] = "Если этот параметр включен, кнопка отображается у мини-карты."
+L["options.general.minimap-button.tooltip"] = "Показывает кнопку у мини-карты."
 L["options.general.debug-mode.name"] = "Режим отладки"
-L["options.general.debug-mode.tooltip"] = "Если режим отладки включен, в чате отображается дополнительная информация."
+L["options.general.debug-mode.tooltip"] = "Показывает дополнительную отладочную информацию в чате."
 
 L["options.race-time-overview"] = "Обзор времени гонок"
 L["options.race-time-overview.active.name"] = "Включить обзор времени гонок"
@@ -22,7 +22,7 @@ L["options.race-tracker"] = "Таймер гонки"
 L["options.race-tracker.active.name"] = "Включить таймер гонки"
 L["options.race-tracker.active.tooltip"] = "Включает таймер во время гонки."
 L["options.race-tracker.mode.name"] = "Режим"
-L["options.race-tracker.mode.tooltip"] = "Определяет способ отображения времени во время гонки."
+L["options.race-tracker.mode.tooltip"] = "Определяет способ отображения времени во время гонки.\n\n|cnHIGHLIGHT_FONT_COLOR:Секундомер:|r Отсчитывает время гонки с нуля.\n\n|cnHIGHLIGHT_FONT_COLOR:Обратный отсчёт до медали:|r Отсчитывает время до золотой медали, затем до серебряной.\n\n|cnHIGHLIGHT_FONT_COLOR:Обратный отсчёт до личного рекорда:|r Отсчитывает время до личного рекорда. Если рекорда нет, время гонки отсчитывается с нуля."
 L["options.race-tracker.mode.value.0"] = "Секундомер"
 L["options.race-tracker.mode.value.1"] = "Обратный отсчёт до медали"
 L["options.race-tracker.mode.value.2"] = "Обратный отсчёт до личного рекорда"
@@ -32,7 +32,7 @@ L["options.race-tracker.background-type.value.0"] = "Нет"
 L["options.race-tracker.background-type.value.1"] = "Percursus (классический)"
 L["options.race-tracker.background-type.value.2"] = "Альянс"
 L["options.race-tracker.background-type.value.3"] = "Орда"
-L["options.race-tracker.background-type.value.4"] = "Вечнозелёный"
+L["options.race-tracker.background-type.value.4"] = "Evergreen"
 L["options.race-tracker.background-type.value.5"] = "Dragonflight"
 L["options.race-tracker.background-type.value.6"] = "The War Within"
 L["options.race-tracker.background-type.value.7"] = "Legion"
@@ -43,13 +43,13 @@ L["options.race-tracker.horizontal-shift.tooltip"] = "Определяет по�
 L["options.race-tracker.vertical-shift.name"] = "Смещение по вертикали"
 L["options.race-tracker.vertical-shift.tooltip"] = "Определяет положение таймера гонки по вертикали относительно центра экрана."
 L["options.race-tracker.result-display.name"] = "Показывать результат гонки"
-L["options.race-tracker.result-display.tooltip"] = "Определяет, остаётся ли таймер на экране после гонки для отображения результата."
+L["options.race-tracker.result-display.tooltip"] = "Оставляет таймер на экране после гонки, чтобы показать результат."
 L["options.race-tracker.fadeout-delay.name"] = "Задержка скрытия"
 L["options.race-tracker.fadeout-delay.tooltip"] = "Определяет, через какое время после гонки скрывается таймер."
 L["options.race-tracker.hide-area-names.name"] = "Скрывать названия областей"
-L["options.race-tracker.hide-area-names.tooltip"] = "Определяет, скрываются ли названия областей во время гонки."
+L["options.race-tracker.hide-area-names.tooltip"] = "Скрывает названия областей во время гонки."
 L["options.race-tracker.speed-display.name"] = "Показывать скорость гонки"
-L["options.race-tracker.speed-display.tooltip"] = "Определяет, отображается ли скорость во время гонки. Работает только в гонках на драконах и гонках небесного полёта."
+L["options.race-tracker.speed-display.tooltip"] = "Показывает скорость во время гонки. Работает только в гонках в режиме высшего пилотажа."
 L["options.race-tracker.speed-display-horizontal-shift.name"] = "Смещение по горизонтали"
 L["options.race-tracker.speed-display-horizontal-shift.tooltip"] = "Определяет положение индикатора скорости по горизонтали относительно центра экрана."
 L["options.race-tracker.speed-display-vertical-shift.name"] = "Смещение по вертикали"
@@ -57,9 +57,8 @@ L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "Определ
 
 -- General
 
-L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Щелкните левой кнопкой мыши|r, чтобы открыть обзор всех гонок.\n|cnLINK_FONT_COLOR:Щелкните правой кнопкой мыши|r, чтобы открыть настройки."
+L["minimap-button.tooltip"] = "|cnLINK_FONT_COLOR:Щёлкните левой кнопкой мыши|r, чтобы открыть обзор всех гонок.\n|cnLINK_FONT_COLOR:Щёлкните правой кнопкой мыши|r, чтобы открыть настройки."
 
-L["race.seconds-long"] = "Секунды"
 L["race.seconds-short"] = "сек."
 L["race.decimal-separator"] = ","
 
@@ -71,7 +70,6 @@ L["race.silver-time"] = "|T616375:0|t Время для серебра: %s се�
 L["race.bronze-time"] = "|T616372:0|t Время для бронзы"
 L["race.no-time"] = "Время для медали недоступно"
 
-L["race.gliding-speed"] = "Текущая скорость гонки: %s%%"
 
 L["race.personal-best-time"] = "Личный рекорд: %s сек."
 L["race.personal-best-time-no-race"] = "Пока не завершено ни одной гонки"
@@ -80,7 +78,6 @@ L["race.personal-best-time-failed"] = "Личный рекорд не побит
 
 -- Race Time Overview
 
-L["race.title.zone-overview"] = "Обзор зоны"
 L["race.title.all-overview"] = "Азерот"
 
 L["race.tab.race"] = "Текущая гонка"
@@ -102,8 +99,6 @@ L["race.name-unavailable"] = "Гонка %s"
 L["race.zone-unavailable"] = "Регион %s"
 L["race.other-regions"] = "Другие регионы"
 
-L["race.column.mode"] = "Режим"
-L["race.column.race"] = "Гонка"
 L["race.column.race-mode"] = "Гонка / Режим"
 L["race.column.best-time"] = "Рекорд"
 L["race.column.gold"] = "Золото"

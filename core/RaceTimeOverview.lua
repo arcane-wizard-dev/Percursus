@@ -12,15 +12,17 @@ local L = PER.Localization
 -- Current module
 local RaceTimeOverview = PER.Modules.RaceTimeOverview
 
--- Variables
+-- Module imports
 local raceDataTable = PER.RACE_DATA
 local sortedRaceDataTable = PER.SORTED_RACE_DATA
 local OverviewConfig = PER.UIConfig.RaceTimeOverview
+
+-- Variables
 local Intl = rawget(_G, "C_Intl")
 local groups, groupsByZone, names, pendingNames = {}, {}, {}, {}
 local continents = {}
 local refreshQueued = false
-local RefreshWindow
+local RefreshWindow = nil
 
 --------------
 --- Frames ---
@@ -38,10 +40,10 @@ local RefreshWindow
 ---@class PercursusRaceTimeOverviewTable: ArcaneWizardLibraryTable
 ---@field rows table[]
 
-local RaceOverviewFrame
-local ZoneOverviewFrame
-local AllOverviewFrame
-local QuestOverviewFrame
+local RaceOverviewFrame = nil
+local ZoneOverviewFrame = nil
+local AllOverviewFrame = nil
+local QuestOverviewFrame = nil
 
 -----------------------
 --- Local Functions ---
@@ -50,6 +52,7 @@ local QuestOverviewFrame
 local function GetNativeDecimalSeparator()
 	if not Intl or not Intl.FormatNumber or not Enum.NumberStyle then return end
 	if not Enum.NumberStyle.Decimal or not Enum.NumberStyle.Integer then return end
+
 	local sample = Intl.FormatNumber(1.5, Enum.NumberStyle.Decimal)
 	if type(sample) ~= "string" then return end
 	return sample:match("^1([^%d]+)5$")
@@ -62,9 +65,11 @@ local function FormatTime(value, compact, showUnit)
 	if compact then
 		fraction = fraction:gsub("0+$", "")
 	end
+
 	if nativeDecimalSeparator then
 		integer = Intl.FormatNumber(tonumber(integer), Enum.NumberStyle.Integer) or integer
 	end
+
 	local text = integer
 	if fraction ~= "" then
 		text = text .. (nativeDecimalSeparator or L["race.decimal-separator"]) .. fraction
@@ -92,13 +97,15 @@ local function GetBestTime(data, showUnit)
 		if quantity == 0 then return L["race.personal-best-time-no-race"] end
 		return L["race.personal-best-time-not-available"]
 	end
+
 	local seconds = quantity / 1000
-	local medal
+	local medal = nil
 	if data[4] and data[4] > 0 and seconds <= data[4] then
 		medal = OverviewConfig.medals.gold
 	elseif data[5] and data[5] > 0 then
 		medal = seconds <= data[5] and OverviewConfig.medals.silver or OverviewConfig.medals.bronze
 	end
+
 	local text = FormatTime(seconds, false, showUnit)
 	if medal then
 		text = string.format("|c%s%s|r", medal.color, text)
@@ -120,10 +127,13 @@ local function GetZoneName(zoneID)
 end
 
 local function QueueRefresh()
+	-- Mehrere nachgeladene Rennnamen gemeinsam aktualisieren, um wiederholte Neuaufbauten der Übersicht zu vermeiden.
 	if refreshQueued then return end
+
 	refreshQueued = true
 	C_Timer.After(0, function()
 		refreshQueued = false
+
 		for _, window in ipairs({RaceOverviewFrame, ZoneOverviewFrame, AllOverviewFrame}) do
 			if window:IsVisible() then
 				RefreshWindow(window)
@@ -135,6 +145,7 @@ end
 local function RequestName(questID)
 	GetRaceName(questID)
 	if names[questID] or pendingNames[questID] then return end
+
 	pendingNames[questID] = true
 	QuestEventListener:AddCallback(questID, function()
 		pendingNames[questID] = nil
@@ -175,6 +186,7 @@ local function BuildGroups()
 			groupsByZone[race.zoneID] = group
 			groups[#groups + 1] = group
 		end
+
 		if race.count == 0 then
 			group.races[#group.races + 1] = {key = race.modes.NORMAL[1], modes = race.modes}
 		else
@@ -186,6 +198,7 @@ local function BuildGroups()
 			end
 		end
 	end
+
 	local byContinent = {}
 	for _, group in ipairs(groups) do
 		group.continentID = GetContinentID(group.key)
@@ -204,6 +217,7 @@ local function FindCurrentZone()
 	local visited = {}
 	while mapID and mapID ~= 0 and not visited[mapID] do
 		if groupsByZone[mapID] then return mapID end
+
 		visited[mapID] = true
 		local map = C_Map.GetMapInfo(mapID)
 		mapID = map and map.parentMapID
@@ -241,6 +255,7 @@ end
 
 local function FilterRaces(races, filter)
 	if filter == "all" then return races end
+
 	local filtered = {}
 	for _, race in ipairs(races) do
 		if race.data then
@@ -254,6 +269,7 @@ local function FilterRaces(races, filter)
 					modes[mode] = data
 				end
 			end
+
 			if next(modes) then
 				filtered[#filtered + 1] = {key = race.key, modes = modes}
 			end
@@ -264,6 +280,7 @@ end
 
 local function FilterGroups(source, filter)
 	if filter == "all" then return source end
+
 	local filtered = {}
 	for _, group in ipairs(source) do
 		local races = FilterRaces(group.races, filter)
@@ -281,6 +298,7 @@ local function AppendRaces(window, entries, config)
 		else
 			local expanded = IsExpanded(window, "race", race.key)
 			entries[#entries + 1] = {kind = "race", key = race.key, label = GetRaceName(race.key), depth = config.depth, expanded = expanded}
+
 			if expanded then
 				for _, mode in ipairs(PER.DIFFICULTY_ORDER) do
 					local data = race.modes[mode]
@@ -298,6 +316,7 @@ local function BuildEntries(window)
 	if state.kind == "race" then
 		local race = raceDataTable[state.npcID]
 		if not race then return entries end
+
 		local order = race[3] == 0 and PER.DIFFICULTY_ORDER or PER.RACE_ORDER
 		for _, mode in ipairs(order) do
 			local data = race[4][mode]
@@ -307,6 +326,7 @@ local function BuildEntries(window)
 		end
 		return entries
 	end
+
 	local filter = GetTableSettings(window)["time-filter"]
 	if state.kind == "zone" then
 		local group = groupsByZone[state.zoneID]
@@ -320,6 +340,7 @@ local function BuildEntries(window)
 				local expanded = IsExpanded(window, "continent", continent.key)
 				local label = continent.key == 0 and L["race.other-regions"] or GetZoneName(continent.key)
 				entries[#entries + 1] = {kind = "continent", key = continent.key, label = label, depth = 0, expanded = expanded}
+
 				if expanded then
 					for _, group in ipairs(zones) do
 						local depth, showRaces = 1, true
@@ -328,6 +349,7 @@ local function BuildEntries(window)
 							entries[#entries + 1] = {kind = "zone", key = group.key, label = GetZoneName(group.key), depth = 1, expanded = showRaces}
 							depth = 2
 						end
+
 						if showRaces then
 							AppendRaces(window, entries, {races = group.races, depth = depth})
 						end
@@ -366,8 +388,10 @@ local function UpdateRowTooltip(row)
 		HideRowTooltip(row)
 		return
 	end
+
 	local text = name:GetText()
 	local x, width = row.window.scrollFrame:GetColumnLayout(1)
+
 	GameTooltip:SetOwner(row, "ANCHOR_NONE")
 	GameTooltip:ClearAllPoints()
 	GameTooltip:SetPoint("BOTTOMLEFT", row, "TOPLEFT", x + width + OverviewConfig.rows.tooltipGap, OverviewConfig.rows.tooltipGap)
@@ -379,24 +403,30 @@ end
 local function CreateRow(window, parent)
 	local row = CreateFrame("Button", nil, parent)
 	row.window, row.cells = window, {}
+
 	row.separator = row:CreateTexture(nil, "BORDER")
 	row.separator:SetPoint("BOTTOMLEFT")
 	row.separator:SetPoint("BOTTOMRIGHT")
 	row.separator:SetHeight(OverviewConfig.rows.separatorHeight)
 	row.separator:SetColorTexture(unpack(OverviewConfig.colors.separator))
+
 	row.chevron = row:CreateTexture(nil, "ARTWORK")
 	row.chevron:SetSize(OverviewConfig.rows.chevronSize, OverviewConfig.rows.chevronSize)
+
 	if window.state.kind == "race" then
 		row:EnableMouse(false)
 		return row
 	end
+
 	row.units = {}
 	row.medal = row:CreateTexture(nil, "ARTWORK")
 	row.medal:SetSize(OverviewConfig.rows.medalSize, OverviewConfig.rows.medalSize)
+
 	row.highlight = row:CreateTexture(nil, "BACKGROUND")
 	row.highlight:SetAllPoints()
 	row.highlight:SetTexture(OverviewConfig.rows.highlightTexture)
 	row.highlight:SetAlpha(0)
+
 	row:SetScript("OnClick", function(self)
 		local entry = self.entry
 		if entry and entry.expanded ~= nil then
@@ -405,13 +435,16 @@ local function CreateRow(window, parent)
 			RefreshWindow(window)
 		end
 	end)
+
 	row:SetScript("OnEnter", function(self)
 		self.highlight:SetAlpha(OverviewConfig.rows.highlightAlpha)
 	end)
+
 	local function ClearHighlight(self)
 		self.highlight:SetAlpha(0)
 		HideRowTooltip(self)
 	end
+
 	row:SetScript("OnLeave", ClearHighlight)
 	row:SetScript("OnHide", ClearHighlight)
 	return row
@@ -447,20 +480,24 @@ local function SetMedalRow(row, entry)
 			end
 		end
 	end
+
 	row.entry = entry
 	row.chevron:Hide()
 	SetSeparatorVisibility(row)
+
 	local best, medal, hasTime = GetBestTime(entry.data)
 	local iconSize = hasTime and layout.medalSize or layout.missingTimeSize
 	local icon = medal and medal.icon
 	if not hasTime then
 		icon = OverviewConfig.missingTimeIcon
 	end
+
 	row.medal:SetShown(icon ~= nil)
 	row.medal:SetSize(iconSize, iconSize)
 	if icon then
 		row.medal:SetTexture(icon)
 	end
+
 	local mode = row.cells[1]
 	mode:ClearAllPoints()
 	mode:SetPoint("TOPLEFT", row, "TOPLEFT", layout.padding, -layout.verticalPadding)
@@ -470,11 +507,13 @@ local function SetMedalRow(row, entry)
 	mode:SetJustifyV("TOP")
 	mode:SetWordWrap(false)
 	mode:SetText(entry.label)
+
 	local nameWidth = math.min(mode:GetUnboundedStringWidth(), mode:GetWidth())
 	local separatorY = -layout.verticalPadding - mode:GetStringHeight() / 2
 	row.separator:ClearAllPoints()
 	row.separator:SetPoint("TOPLEFT", row, "TOPLEFT", layout.padding + nameWidth + layout.separatorGap, separatorY)
 	row.separator:SetPoint("TOPRIGHT", row, "TOPRIGHT", -layout.padding, separatorY)
+
 	local targetWidth = 0
 	for index = 3, 4 do
 		local cell = row.cells[index]
@@ -486,10 +525,12 @@ local function SetMedalRow(row, entry)
 		cell:SetText(L[OverviewConfig.columns[index].text] .. ": " .. GetTargetTime(entry.data[index + 1]))
 		targetWidth = math.max(targetWidth, cell:GetUnboundedStringWidth())
 	end
+
 	targetWidth = math.min(targetWidth, layout.targetWidth)
 	for index = 3, 4 do
 		row.cells[index]:SetWidth(targetWidth)
 	end
+
 	local bestX = layout.padding + layout.medalSize + layout.medalGap
 	local bestWidth = math.max(1, row:GetWidth() - layout.padding - targetWidth - layout.columnGap - bestX)
 	local labelTop = layout.verticalPadding + mode:GetStringHeight() + layout.headerGap
@@ -501,6 +542,7 @@ local function SetMedalRow(row, entry)
 	label:SetJustifyV("TOP")
 	label:SetWordWrap(false)
 	label:SetText(L["race.column.best-time"])
+
 	local value = row.cells[2]
 	value:SetFontObject(hasTime and layout.bestFont or layout.missingTimeFont)
 	value:ClearAllPoints()
@@ -510,6 +552,7 @@ local function SetMedalRow(row, entry)
 	value:SetJustifyV("TOP")
 	value:SetWordWrap(not hasTime)
 	value:SetText(best)
+
 	local bestHeight = label:GetStringHeight() + layout.textGap + row.cells[2]:GetStringHeight()
 	local goldHeight = row.cells[3]:GetStringHeight()
 	local targetHeight = goldHeight + layout.textGap + row.cells[4]:GetStringHeight()
@@ -517,8 +560,10 @@ local function SetMedalRow(row, entry)
 	local height = math.max(layout.minimumHeight, labelTop + contentHeight + layout.verticalPadding)
 	local center = (labelTop + height - layout.verticalPadding) / 2
 	local bestTop = center - bestHeight / 2
+
 	label:SetPoint("TOPLEFT", row, "TOPLEFT", bestX, -bestTop)
 	value:SetPoint("TOPLEFT", row, "TOPLEFT", bestX, -bestTop - label:GetStringHeight() - layout.textGap)
+
 	for index = 3, 4 do
 		local top = center - targetHeight / 2
 		if index == 4 then
@@ -526,6 +571,7 @@ local function SetMedalRow(row, entry)
 		end
 		row.cells[index]:SetPoint("TOPRIGHT", row, "TOPRIGHT", -layout.padding, -top)
 	end
+
 	row.medal:ClearAllPoints()
 	row.medal:SetPoint("TOPLEFT", row, "TOPLEFT", layout.padding + (layout.medalSize - iconSize) / 2, -center + iconSize / 2)
 	row:SetHeight(height)
@@ -539,6 +585,7 @@ local function SetRow(row, entry, values)
 	local font = grouped and OverviewConfig.fonts.group or OverviewConfig.fonts.body
 	local height = layout.minimumHeight
 	local indent = entry.depth * layout.indent
+
 	row.entry = entry
 	row.chevron:ClearAllPoints()
 	row.chevron:SetPoint("LEFT", row, "LEFT", firstX + indent, 0)
@@ -549,6 +596,7 @@ local function SetRow(row, entry, values)
 	else
 		row.chevron:Hide()
 	end
+
 	local icon = values.medal and values.medal.icon
 	local iconSize = layout.medalSize
 	if entry.data and not values.units[2] then
@@ -562,6 +610,7 @@ local function SetRow(row, entry, values)
 		row.medal:ClearAllPoints()
 		row.medal:SetPoint("LEFT", row, "LEFT", tableFrame:GetColumnLayout(2) + (layout.medalSize - iconSize) / 2, 0)
 	end
+
 	for index = 1, #OverviewConfig.columns do
 		local x, width, align = tableFrame:GetColumnLayout(index)
 		local cell = row.cells[index]
@@ -582,11 +631,13 @@ local function SetRow(row, entry, values)
 				cell:SetScript("OnHide", HideNameTooltip)
 			end
 		end
+
 		local offset = index == 1 and indent or 0
 		if grouped and index == 1 then
 			local lastX, lastWidth = tableFrame:GetColumnLayout(#OverviewConfig.columns)
 			width = lastX + lastWidth - x
 		end
+
 		local hasUnit = values.units and values.units[index]
 		local unitSpace = 0
 		if index > 1 then
@@ -612,6 +663,7 @@ local function SetRow(row, entry, values)
 				unitSpace = unitWidth + layout.unitGap
 			end
 		end
+
 		if index == 2 and (hasUnit or icon) then
 			offset = layout.medalSize + layout.medalGap
 		end
@@ -631,6 +683,7 @@ local function SetRow(row, entry, values)
 		end
 		height = math.max(height, cell:GetStringHeight() + 2 * layout.verticalPadding)
 	end
+
 	SetSeparatorVisibility(row)
 	row:SetHeight(height)
 end
@@ -658,6 +711,7 @@ RefreshWindow = function(window)
 		if not state.zoneID then return end
 		SetWindowTitle(window, GetZoneName(state.zoneID))
 	end
+
 	local scrollFrame = window.scrollFrame
 	local entries, y = BuildEntries(window), 0
 	for index, entry in ipairs(entries) do
@@ -666,12 +720,15 @@ RefreshWindow = function(window)
 			row = CreateRow(window, scrollFrame.content)
 			scrollFrame.rows[index] = row
 		end
+
 		if row.highlight then
 			row.highlight:SetAlpha(row:IsMouseOver() and OverviewConfig.rows.highlightAlpha or 0)
 		end
+
 		row:ClearAllPoints()
 		row:SetPoint("TOPLEFT", scrollFrame.content, "TOPLEFT", 0, -y)
 		row:SetWidth(GetContentWidth(window))
+
 		if state.kind == "race" then
 			SetMedalRow(row, entry)
 		else
@@ -683,13 +740,16 @@ RefreshWindow = function(window)
 			end
 			SetRow(row, entry, values)
 		end
+
 		row:Show()
 		y = y + row:GetHeight()
 	end
+
 	for index = #entries + 1, #scrollFrame.rows do
 		scrollFrame.rows[index]:Hide()
 		scrollFrame.rows[index].entry = nil
 	end
+
 	local layout = OverviewConfig.layouts[state.kind]
 	local bodyTop = GetBodyTop(window)
 	local bodyHeight = window:GetHeight() - bodyTop - layout.bottom
@@ -697,6 +757,7 @@ RefreshWindow = function(window)
 	scrollFrame:SetPoint("TOPLEFT", window, "TOPLEFT", OverviewConfig.sideInset, -bodyTop)
 	scrollFrame:SetHeight(bodyHeight)
 	scrollFrame:SetContentHeight(y)
+
 	if state.kind ~= "race" then
 		for _, row in ipairs(scrollFrame.rows) do
 			local name = row.cells[1]
@@ -716,6 +777,7 @@ local function SetAllExpanded(window, expanded)
 			continentState[continent.key] = expanded
 		end
 	end
+
 	local zones = ExpansionState(window, "zone")
 	local races = ExpansionState(window, "race")
 	for _, group in ipairs(groups) do
@@ -726,12 +788,14 @@ local function SetAllExpanded(window, expanded)
 			end
 		end
 	end
+
 	RefreshWindow(window)
 	window.scrollFrame:ScrollToTop()
 end
 
 local function SetTimeFilter(window, value)
 	GetTableSettings(window)["time-filter"] = value
+
 	RefreshWindow(window)
 	window.scrollFrame:ScrollToTop()
 end
@@ -755,6 +819,7 @@ end
 
 local function AddMenuIcon(description, iconConfig)
 	local config = OverviewConfig.menuItem
+
 	description:AddInitializer(function(menuButton)
 		local icon = menuButton:AttachTexture()
 		if iconConfig.atlas then
@@ -780,7 +845,8 @@ local function CreateOverviewWindow(kind)
 	local config = AWL.Utils:CopyTable(kind == "all" and OverviewConfig.allWindow or OverviewConfig.questWindow)
 	config.addonName = addonName
 	config.title = addonName
-	local window
+
+	local window = nil
 	if kind == "all" then
 		window = AWL.Frames:CreateWindow(config)
 		SetPortrait(window)
@@ -790,6 +856,7 @@ local function CreateOverviewWindow(kind)
 		window:ClearAllPoints()
 		window:SetAllPoints(QuestOverviewFrame)
 	end
+
 	---@cast window PercursusRaceTimeOverviewFrame
 	window.state = {
 		kind = kind,
@@ -797,6 +864,7 @@ local function CreateOverviewWindow(kind)
 		expandedZones = {},
 		expandedRaces = {}
 	}
+
 	local layout = OverviewConfig.layouts[kind]
 	local width = config.width - 2 * OverviewConfig.sideInset
 	local tableConfig = {
@@ -866,6 +934,7 @@ local function CreateOverviewWindow(kind)
 	window.scrollFrame:SetHeight(config.height - bodyTop - layout.bottom)
 	window.scrollFrame:SetScrollStep(kind == "race" and OverviewConfig.medalList.minimumHeight or OverviewConfig.rows.minimumHeight)
 	window.scrollFrame.rows = {}
+
 	local heading = OverviewConfig.heading
 	local insets = window.scrollFrame.contentInsets or OverviewConfig.contentInsets
 	local headingWidth = width - insets.left - insets.right
@@ -897,6 +966,7 @@ end
 local function UpdateNPCTitle(npcID)
 	CancelNPCTicker()
 	SetWindowTitle(RaceOverviewFrame, addonName)
+
 	local function TryName()
 		local info = C_TooltipInfo.GetHyperlink(string.format("unit:Creature-0-0-0-0-%d-0", npcID))
 		local name = info and info.lines and info.lines[1] and info.lines[1].leftText
@@ -905,7 +975,9 @@ local function UpdateNPCTitle(npcID)
 			return true
 		end
 	end
+
 	if TryName() then return end
+
 	local attempts = 0
 	RaceOverviewFrame.npcTicker = C_Timer.NewTicker(OverviewConfig.npcNameRetryInterval, function()
 		attempts = attempts + 1
@@ -920,6 +992,7 @@ local function ResizeQuestWindow()
 	if height <= 0 then
 		height = OverviewConfig.questWindow.height
 	end
+
 	QuestOverviewFrame:SetHeight(math.max(height, OverviewConfig.questMinimumHeight))
 	RefreshWindow(RaceOverviewFrame)
 	RefreshWindow(ZoneOverviewFrame)
@@ -931,12 +1004,15 @@ local function CreateMoreMenu()
 	button.resizeToText = false
 	button:SetPoint("TOPRIGHT", QuestOverviewFrame, "TOPRIGHT", config.x, config.y)
 	button:SetText(L["race.menu.more"])
+
 	local width = math.max(config.minimumWidth, math.ceil(button.Text:GetUnboundedStringWidth()) + config.arrowSize + config.textInset * 2)
 	button:SetSize(width, config.height)
+
 	button.Text:ClearAllPoints()
 	button.Text:SetPoint("LEFT", config.textInset, 0)
 	button.Text:SetPoint("RIGHT", -config.textInset, 0)
 	button.Text:SetJustifyH("CENTER")
+
 	button:SetMenuAnchor(AnchorUtil.CreateAnchor("TOPLEFT", button, "TOPRIGHT", config.menuGap, 0))
 	button:SetupMenu(function(_, root)
 		local allRaces = root:CreateButton(L["race.button.all-overview"], function()
@@ -944,9 +1020,11 @@ local function CreateMoreMenu()
 		end)
 		AddMenuIcon(allRaces, config.icon)
 	end)
+
 	button:HookScript("OnHide", function(self)
 		self:CloseMenu()
 	end)
+
 	QuestOverviewFrame.moreMenu = button
 end
 
@@ -961,6 +1039,7 @@ local function InitializeFrames()
 	QuestOverviewFrame:HookScript("OnHide", CancelNPCTicker)
 	CreateDismissButton(QuestOverviewFrame)
 	CreateMoreMenu()
+
 	local tabs = AWL.Frames:CreateTabGroup(QuestOverviewFrame)
 	RaceOverviewFrame = CreateOverviewWindow("race")
 	ZoneOverviewFrame = CreateOverviewWindow("zone")
@@ -970,11 +1049,13 @@ local function InitializeFrames()
 			RefreshWindow(page)
 		end
 	end)
+
 	GossipFrame:HookScript("OnSizeChanged", function()
 		if QuestOverviewFrame:IsShown() then
 			ResizeQuestWindow()
 		end
 	end)
+
 	AllOverviewFrame = CreateOverviewWindow("all")
 end
 
@@ -990,17 +1071,21 @@ end
 function RaceTimeOverview:ShowRaceOverview(npcID)
 	local race = raceDataTable[npcID]
 	if not race then return end
+
 	CancelNPCTicker()
 	RaceOverviewFrame.state.npcID = npcID
+
 	if ZoneOverviewFrame.state.zoneID ~= race[2] then
 		ZoneOverviewFrame.state.expandedRaces = {}
 	end
 	ZoneOverviewFrame.state.zoneID = race[2]
 	QuestOverviewFrame.tabGroup:SelectTab("race")
+
 	RequestNames(race[2])
 	if race[3] > 0 then
 		UpdateNPCTitle(npcID)
 	end
+
 	ResizeQuestWindow()
 	QuestOverviewFrame:Show()
 	RaceOverviewFrame.scrollFrame:ScrollToTop()
@@ -1013,18 +1098,22 @@ end
 
 function RaceTimeOverview:ShowAllOverview()
 	if not AllOverviewFrame then return end
+
 	if not AllOverviewFrame.state.opened then
 		local zoneID = FindCurrentZone()
 		local continentID = GetContinentID(C_Map.GetBestMapForUnit("player"))
 		if continentID ~= 0 then
 			AllOverviewFrame.state.expandedContinents[continentID] = true
 		end
+
 		if zoneID then
 			AllOverviewFrame.state.expandedContinents[groupsByZone[zoneID].continentID] = true
 			AllOverviewFrame.state.expandedZones[zoneID] = true
 		end
+
 		AllOverviewFrame.state.opened = true
 	end
+
 	RequestNames()
 	RefreshWindow(AllOverviewFrame)
 	AllOverviewFrame:Show()
@@ -1033,6 +1122,7 @@ end
 
 function RaceTimeOverview:ToggleAllOverview()
 	if not AllOverviewFrame then return end
+
 	if AllOverviewFrame:IsShown() then
 		AllOverviewFrame:Hide()
 	else

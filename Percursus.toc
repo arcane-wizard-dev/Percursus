@@ -10,10 +10,10 @@
 ## Dependencies: ArcaneWizardLibrary
 ## X-Library-Revision: 1
 
-## Notes: This addon displays a live timer during a race (e.g. dragonriding & skyriding) and provides a detailed time overview of all completed races.
-## Notes-deDE: Dieses Addon zeigt einen Live-Timer während eines Rennens (z.B. Drachenreiten & Himmelsreiten) an und bietet eine detaillierte Zeitübersicht über alle absolvierten Rennen.
-## Notes-ruRU: Этот аддон показывает таймер во время гонок, например на драконах, и предоставляет подробный обзор времени всех завершённых гонок.
-## Notes-zhCN: 此插件会在竞速（例如驭龙术和驭空术）期间显示实时计时器，并提供所有已完成竞速的详细时间总览。
+## Notes: This addon tracks performance in supported races and makes it comparable, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It shows the progress live during a race and gathers times and targets in clear overviews.
+## Notes-deDE: Dieses Addon verfolgt Leistungen in unterstützten Rennen und macht sie vergleichbar, etwa beim Himmelsreiten, Raketenrennen und Halsbrecherrennen (D.R.I.V.E.). Es zeigt den Fortschritt live während eines Rennens und fasst Zeiten und Ziele übersichtlich zusammen.
+## Notes-ruRU: Этот аддон помогает отслеживать и сравнивать результаты в поддерживаемых гонках, включая Skyriding, Skyrocketing и Breakneck (D.R.I.V.E.). Он показывает прогресс в реальном времени во время гонки и собирает времена и цели в наглядных обзорах.
+## Notes-zhCN: 此插件记录并比较受支持竞速中的表现，包括驭空术、冲天火箭和疾飙竞速（D.R.I.V.E.）。它会在竞速期间实时显示进度，并将时间和目标汇总到清晰的概览中。
 
 ## LoadSavedVariablesFirst: 1
 ## SavedVariables: Percursus_Options_v4
