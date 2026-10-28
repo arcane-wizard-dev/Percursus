@@ -10,10 +10,10 @@
 ## Dependencies: ArcaneWizardLibrary
 ## X-Library-Revision: 1
 
-## Notes: This addon tracks race times in supported races, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It shows the progress live during a race and collects the times in overviews.
-## Notes-deDE: Dieses Addon erfasst Rennzeiten in unterstützten Rennen, etwa Himmelsreiten, Raketenrennen und Halsbrecherrennen (D.R.I.V.E.). Es zeigt den Fortschritt live während eines Rennens und sammelt die Zeiten in Übersichten.
-## Notes-ruRU: Этот аддон помогает отслеживать и сравнивать результаты в поддерживаемых гонках, включая Skyriding, Skyrocketing и Breakneck (D.R.I.V.E.). Он показывает прогресс в реальном времени во время гонки и собирает времена и цели в наглядных обзорах.
-## Notes-zhCN: 此插件记录并比较受支持竞速中的表现，包括驭空术、冲天火箭和疾飙竞速（D.R.I.V.E.）。它会在竞速期间实时显示进度，并将时间和目标汇总到清晰的概览中。
+## Notes: This addon tracks times in supported races, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). Follow your progress live during a race and compare race times and targets in clear overviews.
+## Notes-deDE: Dieses Addon erfasst Zeiten in unterstützten Rennen, darunter Himmelsreiten, Raketenrennen und Halsbrecherrennen (D.R.I.V.E.). Verfolge deinen Fortschritt live während eines Rennens und vergleiche Rennzeiten und Zielzeiten in übersichtlichen Ansichten.
+## Notes-ruRU: Этот аддон отслеживает время в поддерживаемых гонках, включая гонки в режиме высшего пилотажа, Skyrocketing и головокружительные гонки (D.R.I.V.E.). Следи за своим прогрессом во время гонки и сравнивай результаты с целевым временем в удобных сводках.
+## Notes-zhCN: 此插件记录受支持竞速中的用时，包括驭空术、冲天火箭和疾飙竞速（D.R.I.V.E.）。你可以在竞速过程中实时关注进度，并在清晰的概览中比较竞速用时与目标时间。
 
 ## LoadSavedVariablesFirst: 1
 ## SavedVariables: Percursus_Options_v4

@@ -4,17 +4,17 @@
 
 _Master every course and chase the best time._
 
-Percursus is a World of Warcraft addon that tracks performance in supported races and makes it comparable, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It shows the progress live during a race and gathers times and targets in clear overviews.
+Percursus is a World of Warcraft addon that tracks times in supported races, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). Follow your progress live during a race and compare race times and targets in clear overviews.
 
 > ⚠️ **Important!** This addon requires **Arcane Wizard: Library**. See Installation & Quick Start for installation details.
 
 ## Key Features
 
-**Race Tracker** - Shows the progress during a race in different display modes that keep the timing goals in view.
+**Race Tracker** - Monitor your progress during a race with different display modes that help you keep track of race times and targets.
 
-**Race Time Overview** - Shows race times and targets for the current area in an overview, making it easier to compare results.
+**Race Time Overview** - View race times and targets for the current zone in a clear overview that makes results easy to compare.
 
-**All Races Overview** - Lists times and targets across supported races in an organized overview that keeps track of racing progress.
+**All Races Overview** - Browse times and targets across supported races in one organized overview and keep track of your progress across different zones.
 
 ## Features
 
