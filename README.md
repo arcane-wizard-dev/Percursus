@@ -2,7 +2,7 @@
 
 [![GitHub Release](https://img.shields.io/github/v/release/arcane-wizard-dev/Percursus?color=blue&logo=github&cacheSeconds=600)](https://github.com/arcane-wizard-dev/Percursus/releases) [![GitHub Release Date](https://img.shields.io/github/release-date/arcane-wizard-dev/Percursus?color=blue&logo=github&cacheSeconds=600)](https://github.com/arcane-wizard-dev/Percursus/releases)
 
-_Master every course._
+_Master every course and chase the best time._
 
 Percursus is a World of Warcraft addon that tracks performance in supported races and makes it comparable, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It shows the progress live during a race and gathers times and targets in clear overviews.
 
