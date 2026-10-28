@@ -29,12 +29,12 @@ Individual features and display options can be configured in the addon settings.
 
 ### Race Time Overview
 
-* Current Race and Zone tabs show personal bests and medal targets.
+* The "Current Race" and "Zone" tabs show personal bests and medal targets.
 
 ### All Races Overview
 
-* All Races provides an overview grouped by continent and zone.
-* Both overviews offer table menus with filters, separators, and expand/collapse actions.
+* The "All Races" button opens an overview grouped by continent and zone.
+* Both overviews offer table menus with filters, separators, and expand and collapse actions.
 
 ## Supported Languages & Flavors
 
