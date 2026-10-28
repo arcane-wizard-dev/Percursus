@@ -10,8 +10,8 @@
 ## Dependencies: ArcaneWizardLibrary
 ## X-Library-Revision: 1
 
-## Notes: This addon tracks performance in supported races and makes it comparable, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It shows the progress live during a race and gathers times and targets in clear overviews.
-## Notes-deDE: Dieses Addon verfolgt Leistungen in unterstützten Rennen und macht sie vergleichbar, etwa beim Himmelsreiten, Raketenrennen und Halsbrecherrennen (D.R.I.V.E.). Es zeigt den Fortschritt live während eines Rennens und fasst Zeiten und Ziele übersichtlich zusammen.
+## Notes: This addon tracks race times in supported races, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). It shows the progress live during a race and collects the times in overviews.
+## Notes-deDE: Dieses Addon erfasst Rennzeiten in unterstützten Rennen, etwa Himmelsreiten, Raketenrennen und Halsbrecherrennen (D.R.I.V.E.). Es zeigt den Fortschritt live während eines Rennens und sammelt die Zeiten in Übersichten.
 ## Notes-ruRU: Этот аддон помогает отслеживать и сравнивать результаты в поддерживаемых гонках, включая Skyriding, Skyrocketing и Breakneck (D.R.I.V.E.). Он показывает прогресс в реальном времени во время гонки и собирает времена и цели в наглядных обзорах.
 ## Notes-zhCN: 此插件记录并比较受支持竞速中的表现，包括驭空术、冲天火箭和疾飙竞速（D.R.I.V.E.）。它会在竞速期间实时显示进度，并将时间和目标汇总到清晰的概览中。
 
