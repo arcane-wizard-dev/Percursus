@@ -12,6 +12,14 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Added: TOC version for patch 12.1.7 [retail]",
+			"Removed: TOC version for patch 12.1.0 [retail]"
+		}
+	},
+	{
+		version = "v2.37",
+		date = "2026-10-28",
+		entries = {
 			"Added: Startup check for the minimum required Library revision",
 			"Updated: deDE, enUS, ruRU, zhCN localizations",
 			"Updated: Addon description",
@@ -78,14 +86,6 @@ PER.CHANGELOG = {
 		version = "v2.29",
 		date = "2026-09-27",
 		entries = {
-			"Minor code adjustments"
-		}
-	},
-	{
-		version = "v2.28",
-		date = "2026-09-22",
-		entries = {
-			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility",
 			"Minor code adjustments"
 		}
 	}
