@@ -15,16 +15,16 @@ local Utils = PER.Modules.Utils
 
 -- Variables
 local canGlide = false
-local raceTicker = nil
-local raceCountdownTimer = nil
+local raceTicker = nil ---@type FunctionContainer
+local raceCountdownTimer = nil ---@type FunctionContainer|nil
 
 --------------
 --- Frames ---
 --------------
 
-local RaceTrackerFrame = nil
-local ResultTrackerFrame = nil
-local SpeedDisplayFrame = nil
+local RaceTrackerFrame = nil ---@type PercursusRaceTrackerFrame
+local ResultTrackerFrame = nil ---@type PercursusRaceTrackerFrame
+local SpeedDisplayFrame = nil ---@type PercursusRaceTrackerSpeedDisplayFrame
 
 -----------------------
 --- Local Functions ---

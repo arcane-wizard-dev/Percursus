@@ -22,28 +22,17 @@ local Intl = rawget(_G, "C_Intl")
 local groups, groupsByZone, names, pendingNames = {}, {}, {}, {}
 local continents = {}
 local refreshQueued = false
+---@type fun(window: PercursusRaceTimeOverviewFrame)
 local RefreshWindow = nil
 
 --------------
 --- Frames ---
 --------------
 
----@class PercursusRaceTimeOverviewFrame: Frame
----@field state table
----@field scrollFrame PercursusRaceTimeOverviewScrollFrame|PercursusRaceTimeOverviewTable
----@field inset Frame
----@field heading FontString
-
----@class PercursusRaceTimeOverviewScrollFrame: ArcaneWizardLibraryScrollFrame
----@field rows table[]
-
----@class PercursusRaceTimeOverviewTable: ArcaneWizardLibraryTable
----@field rows table[]
-
-local RaceOverviewFrame = nil
-local ZoneOverviewFrame = nil
-local AllOverviewFrame = nil
-local QuestOverviewFrame = nil
+local RaceOverviewFrame = nil ---@type PercursusRaceTimeOverviewFrame
+local ZoneOverviewFrame = nil ---@type PercursusRaceTimeOverviewFrame
+local AllOverviewFrame = nil ---@type PercursusRaceTimeOverviewFrame
+local QuestOverviewFrame = nil ---@type PercursusQuestOverviewFrame
 
 -----------------------
 --- Local Functions ---
@@ -1031,7 +1020,7 @@ end
 local function InitializeFrames()
 	local config = AWL.Utils:CopyTable(OverviewConfig.questWindow)
 	config.addonName, config.title = addonName, addonName
-	QuestOverviewFrame = AWL.Frames:CreateWindow(config)
+	QuestOverviewFrame = AWL.Frames:CreateWindow(config) --[[@as PercursusQuestOverviewFrame]]
 	SetPortrait(QuestOverviewFrame)
 	QuestOverviewFrame:SetParent(GossipFrame)
 	QuestOverviewFrame:ClearAllPoints()
@@ -1046,6 +1035,7 @@ local function InitializeFrames()
 	tabs:SetOnTabChanged(function(_, page)
 		QuestOverviewFrame.moreMenu:CloseMenu()
 		if page then
+			---@cast page PercursusRaceTimeOverviewFrame
 			RefreshWindow(page)
 		end
 	end)

@@ -24,11 +24,11 @@ L["options.general.debug-mode.tooltip"] = "Displays additional debug information
 
 L["options.race-time-overview"] = "Race Time Overview"
 L["options.race-time-overview.active.name"] = "Enable Race Time Overview"
-L["options.race-time-overview.active.tooltip"] = "Enables the Race Time Overview next to the quest window."
+L["options.race-time-overview.active.tooltip"] = "Shows the Race Time Overview next to the quest window."
 
 L["options.race-tracker"] = "Race Tracker"
 L["options.race-tracker.active.name"] = "Enable Race Tracker"
-L["options.race-tracker.active.tooltip"] = "Enables the Race Tracker during a race."
+L["options.race-tracker.active.tooltip"] = "Shows the Race Tracker during a race."
 L["options.race-tracker.mode.name"] = "Mode"
 L["options.race-tracker.mode.tooltip"] = "Sets how the time is displayed during a race.\n\n|cnHIGHLIGHT_FONT_COLOR:Timer:|r Counts the race time up from zero.\n\n|cnHIGHLIGHT_FONT_COLOR:Countdown - Medal Time:|r Counts down to the gold time and then to the silver time.\n\n|cnHIGHLIGHT_FONT_COLOR:Countdown - Personal Best Time:|r Counts down to the personal best time. Without a personal best, the race time counts up."
 L["options.race-tracker.mode.value.0"] = "Timer"
@@ -76,13 +76,13 @@ L["race.time"] = "Time: %.1f seconds"
 L["race.gold-time"] = "|T616373:0|t Gold Time: %s sec"
 L["race.silver-time"] = "|T616375:0|t Silver Time: %s sec"
 L["race.bronze-time"] = "|T616372:0|t Bronze Time"
-L["race.no-time"] = "No Medal Time Available"
+L["race.no-time"] = "No medal time available"
 
 
 L["race.personal-best-time"] = "Personal Best Time: %s sec"
-L["race.personal-best-time-no-race"] = "No Race Completed So Far"
-L["race.personal-best-time-not-available"] = "Personal Best Time Not Available"
-L["race.personal-best-time-failed"] = "New Personal Best Time Failed"
+L["race.personal-best-time-no-race"] = "No race completed yet"
+L["race.personal-best-time-not-available"] = "Personal best time not available"
+L["race.personal-best-time-failed"] = "Personal best time exceeded"
 
 -- Race Time Overview
 

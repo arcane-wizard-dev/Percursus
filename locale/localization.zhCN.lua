@@ -20,9 +20,9 @@ L["options.race-time-overview.active.tooltip"] = "在任务窗口旁显示竞速
 
 L["options.race-tracker"] = "竞速追踪器"
 L["options.race-tracker.active.name"] = "启用竞速追踪器"
-L["options.race-tracker.active.tooltip"] = "在竞速过程中启用追踪器显示。"
+L["options.race-tracker.active.tooltip"] = "在竞速过程中显示竞速追踪器。"
 L["options.race-tracker.mode.name"] = "模式"
-L["options.race-tracker.mode.tooltip"] = "定义竞速期间时间的显示方式。\n\n|cnHIGHLIGHT_FONT_COLOR:正计时：|r 从零开始计算竞速时间。\n\n|cnHIGHLIGHT_FONT_COLOR:倒计时 - 奖牌时间：|r 倒数至金牌时间，之后倒数至银牌时间。\n\n|cnHIGHLIGHT_FONT_COLOR:倒计时 - 个人最佳时间：|r 倒数至个人最佳时间。没有个人最佳时间时，从零开始计时。"
+L["options.race-tracker.mode.tooltip"] = "设置竞速期间的时间显示方式。\n\n|cnHIGHLIGHT_FONT_COLOR:正计时：|r 从零开始计算竞速时间。\n\n|cnHIGHLIGHT_FONT_COLOR:倒计时 - 奖牌时间：|r 倒数至金牌时间，之后倒数至银牌时间。\n\n|cnHIGHLIGHT_FONT_COLOR:倒计时 - 个人最佳时间：|r 倒数至个人最佳时间。没有个人最佳时间时，从零开始计时。"
 L["options.race-tracker.mode.value.0"] = "正计时"
 L["options.race-tracker.mode.value.1"] = "倒计时 - 奖牌时间"
 L["options.race-tracker.mode.value.2"] = "倒计时 - 个人最佳时间"
@@ -74,7 +74,7 @@ L["race.no-time"] = "无可用奖牌时间"
 L["race.personal-best-time"] = "个人最佳时间：%s 秒"
 L["race.personal-best-time-no-race"] = "尚未完成任何竞速"
 L["race.personal-best-time-not-available"] = "个人最佳时间不可用"
-L["race.personal-best-time-failed"] = "未能刷新个人最佳时间"
+L["race.personal-best-time-failed"] = "已超过个人最佳时间"
 
 -- Race Time Overview
 

@@ -16,11 +16,11 @@ L["options.general.debug-mode.tooltip"] = "Показывает дополнит
 
 L["options.race-time-overview"] = "Обзор времени гонок"
 L["options.race-time-overview.active.name"] = "Включить обзор времени гонок"
-L["options.race-time-overview.active.tooltip"] = "Включает обзор времени гонок рядом с окном задания."
+L["options.race-time-overview.active.tooltip"] = "Показывает обзор времени гонок рядом с окном задания."
 
 L["options.race-tracker"] = "Таймер гонки"
 L["options.race-tracker.active.name"] = "Включить таймер гонки"
-L["options.race-tracker.active.tooltip"] = "Включает таймер во время гонки."
+L["options.race-tracker.active.tooltip"] = "Показывает таймер во время гонки."
 L["options.race-tracker.mode.name"] = "Режим"
 L["options.race-tracker.mode.tooltip"] = "Определяет способ отображения времени во время гонки.\n\n|cnHIGHLIGHT_FONT_COLOR:Секундомер:|r Отсчитывает время гонки с нуля.\n\n|cnHIGHLIGHT_FONT_COLOR:Обратный отсчёт до медали:|r Отсчитывает время до золотой медали, затем до серебряной.\n\n|cnHIGHLIGHT_FONT_COLOR:Обратный отсчёт до личного рекорда:|r Отсчитывает время до личного рекорда. Если рекорда нет, время гонки отсчитывается с нуля."
 L["options.race-tracker.mode.value.0"] = "Секундомер"
@@ -74,7 +74,7 @@ L["race.no-time"] = "Время для медали недоступно"
 L["race.personal-best-time"] = "Личный рекорд: %s сек."
 L["race.personal-best-time-no-race"] = "Пока не завершено ни одной гонки"
 L["race.personal-best-time-not-available"] = "Личный рекорд недоступен"
-L["race.personal-best-time-failed"] = "Личный рекорд не побит"
+L["race.personal-best-time-failed"] = "Время личного рекорда превышено"
 
 -- Race Time Overview
 
@@ -92,7 +92,7 @@ L["race.expand-all"] = "Развернуть всё"
 L["race.collapse-all"] = "Свернуть всё"
 
 L["race.filter.all"] = "Показать все"
-L["race.filter.no-gold"] = "Без золотого времени"
+L["race.filter.no-gold"] = "Время для золотой медали не достигнуто"
 L["race.filter.no-time"] = "Без времени гонки"
 
 L["race.name-unavailable"] = "Гонка %s"

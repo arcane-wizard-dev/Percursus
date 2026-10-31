@@ -16,11 +16,11 @@ L["options.general.debug-mode.tooltip"] = "Zeigt zusätzliche Debuginformationen
 
 L["options.race-time-overview"] = "Rennzeitenübersicht"
 L["options.race-time-overview.active.name"] = "Rennzeitenübersicht aktivieren"
-L["options.race-time-overview.active.tooltip"] = "Aktiviert die Rennzeitenübersicht neben dem Questfenster."
+L["options.race-time-overview.active.tooltip"] = "Zeigt die Rennzeitenübersicht neben dem Questfenster an."
 
 L["options.race-tracker"] = "Renn-Tracker"
 L["options.race-tracker.active.name"] = "Renn-Tracker aktivieren"
-L["options.race-tracker.active.tooltip"] = "Aktiviert den Renn-Tracker während eines Rennens."
+L["options.race-tracker.active.tooltip"] = "Zeigt den Renn-Tracker während eines Rennens an."
 L["options.race-tracker.mode.name"] = "Modus"
 L["options.race-tracker.mode.tooltip"] = "Legt fest, wie die Zeit während eines Rennens angezeigt wird.\n\n|cnHIGHLIGHT_FONT_COLOR:Timer:|r Zählt die Rennzeit ab null hoch.\n\n|cnHIGHLIGHT_FONT_COLOR:Countdown - Medaillenzeit:|r Zählt bis zur Goldzeit herunter und danach bis zur Silberzeit.\n\n|cnHIGHLIGHT_FONT_COLOR:Countdown - persönliche Bestzeit:|r Zählt bis zur persönlichen Bestzeit herunter. Ohne Bestzeit wird die Rennzeit hochgezählt."
 L["options.race-tracker.mode.value.0"] = "Timer"
@@ -74,7 +74,7 @@ L["race.no-time"] = "Keine Medaillenzeit verfügbar"
 L["race.personal-best-time"] = "Persönliche Bestzeit: %s Sek."
 L["race.personal-best-time-no-race"] = "Bisher kein Rennen absolviert"
 L["race.personal-best-time-not-available"] = "Persönliche Bestzeit nicht verfügbar"
-L["race.personal-best-time-failed"] = "Neue persönliche Bestzeit verfehlt"
+L["race.personal-best-time-failed"] = "Persönliche Bestzeit überschritten"
 
 -- Race Time Overview
 

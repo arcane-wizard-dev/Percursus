@@ -1,6 +1,8 @@
 local addonName, PER = ...
 
+---@class (partial) PercursusRaceTrackerFrame
 Percursus_RaceTrackerMixin = {}
+---@class (partial) PercursusRaceTrackerSpeedDisplayFrame
 Percursus_RaceTrackerSpeedDisplayMixin = {}
 
 if PER.State and PER.State.libraryIncompatible then return end
