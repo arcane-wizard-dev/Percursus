@@ -12,6 +12,13 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Changed: The TOC now excludes only Talebound by game type"
+		}
+	},
+	{
+		version = "v2.39",
+		date = "2026-11-01",
+		entries = {
 			"Changed: Clarified labels and tooltips in the options menu",
 			"Changed: Limited loading to Retail",
 			"Updated: deDE, enUS, ruRU, zhCN localizations"
@@ -81,14 +88,6 @@ PER.CHANGELOG = {
 		entries = {
 			"Changed: Race and zone overviews now use the native Blizzard UI appearance",
 			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
-		}
-	},
-	{
-		version = "v2.30",
-		date = "2026-10-03",
-		entries = {
-			"Updated: Race Tracker background 'Classic'",
-			"Updated: Logo"
 		}
 	}
 	-- END GENERATED CHANGELOG
