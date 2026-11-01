@@ -1,3 +1,8 @@
+**v2.39 (2026-11-01)**
+- Changed: Clarified labels and tooltips in the options menu
+- Changed: Limited loading to Retail
+- Updated: deDE, enUS, ruRU, zhCN localizations
+
 **v2.38 (2026-10-29)**
 - Added: TOC version for patch 12.1.7 [retail]
 - Removed: TOC version for patch 12.1.0 [retail]
