@@ -12,6 +12,15 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Changed: Clarified labels and tooltips in the options menu",
+			"Changed: Limited loading to Retail",
+			"Updated: deDE, enUS, ruRU, zhCN localizations"
+		}
+	},
+	{
+		version = "v2.38",
+		date = "2026-10-29",
+		entries = {
 			"Added: TOC version for patch 12.1.7 [retail]",
 			"Removed: TOC version for patch 12.1.0 [retail]"
 		}
@@ -80,13 +89,6 @@ PER.CHANGELOG = {
 		entries = {
 			"Updated: Race Tracker background 'Classic'",
 			"Updated: Logo"
-		}
-	},
-	{
-		version = "v2.29",
-		date = "2026-09-27",
-		entries = {
-			"Minor code adjustments"
 		}
 	}
 	-- END GENERATED CHANGELOG
