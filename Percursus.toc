@@ -1,5 +1,5 @@
 ## Interface: 120107, 120105
-## AllowLoadGameType: standard
+## ExcludeLoadGameType: wowhack
 ## Title: Percursus
 ## Author: Arcane Wizard | created by diomsg
 
