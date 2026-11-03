@@ -11,6 +11,7 @@ PER.OPTIONS_DEFAULTS = {
 			["showInCompartment"] = false
 		},
 		["debug-mode"] = false,
+		["debug-level"] = "basic",
 	},
 	["race-time-overview"] = {
 		["active"] = true,

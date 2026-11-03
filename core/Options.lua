@@ -63,13 +63,22 @@ function Options:Initialize()
 	})
 
 	-- Debug Mode
-	AWL.Settings:AddCheckbox(category, {
-		variableTable	= PER.Settings.general,
-		settingKey		= addonName .. "_debug-mode",
-		variableName	= "debug-mode",
-		name			= L["options.general.debug-mode.name"],
-		tooltip			= L["options.general.debug-mode.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["general"]["debug-mode"]
+	AWL.Settings:AddCheckboxDropdownCombo(category, layout, {
+		variableTable			= PER.Settings.general,
+		checkboxSettingKey		= addonName .. "_debug-mode",
+		checkboxVariableName	= "debug-mode",
+		checkboxName			= L["options.general.debug-mode.name"],
+		checkboxTooltip			= L["options.general.debug-mode.tooltip"],
+		checkboxDefault			= PER.OPTIONS_DEFAULTS.general["debug-mode"],
+		dropdownSettingKey		= addonName .. "_debug-level",
+		dropdownVariableName	= "debug-level",
+		dropdownName			= L["options.general.debug-mode.level.name"],
+		dropdownTooltip			= L["options.general.debug-mode.level.tooltip"],
+		dropdownDefault			= PER.OPTIONS_DEFAULTS.general["debug-level"],
+		dropdownOptions			= {
+			{value = "basic", label = L["options.general.debug-mode.level.value.basic"]},
+			{value = "advanced", label = L["options.general.debug-mode.level.value.advanced"]}
+		}
 	})
 
 	layout:AddInitializer(CreateSettingsListSectionHeaderInitializer(L["options.race-tracker"]))
@@ -93,9 +102,9 @@ function Options:Initialize()
 		tooltip			= L["options.race-tracker.mode.tooltip"],
 		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["mode"],
 		options			= {
-			{ value = 0, label = L["options.race-tracker.mode.value.0"] },
-			{ value = 1, label = L["options.race-tracker.mode.value.1"] },
-			{ value = 2, label = L["options.race-tracker.mode.value.2"] }
+			{value = 0, label = L["options.race-tracker.mode.value.0"]},
+			{value = 1, label = L["options.race-tracker.mode.value.1"]},
+			{value = 2, label = L["options.race-tracker.mode.value.2"]}
 		}
 	})
 
@@ -108,16 +117,16 @@ function Options:Initialize()
 		tooltip			= L["options.race-tracker.background-type.tooltip"],
 		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["background-type"],
 		options			= {
-			{ value = 0, label = L["options.race-tracker.background-type.value.0"] },
-			{ value = 1, label = L["options.race-tracker.background-type.value.1"] },
-			{ value = 2, label = L["options.race-tracker.background-type.value.2"] },
-			{ value = 3, label = L["options.race-tracker.background-type.value.3"] },
-			{ value = 4, label = L["options.race-tracker.background-type.value.4"] },
-			{ value = 7, label = L["options.race-tracker.background-type.value.7"] },
-			{ value = 5, label = L["options.race-tracker.background-type.value.5"] },
-			{ value = 6, label = L["options.race-tracker.background-type.value.6"] },
-			{ value = 9, label = L["options.race-tracker.background-type.value.9"] },
-			{ value = 8, label = L["options.race-tracker.background-type.value.8"] }
+			{value = 0, label = L["options.race-tracker.background-type.value.0"]},
+			{value = 1, label = L["options.race-tracker.background-type.value.1"]},
+			{value = 2, label = L["options.race-tracker.background-type.value.2"]},
+			{value = 3, label = L["options.race-tracker.background-type.value.3"]},
+			{value = 4, label = L["options.race-tracker.background-type.value.4"]},
+			{value = 7, label = L["options.race-tracker.background-type.value.7"]},
+			{value = 5, label = L["options.race-tracker.background-type.value.5"]},
+			{value = 6, label = L["options.race-tracker.background-type.value.6"]},
+			{value = 9, label = L["options.race-tracker.background-type.value.9"]},
+			{value = 8, label = L["options.race-tracker.background-type.value.8"]}
 		}
 	})
 
@@ -129,9 +138,9 @@ function Options:Initialize()
 		name			= L["options.race-tracker.horizontal-shift.name"],
 		tooltip			= L["options.race-tracker.horizontal-shift.tooltip"],
 		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["horizontal-shift"],
-		minValue = -500,
-		maxValue = 500,
-		step = 10,
+		minValue		= -500,
+		maxValue		= 500,
+		step			= 10,
 		formatter		= function(value) return value end,
 	})
 
@@ -143,9 +152,9 @@ function Options:Initialize()
 		name			= L["options.race-tracker.vertical-shift.name"],
 		tooltip			= L["options.race-tracker.vertical-shift.tooltip"],
 		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["vertical-shift"],
-		minValue = -400,
-		maxValue = 400,
-		step = 10,
+		minValue		= -400,
+		maxValue		= 400,
+		step			= 10,
 		formatter		= function(value) return value end,
 	})
 
@@ -173,9 +182,9 @@ function Options:Initialize()
 		sliderName				= L["options.race-tracker.fadeout-delay.name"],
 		sliderTooltip			= L["options.race-tracker.fadeout-delay.tooltip"],
 		sliderDefault			= PER.OPTIONS_DEFAULTS["race-tracker"]["fadeout-delay"],
-		sliderMin = 1,
-		sliderMax = 10,
-		sliderStep = 1,
+		sliderMin				= 1,
+		sliderMax				= 10,
+		sliderStep				= 1,
 		sliderFormatter			= function(value) return value .. " " .. L["race.seconds-short"] end
 	})
 
@@ -197,9 +206,9 @@ function Options:Initialize()
 		name			= L["options.race-tracker.speed-display-horizontal-shift.name"],
 		tooltip			= L["options.race-tracker.speed-display-horizontal-shift.tooltip"],
 		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-horizontal-shift"],
-		minValue = -500,
-		maxValue = 500,
-		step = 10,
+		minValue		= -500,
+		maxValue		= 500,
+		step			= 10,
 		formatter		= function(value) return value end,
 		parentInit		= initializerSpeed,
 		parentCondition	= function() return GetVal(settingSpeed) end
@@ -213,9 +222,9 @@ function Options:Initialize()
 		name			= L["options.race-tracker.speed-display-vertical-shift.name"],
 		tooltip			= L["options.race-tracker.speed-display-vertical-shift.tooltip"],
 		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-vertical-shift"],
-		minValue = -400,
-		maxValue = 400,
-		step = 10,
+		minValue		= -400,
+		maxValue		= 400,
+		step			= 10,
 		formatter		= function(value) return value end,
 		parentInit		= initializerSpeed,
 		parentCondition	= function() return GetVal(settingSpeed) end
