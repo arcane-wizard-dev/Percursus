@@ -12,6 +12,16 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Changed: The debug mode option now combines an enable checkbox with a Basic or Advanced level selector",
+			"Updated: deDE, enUS, ruRU, zhCN localizations",
+			"Requires Arcane Wizard: Library revision 2 or later",
+			"Minor code adjustments"
+		}
+	},
+	{
+		version = "v2.40",
+		date = "2026-11-01",
+		entries = {
 			"Changed: The TOC now excludes only Talebound by game type"
 		}
 	},
@@ -80,14 +90,6 @@ PER.CHANGELOG = {
 		entries = {
 			"Added: ruRU localization",
 			"Minor code adjustments"
-		}
-	},
-	{
-		version = "v2.31",
-		date = "2026-10-05",
-		entries = {
-			"Changed: Race and zone overviews now use the native Blizzard UI appearance",
-			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
 		}
 	}
 	-- END GENERATED CHANGELOG
