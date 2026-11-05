@@ -112,27 +112,27 @@ function PercursusFrame:ADDON_LOADED(_, addOnName)
 
 	isInitialized = true
 
-	Utils:PrintDebug(string.format(
+	Utils:PrintDebug(
 		"InitializeDatabase: key=%s, createdProfile=%s, createdProfileKey=%s, cleanedOptions=%s, activeProfile=%s",
-		tostring(dbInit.characterGUID),
-		tostring(dbInit.createdProfile),
-		tostring(dbInit.createdProfileKey),
-		tostring(dbInit.cleanedOptions),
-		tostring(dbInit.activeProfile)
-	))
+		dbInit.characterGUID,
+		dbInit.createdProfile,
+		dbInit.createdProfileKey,
+		dbInit.cleanedOptions,
+		dbInit.activeProfile
+	)
 	Utils:PrintDebug("Addon fully loaded.")
 end
 
 function PercursusFrame:QUEST_ACCEPTED(_, questID)
 	local result = GetRaceData(questID)
 
-	--Utils:PrintDebug(string.format("questID=%s", tostring(questID)))
+	--Utils:PrintDebug("questID=%s", questID)
 
 	if result ~= nil then
-		Utils:PrintDebug(string.format(
+		Utils:PrintDebug(
 			"Event 'QUEST_ACCEPTED' fired. Payload: questID=%s, questName=%s",
-			tostring(questID), tostring(C_QuestLog.GetTitleForQuestID(questID))
-		))
+			questID, (C_QuestLog.GetTitleForQuestID(questID))
+		)
 
 		if PER.Settings.raceTracker["active"] then
 			activeTracker = true
@@ -159,10 +159,10 @@ end
 
 function PercursusFrame:QUEST_REMOVED(_, questID)
 	if CheckRaceQuest(questID) and activeTracker then
-		Utils:PrintDebug(string.format(
+		Utils:PrintDebug(
 			"Event 'QUEST_REMOVED' fired. Payload: questID=%s, questName=%s",
-			tostring(questID), tostring(C_QuestLog.GetTitleForQuestID(questID))
-		))
+			questID, (C_QuestLog.GetTitleForQuestID(questID))
+		)
 
 		activeTracker = false
 		raceQuestID = -1
@@ -220,7 +220,7 @@ hooksecurefunc(GossipFrame, "HandleShow", function ()
 		local npcID = select(6, strsplit("-", tostring(unitGUID)))
 		npcID = tonumber(npcID)
 
-		--Utils:PrintDebug(string.format("npcID=%s", tostring(npcID)))
+		--Utils:PrintDebug("npcID=%s", npcID)
 
 		if raceDataTable[npcID] ~= nil then
 			RaceTimeOverview:ShowRaceOverview(npcID)
