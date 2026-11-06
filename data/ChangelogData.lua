@@ -12,6 +12,14 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Changed: The Basic debug level now shows important messages, while Advanced also includes technical details",
+			"Updated: deDE, enUS, ruRU, zhCN localizations"
+		}
+	},
+	{
+		version = "v2.42",
+		date = "2026-11-05",
+		entries = {
 			"Changed: Debug messages are now converted and formatted only when debug mode is enabled",
 			"Requires Arcane Wizard: Library revision 4 or later"
 		}
@@ -83,13 +91,6 @@ PER.CHANGELOG = {
 		date = "2026-10-14",
 		entries = {
 			"Fixed: Repeated error messages for missing translations"
-		}
-	},
-	{
-		version = "v2.33",
-		date = "2026-10-12",
-		entries = {
-			"Refactoring of the addon structure and source code"
 		}
 	}
 	-- END GENERATED CHANGELOG
