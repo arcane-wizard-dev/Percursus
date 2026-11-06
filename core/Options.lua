@@ -188,7 +188,7 @@ function Options:Initialize()
 		sliderFormatter			= function(value) return value .. " " .. L["race.seconds-short"] end
 	})
 
-	-- Speed Display (Parent for the next two sliders)
+	-- Speed Display (übergeordnetes Steuerelement der nächsten beiden Regler)
 	local initializerSpeed, settingSpeed = AWL.Settings:AddCheckbox(category, {
 		variableTable	= PER.Settings.raceTracker,
 		settingKey		= addonName .. "_speed-display",

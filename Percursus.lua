@@ -112,7 +112,7 @@ function PercursusFrame:ADDON_LOADED(_, addOnName)
 
 	isInitialized = true
 
-	Utils:PrintDebug(
+	Utils:PrintDebugAdvanced(
 		"InitializeDatabase: key=%s, createdProfile=%s, createdProfileKey=%s, cleanedOptions=%s, activeProfile=%s",
 		dbInit.characterGUID,
 		dbInit.createdProfile,
@@ -129,7 +129,7 @@ function PercursusFrame:QUEST_ACCEPTED(_, questID)
 	--Utils:PrintDebug("questID=%s", questID)
 
 	if result ~= nil then
-		Utils:PrintDebug(
+		Utils:PrintDebugAdvanced(
 			"Event 'QUEST_ACCEPTED' fired. Payload: questID=%s, questName=%s",
 			questID, (C_QuestLog.GetTitleForQuestID(questID))
 		)
@@ -152,14 +152,14 @@ function PercursusFrame:QUEST_ACCEPTED(_, questID)
 
 			RaceTracker:Start(raceQuestID, raceSpellID, raceGoldTime, raceSilverTime, racePersonalTime)
 		else
-			Utils:PrintDebug("No race tracker requested.")
+			Utils:PrintDebugAdvanced("No race tracker requested.")
 		end
 	end
 end
 
 function PercursusFrame:QUEST_REMOVED(_, questID)
 	if CheckRaceQuest(questID) and activeTracker then
-		Utils:PrintDebug(
+		Utils:PrintDebugAdvanced(
 			"Event 'QUEST_REMOVED' fired. Payload: questID=%s, questName=%s",
 			questID, (C_QuestLog.GetTitleForQuestID(questID))
 		)
@@ -189,14 +189,14 @@ function PercursusFrame:QUEST_REMOVED(_, questID)
 end
 
 function PercursusFrame:ZONE_CHANGED()
-	Utils:PrintDebug("Event 'ZONE_CHANGED' fired. No payload.")
+	Utils:PrintDebugAdvanced("Event 'ZONE_CHANGED' fired. No payload.")
 
 	ZoneTextFrame:Hide()
 	SubZoneTextFrame:Hide()
 end
 
 function PercursusFrame:ZONE_CHANGED_NEW_AREA()
-	Utils:PrintDebug("Event 'ZONE_CHANGED_NEW_AREA' fired. No payload.")
+	Utils:PrintDebugAdvanced("Event 'ZONE_CHANGED_NEW_AREA' fired. No payload.")
 
 	ZoneTextFrame:Hide()
 	SubZoneTextFrame:Hide()
