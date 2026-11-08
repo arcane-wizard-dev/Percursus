@@ -126,8 +126,6 @@ end
 function PercursusFrame:QUEST_ACCEPTED(_, questID)
 	local result = GetRaceData(questID)
 
-	--Utils:PrintDebug("questID=%s", questID)
-
 	if result ~= nil then
 		Utils:PrintDebugAdvanced(
 			"Event 'QUEST_ACCEPTED' fired. Payload: questID=%s, questName=%s",
@@ -211,7 +209,6 @@ hooksecurefunc(GossipFrame, "HandleShow", function ()
 		return
 	end
 
-	---@diagnostic disable-next-line: param-type-mismatch
 	if issecretvalue(unitGUID) then
 		return
 	end
@@ -219,8 +216,6 @@ hooksecurefunc(GossipFrame, "HandleShow", function ()
 	if PER.Settings.raceTimeOverview["active"] then
 		local npcID = select(6, strsplit("-", tostring(unitGUID)))
 		npcID = tonumber(npcID)
-
-		--Utils:PrintDebug("npcID=%s", npcID)
 
 		if raceDataTable[npcID] ~= nil then
 			RaceTimeOverview:ShowRaceOverview(npcID)

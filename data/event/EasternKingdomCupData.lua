@@ -8,7 +8,7 @@ end
 
 local raceDataTable = PER.RACE_DATA
 
--- Eastern Kingdom Cup
+-- Eastern Kingdoms Cup
 -- Gilneas Gambit R1 (Gilneasgambit) - R-11.2.0
 raceDataTable[206246] = {
 	010201, 13, 0, {
