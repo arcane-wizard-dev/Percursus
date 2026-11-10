@@ -9,7 +9,7 @@
 ## DefaultState: enabled
 
 ## Dependencies: ArcaneWizardLibrary
-## X-Library-Revision: 4
+## X-Library-Revision: 5
 
 ## Notes: This addon tracks times in supported races, including Skyriding, Skyrocketing, and Breakneck (D.R.I.V.E.). Follow your progress live during a race and compare race times and targets in clear overviews.
 ## Notes-deDE: Dieses Addon erfasst Zeiten in unterstützten Rennen, darunter Himmelsreiten, Raketenrennen und Halsbrecherrennen (D.R.I.V.E.). Verfolge deinen Fortschritt live während eines Rennens und vergleiche Rennzeiten und Zielzeiten in übersichtlichen Ansichten.
