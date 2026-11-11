@@ -116,7 +116,6 @@ local function GetZoneName(zoneID)
 end
 
 local function QueueRefresh()
-	-- Mehrere nachgeladene Rennnamen gemeinsam aktualisieren, um wiederholte Neuaufbauten der Übersicht zu vermeiden.
 	if refreshQueued then return end
 
 	refreshQueued = true
