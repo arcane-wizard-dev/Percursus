@@ -19,3 +19,11 @@ for raceID, dataWrapper in pairs(raceDataTable) do
 end
 
 table.sort(sortedRaceDataTable, function(a, b) return a.order < b.order end)
+
+PER.RACE_QUEST_INDEX = {}
+
+for _, dataWrapper in pairs(raceDataTable) do
+	for mode, data in pairs(dataWrapper[4]) do
+		PER.RACE_QUEST_INDEX[data[1]] = {mode = mode, data = data}
+	end
+end

@@ -22,6 +22,7 @@ local Intl = rawget(_G, "C_Intl")
 local groups, groupsByZone, names, pendingNames = {}, {}, {}, {}
 local continents = {}
 local refreshQueued = false
+local bestQuantityCache = {}
 ---@type fun(window: PercursusRaceTimeOverviewFrame)
 local RefreshWindow = nil
 
@@ -75,8 +76,14 @@ local function GetTargetTime(value, showUnit)
 end
 
 local function GetBestQuantity(data)
-	local currency = data[2] and data[2] ~= 0 and C_CurrencyInfo.GetCurrencyInfo(data[2])
-	return currency and currency.quantity
+	local quantity = bestQuantityCache[data]
+	if quantity == nil then
+		local currency = data[2] and data[2] ~= 0 and C_CurrencyInfo.GetCurrencyInfo(data[2])
+		quantity = currency and currency.quantity or false
+		bestQuantityCache[data] = quantity
+	end
+
+	return quantity or nil
 end
 
 local function GetBestTime(data, showUnit)
@@ -467,6 +474,27 @@ local function SetMedalRow(row, entry)
 				row.labels[index] = row:CreateFontString(nil, "OVERLAY", layout.labelFont)
 			end
 		end
+
+		local mode = row.cells[1]
+		mode:SetHeight(0)
+		mode:SetJustifyH("LEFT")
+		mode:SetJustifyV("TOP")
+		mode:SetWordWrap(false)
+
+		for index = 3, 4 do
+			local cell = row.cells[index]
+			cell:SetHeight(0)
+			cell:SetJustifyH("RIGHT")
+			cell:SetJustifyV("TOP")
+			cell:SetWordWrap(true)
+		end
+
+		local label = row.labels[2]
+		label:SetHeight(0)
+		label:SetJustifyH("LEFT")
+		label:SetJustifyV("TOP")
+		label:SetWordWrap(false)
+		label:SetText(L["race.column.best-time"])
 	end
 
 	row.entry = entry
@@ -490,10 +518,6 @@ local function SetMedalRow(row, entry)
 	mode:ClearAllPoints()
 	mode:SetPoint("TOPLEFT", row, "TOPLEFT", layout.padding, -layout.verticalPadding)
 	mode:SetWidth(math.max(1, row:GetWidth() - 2 * layout.padding - layout.separatorGap - layout.separatorMinimumWidth))
-	mode:SetHeight(0)
-	mode:SetJustifyH("LEFT")
-	mode:SetJustifyV("TOP")
-	mode:SetWordWrap(false)
 	mode:SetText(entry.label)
 
 	local nameWidth = math.min(mode:GetUnboundedStringWidth(), mode:GetWidth())
@@ -506,10 +530,6 @@ local function SetMedalRow(row, entry)
 	for index = 3, 4 do
 		local cell = row.cells[index]
 		cell:ClearAllPoints()
-		cell:SetHeight(0)
-		cell:SetJustifyH("RIGHT")
-		cell:SetJustifyV("TOP")
-		cell:SetWordWrap(true)
 		cell:SetText(L[OverviewConfig.columns[index].text] .. ": " .. GetTargetTime(entry.data[index + 1]))
 		targetWidth = math.max(targetWidth, cell:GetUnboundedStringWidth())
 	end
@@ -525,11 +545,6 @@ local function SetMedalRow(row, entry)
 	local label = row.labels[2]
 	label:ClearAllPoints()
 	label:SetWidth(bestWidth)
-	label:SetHeight(0)
-	label:SetJustifyH("LEFT")
-	label:SetJustifyV("TOP")
-	label:SetWordWrap(false)
-	label:SetText(L["race.column.best-time"])
 
 	local value = row.cells[2]
 	value:SetFontObject(hasTime and layout.bestFont or layout.missingTimeFont)
@@ -699,6 +714,8 @@ RefreshWindow = function(window)
 		if not state.zoneID then return end
 		SetWindowTitle(window, GetZoneName(state.zoneID))
 	end
+
+	wipe(bestQuantityCache)
 
 	local scrollFrame = window.scrollFrame
 	local entries, y = BuildEntries(window), 0
@@ -982,8 +999,12 @@ local function ResizeQuestWindow()
 	end
 
 	QuestOverviewFrame:SetHeight(math.max(height, OverviewConfig.questMinimumHeight))
-	RefreshWindow(RaceOverviewFrame)
-	RefreshWindow(ZoneOverviewFrame)
+
+	for _, window in ipairs({RaceOverviewFrame, ZoneOverviewFrame}) do
+		if window:IsShown() then
+			RefreshWindow(window)
+		end
+	end
 end
 
 local function CreateMoreMenu()

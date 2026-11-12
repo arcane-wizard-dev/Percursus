@@ -34,38 +34,23 @@ local PercursusFrame = CreateFrame("Frame", "Percursus")
 -----------------------
 
 local function CheckRaceQuest(questID)
-	for _, dataWrapper in pairs(raceDataTable) do
-		local _, _, _, modes = unpack(dataWrapper)
-
-		for _, data in pairs(modes) do
-			if data[1] == questID then
-				return true
-			end
-		end
-	end
-
-	return false
+	return PER.RACE_QUEST_INDEX[questID] ~= nil
 end
 
 local function GetRaceData(questID)
-	for _, dataWrapper in pairs(raceDataTable) do
-		local _, _, _, modes = unpack(dataWrapper)
+	local entry = PER.RACE_QUEST_INDEX[questID]
+	if not entry then return nil end
 
-		for mode, data in pairs(modes) do
-			if data[1] == questID then
-				return {
-					mode = mode,
-					questID = data[1],
-					raceTime = data[2],
-					spellID = data[3],
-					goldTime = data[4],
-					silverTime = data[5]
-				}
-			end
-		end
-	end
+	local data = entry.data
 
-	return nil
+	return {
+		mode = entry.mode,
+		questID = data[1],
+		raceTime = data[2],
+		spellID = data[3],
+		goldTime = data[4],
+		silverTime = data[5]
+	}
 end
 
 local function SlashCommand(msg)
