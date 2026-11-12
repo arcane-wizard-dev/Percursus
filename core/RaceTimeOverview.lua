@@ -719,6 +719,7 @@ RefreshWindow = function(window)
 
 	local scrollFrame = window.scrollFrame
 	local entries, y = BuildEntries(window), 0
+	local contentWidth = GetContentWidth(window)
 	for index, entry in ipairs(entries) do
 		local row = scrollFrame.rows[index]
 		if not row then
@@ -732,7 +733,7 @@ RefreshWindow = function(window)
 
 		row:ClearAllPoints()
 		row:SetPoint("TOPLEFT", scrollFrame.content, "TOPLEFT", 0, -y)
-		row:SetWidth(GetContentWidth(window))
+		row:SetWidth(contentWidth)
 
 		if state.kind == "race" then
 			SetMedalRow(row, entry)
