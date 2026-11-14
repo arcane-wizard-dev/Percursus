@@ -12,6 +12,15 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Changed: Reduced repeated quest searches and text updates in the Race Tracker",
+			"Changed: Reduced repeated best-time queries, width calculations, and layout updates in race overviews",
+			"Minor code adjustments"
+		}
+	},
+	{
+		version = "v2.45",
+		date = "2026-11-10",
+		entries = {
 			"Changed: Reworked the options menu to prevent errors in Blizzard's settings and added a button to restore default values",
 			"Removed: Addon options from Blizzard's settings search",
 			"Requires Arcane Wizard: Library revision 5 or later"
@@ -84,15 +93,6 @@ PER.CHANGELOG = {
 			"Fixed: Aborting a race during the countdown no longer causes the speed display to reappear",
 			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility",
 			"Minor code adjustments"
-		}
-	},
-	{
-		version = "v2.36",
-		date = "2026-10-21",
-		entries = {
-			"Added: All Races overview grouped by continent and zone",
-			"Changed: Combined Current Race and Zone tabs with medal display",
-			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility"
 		}
 	}
 	-- END GENERATED CHANGELOG
