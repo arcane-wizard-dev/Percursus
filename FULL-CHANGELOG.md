@@ -1,3 +1,8 @@
+**v2.46 (2026-11-14)**
+- Changed: Reduced repeated quest searches and text updates in the Race Tracker
+- Changed: Reduced repeated best-time queries, width calculations, and layout updates in race overviews
+- Minor code adjustments
+
 **v2.45 (2026-11-10)**
 - Changed: Reworked the options menu to prevent errors in Blizzard's settings and added a button to restore default values
 - Removed: Addon options from Blizzard's settings search
