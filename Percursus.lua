@@ -39,7 +39,10 @@ end
 
 local function GetRaceData(questID)
 	local entry = PER.RACE_QUEST_INDEX[questID]
-	if not entry then return nil end
+
+	if not entry then
+		return nil
+	end
 
 	local data = entry.data
 
@@ -185,7 +188,7 @@ function PercursusFrame:ZONE_CHANGED_NEW_AREA()
 	SubZoneTextFrame:Hide()
 end
 
-hooksecurefunc(GossipFrame, "HandleShow", function ()
+hooksecurefunc(GossipFrame, "HandleShow", function()
 	if not isInitialized then return end
 
 	local unitGUID = UnitGUID("target")
@@ -208,7 +211,7 @@ hooksecurefunc(GossipFrame, "HandleShow", function ()
 	end
 end)
 
-hooksecurefunc(GossipFrame, "Hide", function ()
+hooksecurefunc(GossipFrame, "Hide", function()
 	if not isInitialized then return end
 
 	RaceTimeOverview:HideRaceOverview()
@@ -219,6 +222,6 @@ PercursusFrame:RegisterEvent("QUEST_ACCEPTED")
 PercursusFrame:RegisterEvent("QUEST_REMOVED")
 PercursusFrame:SetScript("OnEvent", PercursusFrame.OnEvent)
 
-SLASH_Percursus1, SLASH_Percursus2 = '/per', '/percursus'
+SLASH_Percursus1, SLASH_Percursus2 = "/per", "/percursus"
 
 SlashCmdList["Percursus"] = SlashCommand

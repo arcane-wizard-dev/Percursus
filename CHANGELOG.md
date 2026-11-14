@@ -4,3 +4,4 @@
 
 - Changed: Reduced repeated quest searches and text updates in the Race Tracker
 - Changed: Reduced repeated best-time queries, width calculations, and layout updates in race overviews
+- Minor code adjustments

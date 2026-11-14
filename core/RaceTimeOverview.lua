@@ -41,10 +41,13 @@ local QuestOverviewFrame = nil ---@type PercursusQuestOverviewFrame
 
 local function GetNativeDecimalSeparator()
 	if not Intl or not Intl.FormatNumber or not Enum.NumberStyle then return end
+
 	if not Enum.NumberStyle.Decimal or not Enum.NumberStyle.Integer then return end
 
 	local sample = Intl.FormatNumber(1.5, Enum.NumberStyle.Decimal)
+
 	if type(sample) ~= "string" then return end
+
 	return sample:match("^1([^%d]+)5$")
 end
 
@@ -52,6 +55,7 @@ local nativeDecimalSeparator = GetNativeDecimalSeparator()
 
 local function FormatTime(value, compact, showUnit)
 	local integer, fraction = string.format("%.3f", value):match("^(%d+)%.(%d+)$")
+
 	if compact then
 		fraction = fraction:gsub("0+$", "")
 	end
@@ -61,10 +65,15 @@ local function FormatTime(value, compact, showUnit)
 	end
 
 	local text = integer
+
 	if fraction ~= "" then
 		text = text .. (nativeDecimalSeparator or L["race.decimal-separator"]) .. fraction
 	end
-	if showUnit == false then return text end
+
+	if showUnit == false then
+		return text
+	end
+
 	return text .. " " .. L["race.seconds-short"]
 end
 
@@ -72,11 +81,13 @@ local function GetTargetTime(value, showUnit)
 	if type(value) ~= "number" or value <= 0 then
 		return showUnit == false and OverviewConfig.missingTableTime or L["race.no-time"]
 	end
+
 	return FormatTime(value, true, showUnit), true
 end
 
 local function GetBestQuantity(data)
 	local quantity = bestQuantityCache[data]
+
 	if quantity == nil then
 		local currency = data[2] and data[2] ~= 0 and C_CurrencyInfo.GetCurrencyInfo(data[2])
 		quantity = currency and currency.quantity or false
@@ -88,14 +99,22 @@ end
 
 local function GetBestTime(data, showUnit)
 	local quantity = GetBestQuantity(data)
+
 	if type(quantity) ~= "number" or quantity <= 0 then
-		if showUnit == false then return "" end
-		if quantity == 0 then return L["race.personal-best-time-no-race"] end
+		if showUnit == false then
+			return ""
+		end
+
+		if quantity == 0 then
+			return L["race.personal-best-time-no-race"]
+		end
+
 		return L["race.personal-best-time-not-available"]
 	end
 
 	local seconds = quantity / 1000
 	local medal = nil
+
 	if data[4] and data[4] > 0 and seconds <= data[4] then
 		medal = OverviewConfig.medals.gold
 	elseif data[5] and data[5] > 0 then
@@ -103,22 +122,27 @@ local function GetBestTime(data, showUnit)
 	end
 
 	local text = FormatTime(seconds, false, showUnit)
+
 	if medal then
 		text = string.format("|c%s%s|r", medal.color, text)
 	end
+
 	return text, medal, true
 end
 
 local function GetRaceName(questID)
 	local title = C_QuestLog.GetTitleForQuestID(questID)
+
 	if title and title ~= "" then
 		names[questID] = title
 	end
+
 	return names[questID] or L["race.name-unavailable"]:format(questID)
 end
 
 local function GetZoneName(zoneID)
 	local map = C_Map.GetMapInfo(zoneID)
+
 	return map and map.name or L["race.zone-unavailable"]:format(zoneID)
 end
 
@@ -139,12 +163,14 @@ end
 
 local function RequestName(questID)
 	GetRaceName(questID)
+
 	if names[questID] or pendingNames[questID] then return end
 
 	pendingNames[questID] = true
 	QuestEventListener:AddCallback(questID, function()
 		pendingNames[questID] = nil
 		GetRaceName(questID)
+
 		if names[questID] then
 			QueueRefresh()
 		end
@@ -163,19 +189,29 @@ end
 
 local function GetContinentID(mapID)
 	local visited = {}
+
 	while mapID and mapID ~= 0 and not visited[mapID] do
 		visited[mapID] = true
 		local map = C_Map.GetMapInfo(mapID)
-		if not map then return 0 end
-		if map.mapType == Enum.UIMapType.Continent then return mapID end
+
+		if not map then
+			return 0
+		end
+
+		if map.mapType == Enum.UIMapType.Continent then
+			return mapID
+		end
+
 		mapID = map.parentMapID
 	end
+
 	return 0
 end
 
 local function BuildGroups()
 	for _, race in ipairs(sortedRaceDataTable) do
 		local group = groupsByZone[race.zoneID]
+
 		if not group then
 			group = {key = race.zoneID, races = {}}
 			groupsByZone[race.zoneID] = group
@@ -187,6 +223,7 @@ local function BuildGroups()
 		else
 			for _, mode in ipairs(PER.RACE_ORDER) do
 				local data = race.modes[mode]
+
 				if data then
 					group.races[#group.races + 1] = {key = data[1], data = data}
 				end
@@ -195,14 +232,17 @@ local function BuildGroups()
 	end
 
 	local byContinent = {}
+
 	for _, group in ipairs(groups) do
 		group.continentID = GetContinentID(group.key)
 		local continent = byContinent[group.continentID]
+
 		if not continent then
 			continent = {key = group.continentID, zones = {}}
 			byContinent[group.continentID] = continent
 			continents[#continents + 1] = continent
 		end
+
 		continent.zones[#continent.zones + 1] = group
 	end
 end
@@ -210,8 +250,11 @@ end
 local function FindCurrentZone()
 	local mapID = C_Map.GetBestMapForUnit("player")
 	local visited = {}
+
 	while mapID and mapID ~= 0 and not visited[mapID] do
-		if groupsByZone[mapID] then return mapID end
+		if groupsByZone[mapID] then
+			return mapID
+		end
 
 		visited[mapID] = true
 		local map = C_Map.GetMapInfo(mapID)
@@ -221,15 +264,21 @@ end
 
 local function ExpansionState(window, kind)
 	local state = window.state
+
 	if kind == "continent" then
 		return state.expandedContinents, false
 	end
+
 	return kind == "zone" and state.expandedZones or state.expandedRaces, kind ~= "zone"
 end
 
 local function IsExpanded(window, kind, key)
 	local values, default = ExpansionState(window, kind)
-	if values[key] == nil then return default end
+
+	if values[key] == nil then
+		return default
+	end
+
 	return values[key]
 end
 
@@ -243,15 +292,25 @@ end
 
 local function MatchesTimeFilter(data, filter)
 	local quantity = GetBestQuantity(data)
-	if type(quantity) ~= "number" or quantity <= 0 then return true end
-	if filter == "no-time" then return false end
+
+	if type(quantity) ~= "number" or quantity <= 0 then
+		return true
+	end
+
+	if filter == "no-time" then
+		return false
+	end
+
 	return not (type(data[4]) == "number" and data[4] > 0 and quantity / 1000 <= data[4])
 end
 
 local function FilterRaces(races, filter)
-	if filter == "all" then return races end
+	if filter == "all" then
+		return races
+	end
 
 	local filtered = {}
+
 	for _, race in ipairs(races) do
 		if race.data then
 			if MatchesTimeFilter(race.data, filter) then
@@ -259,6 +318,7 @@ local function FilterRaces(races, filter)
 			end
 		else
 			local modes = {}
+
 			for mode, data in pairs(race.modes) do
 				if MatchesTimeFilter(data, filter) then
 					modes[mode] = data
@@ -270,19 +330,25 @@ local function FilterRaces(races, filter)
 			end
 		end
 	end
+
 	return filtered
 end
 
 local function FilterGroups(source, filter)
-	if filter == "all" then return source end
+	if filter == "all" then
+		return source
+	end
 
 	local filtered = {}
+
 	for _, group in ipairs(source) do
 		local races = FilterRaces(group.races, filter)
+
 		if #races > 0 then
 			filtered[#filtered + 1] = {key = group.key, races = races}
 		end
 	end
+
 	return filtered
 end
 
@@ -292,13 +358,27 @@ local function AppendRaces(window, entries, config)
 			entries[#entries + 1] = {kind = "mode", key = race.key, label = GetRaceName(race.key), depth = config.depth, data = race.data}
 		else
 			local expanded = IsExpanded(window, "race", race.key)
-			entries[#entries + 1] = {kind = "race", key = race.key, label = GetRaceName(race.key), depth = config.depth, expanded = expanded}
+			entries[#entries + 1] = {
+				kind = "race",
+				key = race.key,
+				label = GetRaceName(race.key),
+				depth = config.depth,
+				expanded = expanded
+			}
 
 			if expanded then
 				for _, mode in ipairs(PER.DIFFICULTY_ORDER) do
 					local data = race.modes[mode]
+
 					if data then
-						entries[#entries + 1] = {kind = "mode", key = data[1], label = ModeLabel(mode), mode = mode, depth = config.depth + 1, data = data}
+						entries[#entries + 1] = {
+							kind = "mode",
+							key = data[1],
+							label = ModeLabel(mode),
+							mode = mode,
+							depth = config.depth + 1,
+							data = data
+						}
 					end
 				end
 			end
@@ -308,29 +388,46 @@ end
 
 local function BuildEntries(window)
 	local state, entries = window.state, {}
+
 	if state.kind == "race" then
 		local race = raceDataTable[state.npcID]
-		if not race then return entries end
+
+		if not race then
+			return entries
+		end
 
 		local order = race[3] == 0 and PER.DIFFICULTY_ORDER or PER.RACE_ORDER
+
 		for _, mode in ipairs(order) do
 			local data = race[4][mode]
+
 			if data then
-				entries[#entries + 1] = {kind = "mode", key = data[1], label = race[3] == 0 and ModeLabel(mode) or GetRaceName(data[1]), mode = race[3] == 0 and mode or nil, data = data, depth = 0}
+				entries[#entries + 1] = {
+					kind = "mode",
+					key = data[1],
+					label = race[3] == 0 and ModeLabel(mode) or GetRaceName(data[1]),
+					mode = race[3] == 0 and mode or nil,
+					data = data,
+					depth = 0
+				}
 			end
 		end
+
 		return entries
 	end
 
 	local filter = GetTableSettings(window)["time-filter"]
+
 	if state.kind == "zone" then
 		local group = groupsByZone[state.zoneID]
+
 		if group then
 			AppendRaces(window, entries, {races = FilterRaces(group.races, filter), depth = 0})
 		end
 	else
 		for _, continent in ipairs(continents) do
 			local zones = FilterGroups(continent.zones, filter)
+
 			if #zones > 0 then
 				local expanded = IsExpanded(window, "continent", continent.key)
 				local label = continent.key == 0 and L["race.other-regions"] or GetZoneName(continent.key)
@@ -339,9 +436,16 @@ local function BuildEntries(window)
 				if expanded then
 					for _, group in ipairs(zones) do
 						local depth, showRaces = 1, true
+
 						if group.key ~= continent.key then
 							showRaces = IsExpanded(window, "zone", group.key)
-							entries[#entries + 1] = {kind = "zone", key = group.key, label = GetZoneName(group.key), depth = 1, expanded = showRaces}
+							entries[#entries + 1] = {
+								kind = "zone",
+								key = group.key,
+								label = GetZoneName(group.key),
+								depth = 1,
+								expanded = showRaces
+							}
 							depth = 2
 						end
 
@@ -353,6 +457,7 @@ local function BuildEntries(window)
 			end
 		end
 	end
+
 	return entries
 end
 
@@ -379,8 +484,10 @@ end
 
 local function UpdateRowTooltip(row)
 	local name = row.cells[1]
+
 	if not name or not name:IsTruncated() then
 		HideRowTooltip(row)
+
 		return
 	end
 
@@ -410,6 +517,7 @@ local function CreateRow(window, parent)
 
 	if window.state.kind == "race" then
 		row:EnableMouse(false)
+
 		return row
 	end
 
@@ -424,6 +532,7 @@ local function CreateRow(window, parent)
 
 	row:SetScript("OnClick", function(self)
 		local entry = self.entry
+
 		if entry and entry.expanded ~= nil then
 			local values = ExpansionState(window, entry.kind)
 			values[entry.key] = not entry.expanded
@@ -442,34 +551,44 @@ local function CreateRow(window, parent)
 
 	row:SetScript("OnLeave", ClearHighlight)
 	row:SetScript("OnHide", ClearHighlight)
+
 	return row
 end
 
 local function GetContentWidth(window)
 	local frame = window.scrollFrame
-	if frame.GetContentWidth then return frame:GetContentWidth() end
+
+	if frame.GetContentWidth then
+		return frame:GetContentWidth()
+	end
 
 	local insets = OverviewConfig.contentInsets
+
 	return frame:GetWidth() - insets.left - insets.right
 end
 
 local function GetBodyTop(window)
 	local top = OverviewConfig.layouts[window.state.kind].headerY
+
 	if window.scrollFrame.header then
 		top = top + window.scrollFrame.header:GetHeight()
 	end
+
 	return top
 end
 
 local function SetMedalRow(row, entry)
 	local layout = OverviewConfig.medalList
+
 	if not row.medal then
 		row.medal = row:CreateTexture(nil, "ARTWORK")
 		row.medal:SetSize(layout.medalSize, layout.medalSize)
 		row.labels = {}
+
 		for index = 1, 4 do
 			local font = index == 1 and layout.modeFont or index == 2 and layout.bestFont or layout.labelFont
 			row.cells[index] = row:CreateFontString(nil, "OVERLAY", font)
+
 			if index == 2 then
 				row.labels[index] = row:CreateFontString(nil, "OVERLAY", layout.labelFont)
 			end
@@ -504,12 +623,14 @@ local function SetMedalRow(row, entry)
 	local best, medal, hasTime = GetBestTime(entry.data)
 	local iconSize = hasTime and layout.medalSize or layout.missingTimeSize
 	local icon = medal and medal.icon
+
 	if not hasTime then
 		icon = OverviewConfig.missingTimeIcon
 	end
 
 	row.medal:SetShown(icon ~= nil)
 	row.medal:SetSize(iconSize, iconSize)
+
 	if icon then
 		row.medal:SetTexture(icon)
 	end
@@ -527,6 +648,7 @@ local function SetMedalRow(row, entry)
 	row.separator:SetPoint("TOPRIGHT", row, "TOPRIGHT", -layout.padding, separatorY)
 
 	local targetWidth = 0
+
 	for index = 3, 4 do
 		local cell = row.cells[index]
 		cell:ClearAllPoints()
@@ -535,6 +657,7 @@ local function SetMedalRow(row, entry)
 	end
 
 	targetWidth = math.min(targetWidth, layout.targetWidth)
+
 	for index = 3, 4 do
 		row.cells[index]:SetWidth(targetWidth)
 	end
@@ -569,9 +692,11 @@ local function SetMedalRow(row, entry)
 
 	for index = 3, 4 do
 		local top = center - targetHeight / 2
+
 		if index == 4 then
 			top = top + goldHeight + layout.textGap
 		end
+
 		row.cells[index]:SetPoint("TOPRIGHT", row, "TOPRIGHT", -layout.padding, -top)
 	end
 
@@ -592,6 +717,7 @@ local function SetRow(row, entry, values)
 	row.entry = entry
 	row.chevron:ClearAllPoints()
 	row.chevron:SetPoint("LEFT", row, "LEFT", firstX + indent, 0)
+
 	if grouped then
 		row.chevron:Show()
 		row.chevron:SetTexture(entry.expanded and layout.collapseTexture or layout.expandTexture)
@@ -602,12 +728,15 @@ local function SetRow(row, entry, values)
 
 	local icon = values.medal and values.medal.icon
 	local iconSize = layout.medalSize
+
 	if entry.data and not values.units[2] then
 		icon = OverviewConfig.missingTimeIcon
 		iconSize = layout.missingTimeSize
 	end
+
 	row.medal:SetShown(icon ~= nil)
 	row.medal:SetSize(iconSize, iconSize)
+
 	if icon then
 		row.medal:SetTexture(icon)
 		row.medal:ClearAllPoints()
@@ -617,9 +746,11 @@ local function SetRow(row, entry, values)
 	for index = 1, #OverviewConfig.columns do
 		local x, width, align = tableFrame:GetColumnLayout(index)
 		local cell = row.cells[index]
+
 		if not cell then
 			cell = row:CreateFontString(nil, "OVERLAY", font)
 			row.cells[index] = cell
+
 			if index == 1 then
 				cell:EnableMouseMotion(true)
 				cell:SetMouseClickEnabled(false)
@@ -636,6 +767,7 @@ local function SetRow(row, entry, values)
 		end
 
 		local offset = index == 1 and indent or 0
+
 		if grouped and index == 1 then
 			local lastX, lastWidth = tableFrame:GetColumnLayout(#OverviewConfig.columns)
 			width = lastX + lastWidth - x
@@ -643,13 +775,17 @@ local function SetRow(row, entry, values)
 
 		local hasUnit = values.units and values.units[index]
 		local unitSpace = 0
+
 		if index > 1 then
 			local unit = row.units[index]
+
 			if not unit then
 				unit = row:CreateFontString(nil, "OVERLAY", font)
 				row.units[index] = unit
 			end
+
 			unit:SetShown(hasUnit == true)
+
 			if hasUnit then
 				unit:SetFontObject(font)
 				unit:SetText(L["race.seconds-short"])
@@ -660,9 +796,11 @@ local function SetRow(row, entry, values)
 				unit:SetJustifyH("LEFT")
 				unit:SetJustifyV("MIDDLE")
 				unit:SetWordWrap(false)
+
 				if index == 2 and values.medal then
 					unit:SetText(string.format("|c%s%s|r", values.medal.color, L["race.seconds-short"]))
 				end
+
 				unitSpace = unitWidth + layout.unitGap
 			end
 		end
@@ -680,10 +818,12 @@ local function SetRow(row, entry, values)
 		cell:SetJustifyV("MIDDLE")
 		cell:SetWordWrap(false)
 		cell:SetText(values[index] or "")
+
 		if hasUnit then
 			local textWidth = math.min(cell:GetUnboundedStringWidth(), cell:GetWidth())
 			row.units[index]:SetPoint("LEFT", cell, "LEFT", textWidth + layout.unitGap, 0)
 		end
+
 		height = math.max(height, cell:GetStringHeight() + 2 * layout.verticalPadding)
 	end
 
@@ -693,6 +833,7 @@ end
 
 local function SetWindowTitle(window, title)
 	window.title = title
+
 	if window.titleText then
 		window.titleText:SetText(title)
 	elseif window.heading then
@@ -702,9 +843,12 @@ end
 
 RefreshWindow = function(window)
 	local state = window.state
+
 	if state.kind == "race" then
 		local race = raceDataTable[state.npcID]
+
 		if not race then return end
+
 		if race[3] == 0 then
 			SetWindowTitle(window, GetRaceName(race[4].NORMAL[1]))
 		else
@@ -712,6 +856,7 @@ RefreshWindow = function(window)
 		end
 	elseif state.kind == "zone" then
 		if not state.zoneID then return end
+
 		SetWindowTitle(window, GetZoneName(state.zoneID))
 	end
 
@@ -720,8 +865,10 @@ RefreshWindow = function(window)
 	local scrollFrame = window.scrollFrame
 	local entries, y = BuildEntries(window), 0
 	local contentWidth = GetContentWidth(window)
+
 	for index, entry in ipairs(entries) do
 		local row = scrollFrame.rows[index]
+
 		if not row then
 			row = CreateRow(window, scrollFrame.content)
 			scrollFrame.rows[index] = row
@@ -739,11 +886,13 @@ RefreshWindow = function(window)
 			SetMedalRow(row, entry)
 		else
 			local values = {entry.label, units = {}}
+
 			if entry.data then
 				values[2], values.medal, values.units[2] = GetBestTime(entry.data, false)
 				values[3], values.units[3] = GetTargetTime(entry.data[4], false)
 				values[4], values.units[4] = GetTargetTime(entry.data[5], false)
 			end
+
 			SetRow(row, entry, values)
 		end
 
@@ -767,6 +916,7 @@ RefreshWindow = function(window)
 	if state.kind ~= "race" then
 		for _, row in ipairs(scrollFrame.rows) do
 			local name = row.cells[1]
+
 			if row:IsVisible() and name and name:IsMouseMotionFocus() then
 				UpdateRowTooltip(row)
 			else
@@ -779,6 +929,7 @@ end
 local function SetAllExpanded(window, expanded)
 	if window.state.kind == "all" then
 		local continentState = ExpansionState(window, "continent")
+
 		for _, continent in ipairs(continents) do
 			continentState[continent.key] = expanded
 		end
@@ -786,9 +937,11 @@ local function SetAllExpanded(window, expanded)
 
 	local zones = ExpansionState(window, "zone")
 	local races = ExpansionState(window, "race")
+
 	for _, group in ipairs(groups) do
 		if window.state.kind == "all" or group.key == window.state.zoneID then
 			zones[group.key] = expanded
+
 			for _, race in ipairs(group.races) do
 				races[race.key] = expanded
 			end
@@ -815,7 +968,10 @@ local function CreateDismissButton(window)
 			window:Hide()
 		end
 	})
-	window.dismissButton:SetPoint("BOTTOMRIGHT", window, "BOTTOMRIGHT", -OverviewConfig.sideInset - OverviewConfig.buttonInset, OverviewConfig.footerBottom)
+	window.dismissButton:SetPoint(
+		"BOTTOMRIGHT", window, "BOTTOMRIGHT",
+		-OverviewConfig.sideInset - OverviewConfig.buttonInset, OverviewConfig.footerBottom
+	)
 end
 
 local function SetPortrait(window)
@@ -828,11 +984,13 @@ local function AddMenuIcon(description, iconConfig)
 
 	description:AddInitializer(function(menuButton)
 		local icon = menuButton:AttachTexture()
+
 		if iconConfig.atlas then
 			icon:SetAtlas(iconConfig.atlas)
 		else
 			icon:SetTexture(iconConfig.texture)
 		end
+
 		icon:SetVertexColor(unpack(iconConfig.color or {1, 1, 1, 1}))
 		icon:SetSize(iconConfig.size, iconConfig.size)
 		icon:SetPoint("LEFT", menuButton, "LEFT", config.padding, 0)
@@ -853,6 +1011,7 @@ local function CreateOverviewWindow(kind)
 	config.title = addonName
 
 	local window = nil
+
 	if kind == "all" then
 		window = AWL.Frames:CreateWindow(config)
 		SetPortrait(window)
@@ -920,6 +1079,7 @@ local function CreateOverviewWindow(kind)
 				RefreshSeparators(window)
 			end)
 			root:CreateDivider()
+
 			for _, filter in ipairs(OverviewConfig.filters) do
 				root:CreateRadio(L[filter.text], function()
 					return GetTableSettings(window)["time-filter"] == filter.value
@@ -949,6 +1109,7 @@ local function CreateOverviewWindow(kind)
 	window.heading:SetTextColor(unpack(heading.color))
 	window.heading:SetPoint("TOP", window.scrollFrame.scrollFrame, "TOP", heading.x, bodyTop + insets.top - heading.y)
 	window.heading:SetHeight(heading.height)
+
 	if kind == "all" then
 		window.heading:SetText(L["race.title.all-overview"])
 	else
@@ -956,9 +1117,11 @@ local function CreateOverviewWindow(kind)
 		local center = OverviewConfig.sideInset + insets.left + headingWidth / 2 + heading.x
 		headingWidth = math.max(1, 2 * (moreLeft - heading.gap - center))
 	end
+
 	window.heading:SetWidth(headingWidth)
 	window.heading:SetJustifyH("CENTER")
 	window.heading:SetWordWrap(false)
+
 	return window
 end
 
@@ -976,8 +1139,10 @@ local function UpdateNPCTitle(npcID)
 	local function TryName()
 		local info = C_TooltipInfo.GetHyperlink(string.format("unit:Creature-0-0-0-0-%d-0", npcID))
 		local name = info and info.lines and info.lines[1] and info.lines[1].leftText
+
 		if name and name ~= "" then
 			SetWindowTitle(RaceOverviewFrame, name)
+
 			return true
 		end
 	end
@@ -987,6 +1152,7 @@ local function UpdateNPCTitle(npcID)
 	local attempts = 0
 	RaceOverviewFrame.npcTicker = C_Timer.NewTicker(OverviewConfig.npcNameRetryInterval, function()
 		attempts = attempts + 1
+
 		if RaceOverviewFrame.state.npcID ~= npcID or not QuestOverviewFrame:IsVisible() or TryName() or attempts >= OverviewConfig.npcNameMaxAttempts then
 			CancelNPCTicker()
 		end
@@ -995,6 +1161,7 @@ end
 
 local function ResizeQuestWindow()
 	local height = GossipFrame:GetHeight()
+
 	if height <= 0 then
 		height = OverviewConfig.questWindow.height
 	end
@@ -1055,6 +1222,7 @@ local function InitializeFrames()
 	ZoneOverviewFrame = CreateOverviewWindow("zone")
 	tabs:SetOnTabChanged(function(_, page)
 		QuestOverviewFrame.moreMenu:CloseMenu()
+
 		if page then
 			---@cast page PercursusRaceTimeOverviewFrame
 			RefreshWindow(page)
@@ -1081,6 +1249,7 @@ end
 
 function RaceTimeOverview:ShowRaceOverview(npcID)
 	local race = raceDataTable[npcID]
+
 	if not race then return end
 
 	CancelNPCTicker()
@@ -1089,10 +1258,12 @@ function RaceTimeOverview:ShowRaceOverview(npcID)
 	if ZoneOverviewFrame.state.zoneID ~= race[2] then
 		ZoneOverviewFrame.state.expandedRaces = {}
 	end
+
 	ZoneOverviewFrame.state.zoneID = race[2]
 	QuestOverviewFrame.tabGroup:SelectTab("race")
 
 	RequestNames(race[2])
+
 	if race[3] > 0 then
 		UpdateNPCTitle(npcID)
 	end
@@ -1113,6 +1284,7 @@ function RaceTimeOverview:ShowAllOverview()
 	if not AllOverviewFrame.state.opened then
 		local zoneID = FindCurrentZone()
 		local continentID = GetContinentID(C_Map.GetBestMapForUnit("player"))
+
 		if continentID ~= 0 then
 			AllOverviewFrame.state.expandedContinents[continentID] = true
 		end

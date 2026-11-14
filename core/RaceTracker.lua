@@ -43,6 +43,7 @@ local function FormatRaceTime(value)
 	if decimalReplacement then
 		text = text:gsub("(%d)%.(%d)", decimalReplacement)
 	end
+
 	return text
 end
 
@@ -65,9 +66,21 @@ local function ShowRaceTracker(raceQuestID, raceGoldTime, racePersonalTime)
 	ResultTrackerFrame:ClearAllPoints()
 	SpeedDisplayFrame:ClearAllPoints()
 
-	RaceTrackerFrame:SetPoint("CENTER", PER.Settings.raceTracker["horizontal-shift"], PER.Settings.raceTracker["vertical-shift"])
-	ResultTrackerFrame:SetPoint("CENTER", PER.Settings.raceTracker["horizontal-shift"], PER.Settings.raceTracker["vertical-shift"])
-	SpeedDisplayFrame:SetPoint("CENTER", PER.Settings.raceTracker["speed-display-horizontal-shift"], PER.Settings.raceTracker["speed-display-vertical-shift"])
+	RaceTrackerFrame:SetPoint(
+		"CENTER",
+		PER.Settings.raceTracker["horizontal-shift"],
+		PER.Settings.raceTracker["vertical-shift"]
+	)
+	ResultTrackerFrame:SetPoint(
+		"CENTER",
+		PER.Settings.raceTracker["horizontal-shift"],
+		PER.Settings.raceTracker["vertical-shift"]
+	)
+	SpeedDisplayFrame:SetPoint(
+		"CENTER",
+		PER.Settings.raceTracker["speed-display-horizontal-shift"],
+		PER.Settings.raceTracker["speed-display-vertical-shift"]
+	)
 
 	if PER.Settings.raceTracker["background-type"] ~= 0 then
 		local style = RaceTrackerConfig.backgrounds[PER.Settings.raceTracker["background-type"]]
