@@ -67,8 +67,10 @@ local function SlashCommand(msg)
 		RaceTimeOverview:ToggleAllOverview()
 	elseif command == "changelog" then
 		AWL.Frames:OpenChangelog(addonName, PER.CHANGELOG)
+	elseif command == "help" then
+		Addon:PrintSlashHelp(SLASH_Percursus1, {"changelog", "overview"})
 	else
-		Utils:PrintDebug("No arguments will be accepted.")
+		Addon:PrintSlashHelp(SLASH_Percursus1)
 	end
 end
 
