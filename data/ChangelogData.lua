@@ -12,6 +12,14 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Added: A help command lists available slash commands, and unknown commands show a hint in chat",
+			"Requires Arcane Wizard: Library revision 6 or later"
+		}
+	},
+	{
+		version = "v2.46",
+		date = "2026-11-14",
+		entries = {
 			"Changed: Reduced repeated quest searches and text updates in the Race Tracker",
 			"Changed: Reduced repeated best-time queries, width calculations, and layout updates in race overviews",
 			"Minor code adjustments"
@@ -81,18 +89,6 @@ PER.CHANGELOG = {
 		entries = {
 			"Added: TOC version for patch 12.1.7 [retail]",
 			"Removed: TOC version for patch 12.1.0 [retail]"
-		}
-	},
-	{
-		version = "v2.37",
-		date = "2026-10-28",
-		entries = {
-			"Added: Startup check for the minimum required Library revision",
-			"Updated: deDE, enUS, ruRU, zhCN localizations",
-			"Updated: Addon description",
-			"Fixed: Aborting a race during the countdown no longer causes the speed display to reappear",
-			"Adapted to the latest version of Arcane Wizard: Library to ensure full compatibility",
-			"Minor code adjustments"
 		}
 	}
 	-- END GENERATED CHANGELOG
