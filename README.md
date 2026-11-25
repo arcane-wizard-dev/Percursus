@@ -55,7 +55,7 @@ Individual features and display options can be configured in the addon settings.
 To manage the addon, type the following commands in chat and press Enter:
 
 * Type `/per` or `/percursus` to access the addon options menu.
-* Type `/per help` or `/percursus help` to see answers to common questions about race times and the Race Tracker and a list of chat commands. You can also select Help in the Using the Addon row under About in the addon settings.
+* Type either command above followed by `help` to see the available chat commands and answers to frequently asked questions.
 * Type `/per changelog` or `/percursus changelog` to open the changelog.
 * Type `/per overview` or `/percursus overview` to manually display the All Races Overview.
 
