@@ -12,7 +12,7 @@ Percursus is a World of Warcraft addon that tracks times in supported races, inc
 
 **Race Tracker** - Track your elapsed race time or count down to a medal time or your personal best.
 
-*Speedometer** - Show a speed bar with an optional 0–100 readout during Skyriding races, on flights outside races, or both.
+**Speedometer** - Show a speed bar with an optional 0–100 readout during Skyriding races, on flights outside races, or both.
 
 **Race Time Overview** - Talk to a race organizer to compare your personal bests with the gold and silver times for the current course or the whole zone.
 
