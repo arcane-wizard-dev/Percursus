@@ -2,8 +2,6 @@ local addonName, PER = ...
 
 ---@class (partial) PercursusRaceTrackerFrame
 Percursus_RaceTrackerMixin = {}
----@class (partial) PercursusRaceTrackerSpeedDisplayFrame
-Percursus_RaceTrackerSpeedDisplayMixin = {}
 
 if PER.State and PER.State.libraryIncompatible then return end
 
@@ -70,23 +68,5 @@ function Percursus_RaceTrackerMixin:ShowFrame()
 end
 
 function Percursus_RaceTrackerMixin:HideFrame()
-	self:Hide()
-end
-
-function Percursus_RaceTrackerSpeedDisplayMixin:SetSpeedBar(speed)
-	if speed == 0 then
-		self.SpeedBar:SetSize(1, RaceTrackerConfig.speedBarHeight)
-		self.SpeedBar:Hide()
-	else
-		self.SpeedBar:SetSize(speed, RaceTrackerConfig.speedBarHeight)
-		self.SpeedBar:Show()
-	end
-end
-
-function Percursus_RaceTrackerSpeedDisplayMixin:ShowFrame()
-	self:Show()
-end
-
-function Percursus_RaceTrackerSpeedDisplayMixin:HideFrame()
 	self:Hide()
 end

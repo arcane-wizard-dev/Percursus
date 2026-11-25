@@ -5,5 +5,7 @@
 	<Script file="RaceTracker.lua" />
 	<Include file="RaceTracker.xml" />
 
+	<Include file="Speedometer.xml" />
+
 	<Script file="RaceTimeOverview.lua" />
 </Ui>

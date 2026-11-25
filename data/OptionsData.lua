@@ -33,8 +33,11 @@ PER.OPTIONS_DEFAULTS = {
 		["hide-area-names"] = false,
 		["result-display"] = false,
 		["fadeout-delay"] = 3,
-		["speed-display"] = false,
-		["speed-display-horizontal-shift"] = 0,
-		["speed-display-vertical-shift"] = -100,
+	},
+	["speedometer"] = {
+		["visibility"] = "off",
+		["show-value"] = false,
+		["horizontal-shift"] = 0,
+		["vertical-shift"] = -100,
 	},
 }

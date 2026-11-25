@@ -6,6 +6,15 @@ if GetLocale() ~= "zhCN" then return end
 
 local L = PER.Localization
 
+-- Help
+
+L["help.overview"] = "打开或关闭所有竞速的总览。"
+
+L["help.faq.personal-best.question"] = "为什么选择个人最佳成绩倒计时后，竞速计时器仍然正向计时？"
+L["help.faq.personal-best.answer"] = "如果这条赛道在当前模式下还没有个人最佳成绩，计时器会显示本次竞速已用的时间。有了个人最佳成绩后，计时器就会以该成绩为目标倒计时。"
+L["help.faq.all-races.question"] = "在哪里可以查看其他区域的竞速成绩？"
+L["help.faq.all-races.answer"] = "竞速总览按大陆和区域列出支持的赛道。通过“所有竞速”或聊天命令 /per overview 即可打开总览。"
+
 -- Options
 
 L["options.general"] = "常规选项"
@@ -52,12 +61,20 @@ L["options.race-tracker.fadeout-delay.name"] = "淡出延迟"
 L["options.race-tracker.fadeout-delay.tooltip"] = "设置竞速结束后，追踪器消失前的等待时间。"
 L["options.race-tracker.hide-area-names.name"] = "隐藏区域名称"
 L["options.race-tracker.hide-area-names.tooltip"] = "竞速期间隐藏区域名称。"
-L["options.race-tracker.speed-display.name"] = "显示竞速速度"
-L["options.race-tracker.speed-display.tooltip"] = "在竞速期间显示速度。此功能仅适用于驭空术竞速。"
-L["options.race-tracker.speed-display-horizontal-shift.name"] = "水平偏移"
-L["options.race-tracker.speed-display-horizontal-shift.tooltip"] = "设置速度显示相对于屏幕中心的水平位置。"
-L["options.race-tracker.speed-display-vertical-shift.name"] = "垂直偏移"
-L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "设置速度显示相对于屏幕中心的垂直位置。"
+
+L["options.speedometer"] = "速度表"
+L["options.speedometer.visibility.name"] = "显示速度表"
+L["options.speedometer.visibility.tooltip"] = "设置使用驭空术时显示速度的时机。\n\n|cnHIGHLIGHT_FONT_COLOR:不显示：|r 始终隐藏速度表。\n\n|cnHIGHLIGHT_FONT_COLOR:竞速：|r 从起跑倒计时结束到竞速结束期间显示速度。\n\n|cnHIGHLIGHT_FONT_COLOR:驭空术：|r 仅在竞速之外飞行时显示速度。\n\n|cnHIGHLIGHT_FONT_COLOR:竞速与驭空术：|r 在竞速中和竞速之外飞行时均显示速度。"
+L["options.speedometer.visibility.value.off"] = "不显示"
+L["options.speedometer.visibility.value.race"] = "竞速"
+L["options.speedometer.visibility.value.flight"] = "驭空术"
+L["options.speedometer.visibility.value.both"] = "竞速与驭空术"
+L["options.speedometer.show-value.name"] = "显示数值"
+L["options.speedometer.show-value.tooltip"] = "在速度条中央以 0 到 100 的数值显示速度。"
+L["options.speedometer.horizontal-shift.name"] = "水平偏移"
+L["options.speedometer.horizontal-shift.tooltip"] = "设置速度表相对于屏幕中心的水平位置。"
+L["options.speedometer.vertical-shift.name"] = "垂直偏移"
+L["options.speedometer.vertical-shift.tooltip"] = "设置速度表相对于屏幕中心的垂直位置。"
 
 -- General
 

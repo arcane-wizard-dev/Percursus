@@ -10,6 +10,7 @@ local Addon = AWL:GetAddon(addonName)
 local Options = PER.Modules.Options
 local RaceTimeOverview = PER.Modules.RaceTimeOverview
 local RaceTracker = PER.Modules.RaceTracker
+local Speedometer = PER.Modules.Speedometer
 local Utils = PER.Modules.Utils
 
 -- Variables
@@ -68,7 +69,7 @@ local function SlashCommand(msg)
 	elseif command == "changelog" then
 		AWL.Frames:OpenChangelog(addonName, PER.CHANGELOG)
 	elseif command == "help" then
-		Addon:PrintSlashHelp(SLASH_Percursus1, {"changelog", "overview"})
+		Utils.OpenHelp()
 	else
 		Addon:PrintSlashHelp(SLASH_Percursus1)
 	end
@@ -94,6 +95,7 @@ function PercursusFrame:ADDON_LOADED(_, addOnName)
 	end
 
 	Utils:InitializeMinimapButton()
+	Speedometer:Initialize()
 	Options:Initialize()
 	RaceTracker:Initialize()
 	RaceTimeOverview:Initialize()
@@ -117,6 +119,7 @@ function PercursusFrame:QUEST_ACCEPTED(_, questID)
 	local result = GetRaceData(questID)
 
 	if result ~= nil then
+		Speedometer:StartRace(questID)
 		Utils:PrintDebugAdvanced(
 			"Event 'QUEST_ACCEPTED' fired. Payload: questID=%s, questName=%s",
 			questID, (C_QuestLog.GetTitleForQuestID(questID))
@@ -146,6 +149,8 @@ function PercursusFrame:QUEST_ACCEPTED(_, questID)
 end
 
 function PercursusFrame:QUEST_REMOVED(_, questID)
+	Speedometer:EndRace(questID)
+
 	if CheckRaceQuest(questID) and activeTracker then
 		Utils:PrintDebugAdvanced(
 			"Event 'QUEST_REMOVED' fired. Payload: questID=%s, questName=%s",

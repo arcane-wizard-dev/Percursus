@@ -8,7 +8,6 @@ PER.UIConfig.RaceTracker = {
 		height = 64,
 		offsetY = {timer = 10, info = -10}
 	},
-	speedBarHeight = 18,
 	backgrounds = {
 		[1] = {
 			type = "file",

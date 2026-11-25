@@ -14,6 +14,15 @@ PER.Localization = setmetatable({}, {
 
 local L = PER.Localization
 
+-- Help
+
+L["help.overview"] = "Opens or closes the overview of all races."
+
+L["help.faq.personal-best.question"] = "Why does the Race Tracker count up in personal best countdown mode?"
+L["help.faq.personal-best.answer"] = "Until a personal best is available for that race and race mode, the tracker shows elapsed race time. Once a best time is available, it counts down to that time."
+L["help.faq.all-races.question"] = "Where are the times for races outside the current zone?"
+L["help.faq.all-races.answer"] = "The overview groups supported races by continent and zone. It opens from \"All Races\" or with /per overview."
+
 -- Options
 
 L["options.general"] = "General Options"
@@ -60,12 +69,20 @@ L["options.race-tracker.fadeout-delay.name"] = "Fade-Out Delay"
 L["options.race-tracker.fadeout-delay.tooltip"] = "Sets the time after a race until the Race Tracker is hidden."
 L["options.race-tracker.hide-area-names.name"] = "Hide Area Names"
 L["options.race-tracker.hide-area-names.tooltip"] = "Hides area names during a race."
-L["options.race-tracker.speed-display.name"] = "Show Race Speed"
-L["options.race-tracker.speed-display.tooltip"] = "Shows the race speed during a race. This display only works in Skyriding races."
-L["options.race-tracker.speed-display-horizontal-shift.name"] = "Horizontal Shift"
-L["options.race-tracker.speed-display-horizontal-shift.tooltip"] = "Sets the horizontal position of the race speed display relative to the center of the screen."
-L["options.race-tracker.speed-display-vertical-shift.name"] = "Vertical Shift"
-L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "Sets the vertical position of the race speed display relative to the center of the screen."
+
+L["options.speedometer"] = "Speedometer"
+L["options.speedometer.visibility.name"] = "Show speedometer"
+L["options.speedometer.visibility.tooltip"] = "Sets when the speedometer appears while Skyriding.\n\n|cnHIGHLIGHT_FONT_COLOR:Do Not Show:|r Keeps the speedometer hidden.\n\n|cnHIGHLIGHT_FONT_COLOR:Races:|r Shows speed from the end of the countdown until the race ends.\n\n|cnHIGHLIGHT_FONT_COLOR:Skyriding:|r Shows speed only on flights outside races.\n\n|cnHIGHLIGHT_FONT_COLOR:Races & Skyriding:|r Shows speed both during races and on flights outside races."
+L["options.speedometer.visibility.value.off"] = "Do Not Show"
+L["options.speedometer.visibility.value.race"] = "Races"
+L["options.speedometer.visibility.value.flight"] = "Skyriding"
+L["options.speedometer.visibility.value.both"] = "Races & Skyriding"
+L["options.speedometer.show-value.name"] = "Show Numeric Value"
+L["options.speedometer.show-value.tooltip"] = "Shows speed as a number from 0 to 100 in the center of the bar."
+L["options.speedometer.horizontal-shift.name"] = "Horizontal Shift"
+L["options.speedometer.horizontal-shift.tooltip"] = "Sets the horizontal position of the speedometer relative to the center of the screen."
+L["options.speedometer.vertical-shift.name"] = "Vertical Shift"
+L["options.speedometer.vertical-shift.tooltip"] = "Sets the vertical position of the speedometer relative to the center of the screen."
 
 -- General
 

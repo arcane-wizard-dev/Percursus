@@ -13,6 +13,7 @@ local L = PER.Localization
 local Options = PER.Modules.Options
 
 -- Module imports
+local Speedometer = PER.Modules.Speedometer
 local Utils = PER.Modules.Utils
 
 -- Variables
@@ -36,12 +37,6 @@ local minimapButtonProxy = setmetatable({}, {
 		end
 	end,
 })
-
------------------------
---- Local Functions ---
------------------------
-
-local function GetVal(setting) return setting:GetValue() end
 
 ------------------------
 --- Module Functions ---
@@ -188,46 +183,73 @@ function Options:Initialize()
 		sliderFormatter			= function(value) return value .. " " .. L["race.seconds-short"] end
 	})
 
-	-- Speed Display
-	local initializerSpeed, settingSpeed = AWL.Settings:AddCheckbox(category, {
-		variableTable	= PER.Settings.raceTracker,
-		settingKey		= addonName .. "_speed-display",
-		variableName	= "speed-display",
-		name			= L["options.race-tracker.speed-display.name"],
-		tooltip			= L["options.race-tracker.speed-display.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display"]
+	layout:AddInitializer(CreateSettingsListSectionHeaderInitializer(L["options.speedometer"]))
+
+	-- Speedometer: Visibility
+	local visibilityInitializer, visibilitySetting = AWL.Settings:AddDropdown(category, {
+		variableTable	= PER.Settings.speedometer,
+		settingKey		= addonName .. "_speedometer-visibility",
+		variableName	= "visibility",
+		name			= L["options.speedometer.visibility.name"],
+		tooltip			= L["options.speedometer.visibility.tooltip"],
+		default			= PER.OPTIONS_DEFAULTS.speedometer.visibility,
+		options			= {
+			{value = "off", label = L["options.speedometer.visibility.value.off"]},
+			{value = "race", label = L["options.speedometer.visibility.value.race"]},
+			{value = "flight", label = L["options.speedometer.visibility.value.flight"]},
+			{value = "both", label = L["options.speedometer.visibility.value.both"]}
+		},
+		isNew			= true,
+		onClick			= Speedometer.ApplySettings
 	})
 
-	-- Speed Display: Horizontal Shift
+	local function IsSpeedometerEnabled() return visibilitySetting:GetValue() ~= "off" end
+
+	-- Speedometer: Show Value
+	AWL.Settings:AddCheckbox(category, {
+		variableTable	= PER.Settings.speedometer,
+		settingKey		= addonName .. "_speedometer-show-value",
+		variableName	= "show-value",
+		name			= L["options.speedometer.show-value.name"],
+		tooltip			= L["options.speedometer.show-value.tooltip"],
+		default			= PER.OPTIONS_DEFAULTS.speedometer["show-value"],
+		parentInit		= visibilityInitializer,
+		parentCondition	= IsSpeedometerEnabled,
+		onClick			= Speedometer.ApplySettings
+	})
+
+	-- Speedometer: Horizontal Shift
 	AWL.Settings:AddSlider(category, {
-		variableTable	= PER.Settings.raceTracker,
-		settingKey		= addonName .. "_speed-display-horizontal-shift",
-		variableName	= "speed-display-horizontal-shift",
-		name			= L["options.race-tracker.speed-display-horizontal-shift.name"],
-		tooltip			= L["options.race-tracker.speed-display-horizontal-shift.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-horizontal-shift"],
+		variableTable	= PER.Settings.speedometer,
+		settingKey		= addonName .. "_speedometer-horizontal-shift",
+		variableName	= "horizontal-shift",
+		name			= L["options.speedometer.horizontal-shift.name"],
+		tooltip			= L["options.speedometer.horizontal-shift.tooltip"],
+		default			= PER.OPTIONS_DEFAULTS.speedometer["horizontal-shift"],
 		minValue		= -500,
 		maxValue		= 500,
 		step			= 10,
 		formatter		= function(value) return value end,
-		parentInit		= initializerSpeed,
-		parentCondition	= function() return GetVal(settingSpeed) end
+		parentInit		= visibilityInitializer,
+		parentCondition	= IsSpeedometerEnabled,
+		onClick			= Speedometer.ApplySettings
 	})
 
-	-- Speed Display: Vertical Shift
+	-- Speedometer: Vertical Shift
 	AWL.Settings:AddSlider(category, {
-		variableTable	= PER.Settings.raceTracker,
-		settingKey		= addonName .. "_speed-display-vertical-shift",
-		variableName	= "speed-display-vertical-shift",
-		name			= L["options.race-tracker.speed-display-vertical-shift.name"],
-		tooltip			= L["options.race-tracker.speed-display-vertical-shift.tooltip"],
-		default			= PER.OPTIONS_DEFAULTS["race-tracker"]["speed-display-vertical-shift"],
+		variableTable	= PER.Settings.speedometer,
+		settingKey		= addonName .. "_speedometer-vertical-shift",
+		variableName	= "vertical-shift",
+		name			= L["options.speedometer.vertical-shift.name"],
+		tooltip			= L["options.speedometer.vertical-shift.tooltip"],
+		default			= PER.OPTIONS_DEFAULTS.speedometer["vertical-shift"],
 		minValue		= -400,
 		maxValue		= 400,
 		step			= 10,
 		formatter		= function(value) return value end,
-		parentInit		= initializerSpeed,
-		parentCondition	= function() return GetVal(settingSpeed) end
+		parentInit		= visibilityInitializer,
+		parentCondition	= IsSpeedometerEnabled,
+		onClick			= Speedometer.ApplySettings
 	})
 
 	layout:AddInitializer(CreateSettingsListSectionHeaderInitializer(L["options.race-time-overview"]))
@@ -256,7 +278,7 @@ function Options:Initialize()
 	})
 
 	-- About Section
-	AWL.Settings:AddAboutSection(layout, addonName, PER.CHANGELOG)
+	AWL.Settings:AddAboutSection(layout, addonName, PER.CHANGELOG, Utils.OpenHelp)
 
 	Settings.RegisterAddOnCategory(category)
 

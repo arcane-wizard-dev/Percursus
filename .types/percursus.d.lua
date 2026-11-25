@@ -29,5 +29,8 @@
 ---@field Info FontString
 ---@field Background Texture
 
----@class (partial) PercursusRaceTrackerSpeedDisplayFrame: Frame
+-- Speedometer
+
+---@class PercursusSpeedometerFrame: Frame
 ---@field SpeedBar Texture
+---@field ValueText FontString

@@ -40,6 +40,15 @@ function Utils:PrintDebugAdvanced(msg, ...)
 	Addon:PrintDebug(msg, ...)
 end
 
+function Utils.OpenHelp()
+	AWL.Frames:OpenSlashHelp(addonName, {SLASH_Percursus1, SLASH_Percursus2}, {
+		{name = "overview", description = L["help.overview"]}
+	}, {
+		{question = L["help.faq.personal-best.question"], answer = L["help.faq.personal-best.answer"]},
+		{question = L["help.faq.all-races.question"], answer = L["help.faq.all-races.answer"]}
+	})
+end
+
 function Utils:OpenSettings()
 	if not Addon:OpenCategory() then
 		self:PrintDebug("In combat. The options menu cannot be opened.")
@@ -63,6 +72,8 @@ function Utils:InitializeDatabase()
 		return nil
 	end
 
+	AWL.Utils:MergeMissingTableEntries(dbInit.settings, {speedometer = PER.OPTIONS_DEFAULTS.speedometer})
+	PER.Settings.speedometer = dbInit.settings.speedometer
 	PER.Settings.global = dbInit.global
 	PER.Settings.general = dbInit.settings["general"]
 	PER.Settings.raceTimeOverview = dbInit.settings["race-time-overview"]

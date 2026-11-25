@@ -6,6 +6,15 @@ if GetLocale() ~= "ruRU" then return end
 
 local L = PER.Localization
 
+-- Help
+
+L["help.overview"] = "Открывает или закрывает обзор всех гонок."
+
+L["help.faq.personal-best.question"] = "Почему таймер гонки отсчитывает время вперёд в режиме обратного отсчёта до личного рекорда?"
+L["help.faq.personal-best.answer"] = "Пока для этой гонки в выбранном режиме нет личного рекорда, таймер показывает время с начала гонки. Когда появляется личный рекорд, таймер ведёт обратный отсчёт до него."
+L["help.faq.all-races.question"] = "Где посмотреть время гонок за пределами текущей зоны?"
+L["help.faq.all-races.answer"] = "В обзоре трассы сгруппированы по континентам и зонам. Открыть обзор можно через «Все гонки» или командой /per overview."
+
 -- Options
 
 L["options.general"] = "Общие параметры"
@@ -52,12 +61,20 @@ L["options.race-tracker.fadeout-delay.name"] = "Задержка скрытия"
 L["options.race-tracker.fadeout-delay.tooltip"] = "Определяет, через какое время после гонки скрывается таймер."
 L["options.race-tracker.hide-area-names.name"] = "Скрывать названия областей"
 L["options.race-tracker.hide-area-names.tooltip"] = "Скрывает названия областей во время гонки."
-L["options.race-tracker.speed-display.name"] = "Показывать скорость гонки"
-L["options.race-tracker.speed-display.tooltip"] = "Показывает скорость во время гонки. Работает только в гонках в режиме высшего пилотажа."
-L["options.race-tracker.speed-display-horizontal-shift.name"] = "Смещение по горизонтали"
-L["options.race-tracker.speed-display-horizontal-shift.tooltip"] = "Определяет положение индикатора скорости по горизонтали относительно центра экрана."
-L["options.race-tracker.speed-display-vertical-shift.name"] = "Смещение по вертикали"
-L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "Определяет положение индикатора скорости по вертикали относительно центра экрана."
+
+L["options.speedometer"] = "Спидометр"
+L["options.speedometer.visibility.name"] = "Показывать спидометр"
+L["options.speedometer.visibility.tooltip"] = "Определяет, когда показывать скорость в режиме высшего пилотажа.\n\n|cnHIGHLIGHT_FONT_COLOR:Не показывать:|r Скрывает спидометр.\n\n|cnHIGHLIGHT_FONT_COLOR:Гонки:|r Показывает скорость с момента окончания обратного отсчёта до конца гонки.\n\n|cnHIGHLIGHT_FONT_COLOR:Высший пилотаж:|r Показывает скорость только в полёте вне гонок.\n\n|cnHIGHLIGHT_FONT_COLOR:Гонки и высший пилотаж:|r Показывает скорость как в гонках, так и в полёте вне гонок."
+L["options.speedometer.visibility.value.off"] = "Не показывать"
+L["options.speedometer.visibility.value.race"] = "Гонки"
+L["options.speedometer.visibility.value.flight"] = "Высший пилотаж"
+L["options.speedometer.visibility.value.both"] = "Гонки и высший пилотаж"
+L["options.speedometer.show-value.name"] = "Показывать числовое значение"
+L["options.speedometer.show-value.tooltip"] = "Показывает скорость числом от 0 до 100 в центре шкалы."
+L["options.speedometer.horizontal-shift.name"] = "Смещение по горизонтали"
+L["options.speedometer.horizontal-shift.tooltip"] = "Определяет положение спидометра по горизонтали относительно центра экрана."
+L["options.speedometer.vertical-shift.name"] = "Смещение по вертикали"
+L["options.speedometer.vertical-shift.tooltip"] = "Определяет положение спидометра по вертикали относительно центра экрана."
 
 -- General
 

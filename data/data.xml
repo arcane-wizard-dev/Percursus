@@ -12,6 +12,7 @@
 	<Script file="expansion\Midnight.lua" />
 
 	<Script file="ui/RaceTrackerUIConfig.lua" />
+	<Script file="ui/SpeedometerUIConfig.lua" />
 	<Script file="ui/RaceTimeOverviewUIConfig.lua" />
 	<Script file="CommonData.lua" />
 	<Script file="RaceTrackerData.lua" />

@@ -2,5 +2,8 @@
 ### [@project-version@](https://github.com/arcane-wizard-dev/Percursus/tree/@project-version@) (@build-date@)
 [Full Changelog](@full-changelog@) - [Previous Releases](https://github.com/arcane-wizard-dev/Percursus/releases)
 
-- Added: A help command lists available slash commands, and unknown commands show a hint in chat
-- Requires Arcane Wizard: Library revision 6 or later
+- Added: Speedometer - Shows your speed during Skyriding races, on flights outside races, or both, with an optional numeric readout from 0 to 100
+- Added: In-game help answers common questions about race times and the Race Tracker and explains each chat command. Open it from the addon settings or with /per help
+- Updated: Race times for the area 'Forbidden Reach'
+- Updated: deDE, enUS, ruRU, zhCN localizations
+- Requires Arcane Wizard: Library revision 8 or later

@@ -6,6 +6,15 @@ if GetLocale() ~= "deDE" then return end
 
 local L = PER.Localization
 
+-- Help
+
+L["help.overview"] = "Öffnet oder schließt die Übersicht aller Rennen."
+
+L["help.faq.personal-best.question"] = "Warum zählt der Renn-Tracker trotz gewähltem Bestzeit-Countdown aufwärts?"
+L["help.faq.personal-best.answer"] = "Solange für dieses Rennen im gewählten Rennmodus keine persönliche Bestzeit vorliegt, zeigt der Tracker die verstrichene Rennzeit an. Sobald eine Bestzeit vorliegt, zählt er auf diese Zeit herunter."
+L["help.faq.all-races.question"] = "Wo stehen die Zeiten für Rennen außerhalb der aktuellen Zone?"
+L["help.faq.all-races.answer"] = "Die Übersicht aller Rennen gruppiert die unterstützten Strecken nach Kontinent und Zone. Sie lässt sich über „Alle Rennen“ oder mit /per overview öffnen."
+
 -- Options
 
 L["options.general"] = "Allgemeine Einstellungen"
@@ -52,12 +61,20 @@ L["options.race-tracker.fadeout-delay.name"] = "Ausblendeverzögerung"
 L["options.race-tracker.fadeout-delay.tooltip"] = "Legt die Zeit nach einem Rennen fest, bis der Renn-Tracker ausgeblendet wird."
 L["options.race-tracker.hide-area-names.name"] = "Gebietsnamen ausblenden"
 L["options.race-tracker.hide-area-names.tooltip"] = "Blendet während eines Rennens die Gebietsnamen aus."
-L["options.race-tracker.speed-display.name"] = "Renngeschwindigkeit anzeigen"
-L["options.race-tracker.speed-display.tooltip"] = "Zeigt die Renngeschwindigkeit während eines Rennens an. Diese Anzeige funktioniert nur bei Rennen mit Himmelsreiten."
-L["options.race-tracker.speed-display-horizontal-shift.name"] = "Horizontale Verschiebung"
-L["options.race-tracker.speed-display-horizontal-shift.tooltip"] = "Legt die horizontale Position der Renngeschwindigkeitsanzeige relativ zur Bildschirmmitte fest."
-L["options.race-tracker.speed-display-vertical-shift.name"] = "Vertikale Verschiebung"
-L["options.race-tracker.speed-display-vertical-shift.tooltip"] = "Legt die vertikale Position der Renngeschwindigkeitsanzeige relativ zur Bildschirmmitte fest."
+
+L["options.speedometer"] = "Geschwindigkeitsanzeige"
+L["options.speedometer.visibility.name"] = "Geschwindigkeit anzeigen"
+L["options.speedometer.visibility.tooltip"] = "Legt fest, wann die Geschwindigkeit beim Himmelsreiten angezeigt wird.\n\n|cnHIGHLIGHT_FONT_COLOR:Nicht anzeigen:|r Blendet die Geschwindigkeitsanzeige aus.\n\n|cnHIGHLIGHT_FONT_COLOR:Rennen:|r Zeigt die Geschwindigkeit nach dem Countdown bis zum Rennende an.\n\n|cnHIGHLIGHT_FONT_COLOR:Himmelsreiten:|r Zeigt die Geschwindigkeit nur bei Flügen außerhalb von Rennen an.\n\n|cnHIGHLIGHT_FONT_COLOR:Rennen & Himmelsreiten:|r Zeigt die Geschwindigkeit sowohl in Rennen als auch bei Flügen außerhalb von Rennen an."
+L["options.speedometer.visibility.value.off"] = "Nicht anzeigen"
+L["options.speedometer.visibility.value.race"] = "Rennen"
+L["options.speedometer.visibility.value.flight"] = "Himmelsreiten"
+L["options.speedometer.visibility.value.both"] = "Rennen & Himmelsreiten"
+L["options.speedometer.show-value.name"] = "Zahlenwert anzeigen"
+L["options.speedometer.show-value.tooltip"] = "Zeigt die Geschwindigkeit als Zahl von 0 bis 100 in der Mitte des Balkens an."
+L["options.speedometer.horizontal-shift.name"] = "Horizontale Verschiebung"
+L["options.speedometer.horizontal-shift.tooltip"] = "Legt die horizontale Position der Geschwindigkeitsanzeige relativ zur Bildschirmmitte fest."
+L["options.speedometer.vertical-shift.name"] = "Vertikale Verschiebung"
+L["options.speedometer.vertical-shift.tooltip"] = "Legt die vertikale Position der Geschwindigkeitsanzeige relativ zur Bildschirmmitte fest."
 
 -- General
 

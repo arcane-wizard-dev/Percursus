@@ -14,7 +14,6 @@ local RaceTrackerData = PER.RACE_TRACKER_DATA
 local Utils = PER.Modules.Utils
 
 -- Variables
-local canGlide = false
 local raceTicker = nil ---@type FunctionContainer
 local raceCountdownTimer = nil ---@type FunctionContainer|nil
 local decimalReplacement = nil ---@type string|false|nil
@@ -26,7 +25,6 @@ local lastInfoText = nil ---@type string|nil
 
 local RaceTrackerFrame = nil ---@type PercursusRaceTrackerFrame
 local ResultTrackerFrame = nil ---@type PercursusRaceTrackerFrame
-local SpeedDisplayFrame = nil ---@type PercursusRaceTrackerSpeedDisplayFrame
 
 -----------------------
 --- Local Functions ---
@@ -64,7 +62,6 @@ local function ShowRaceTracker(raceQuestID, raceGoldTime, racePersonalTime)
 
 	RaceTrackerFrame:ClearAllPoints()
 	ResultTrackerFrame:ClearAllPoints()
-	SpeedDisplayFrame:ClearAllPoints()
 
 	RaceTrackerFrame:SetPoint(
 		"CENTER",
@@ -75,11 +72,6 @@ local function ShowRaceTracker(raceQuestID, raceGoldTime, racePersonalTime)
 		"CENTER",
 		PER.Settings.raceTracker["horizontal-shift"],
 		PER.Settings.raceTracker["vertical-shift"]
-	)
-	SpeedDisplayFrame:SetPoint(
-		"CENTER",
-		PER.Settings.raceTracker["speed-display-horizontal-shift"],
-		PER.Settings.raceTracker["speed-display-vertical-shift"]
 	)
 
 	if PER.Settings.raceTracker["background-type"] ~= 0 then
@@ -118,14 +110,6 @@ local function ShowRaceTracker(raceQuestID, raceGoldTime, racePersonalTime)
 		elseif PER.Settings.raceTracker["mode"] == 2 then
 			RaceTrackerFrame:SetTimerText(FormatRaceTime(-racePersonalTime))
 		end
-
-		local _, c, _ = C_PlayerInfo.GetGlidingInfo()
-		canGlide = c
-
-		if PER.Settings.raceTracker["speed-display"] and canGlide then
-			SpeedDisplayFrame:SetSpeedBar(0)
-			SpeedDisplayFrame:ShowFrame()
-		end
 	end)
 
 	RaceTrackerFrame:ShowFrame()
@@ -134,7 +118,6 @@ end
 local function InitializeFrames ()
 	RaceTrackerFrame = CreateFrame("Frame", nil, UIParent, "Percursus_RaceTrackerTemplate")
 	ResultTrackerFrame = CreateFrame("Frame", nil, UIParent, "Percursus_RaceTrackerTemplate")
-	SpeedDisplayFrame = CreateFrame("Frame", nil, UIParent, "Percursus_RaceTrackerSpeedDisplayTemplate")
 end
 
 ------------------------
@@ -188,13 +171,6 @@ function RaceTracker:Start(raceQuestID, raceSpellID, raceGoldTime, raceSilverTim
 
 			Utils:PrintDebug("The race was interrupted.")
 		elseif isRace and not isCountdown then
-			if PER.Settings.raceTracker["speed-display"] and canGlide then
-				local _, _, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
-				local speed = RaceTrackerData.speedPercentPerUnit * Round(forwardSpeed) / 100
-
-				SpeedDisplayFrame:SetSpeedBar(speed)
-			end
-
 			if raceStartTime == -1 then
 				isInit = false
 				raceStartTime = GetTime()
@@ -260,8 +236,6 @@ function RaceTracker:Stop()
 		raceCountdownTimer:Cancel()
 		raceCountdownTimer = nil
 	end
-
-	SpeedDisplayFrame:HideFrame()
 
 	ResultTrackerFrame:SetTimerText(RaceTrackerFrame:GetTimerText())
 	ResultTrackerFrame:SetInfoText(RaceTrackerFrame:GetInfoText())

@@ -12,6 +12,8 @@ Percursus is a World of Warcraft addon that tracks times in supported races, inc
 
 **Race Tracker** - Monitor your progress during a race with different display modes that help you keep track of race times and targets.
 
+<sup>✨ NEW</sup> **Speedometer** - Show your speed during Skyriding races, on flights outside races, or both.
+
 **Race Time Overview** - View race times and targets for the current zone in a clear overview that makes results easy to compare.
 
 **All Races Overview** - Browse times and targets across supported races in one organized overview and keep track of your progress across different zones.
@@ -24,8 +26,13 @@ Individual features and display options can be configured in the addon settings.
 
 * Three modes for the Race Tracker are available: current race time, countdown to medal time (gold or silver), and countdown to the personal best time.
 * Different backgrounds can be selected for the Race Tracker.
-* Optionally shows the race speed during Skyriding races.
 * The Race Tracker can be moved anywhere on the screen.
+
+### Speedometer
+
+* The speedometer is off by default and works independently of the Race Tracker.
+* Optionally show a number from 0 to 100 in the center of the bar.
+* Choose when it appears and adjust its horizontal and vertical position.
 
 ### Race Time Overview
 
@@ -48,7 +55,7 @@ Individual features and display options can be configured in the addon settings.
 To manage the addon, type the following commands in chat and press Enter:
 
 * Type `/per` or `/percursus` to access the addon options menu.
-* Type `/per help` or `/percursus help` to list the available commands.
+* Type `/per help` or `/percursus help` to see answers to common questions about race times and the Race Tracker and a list of chat commands. You can also select **Help** in the **More Information** row under **About** in the addon settings.
 * Type `/per changelog` or `/percursus changelog` to open the changelog.
 * Type `/per overview` or `/percursus overview` to manually display the All Races Overview.
 
