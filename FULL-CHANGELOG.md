@@ -1,3 +1,10 @@
+**v2.48 (2026-11-25)**
+- Added: Speedometer - Shows your speed during Skyriding races, on flights outside races, or both, with an optional numeric readout from 0 to 100
+- Added: In-game help answers common questions and explains each chat command. Open it from the addon settings or type the addon's slash command followed by 'help'
+- Updated: Race times for the area 'Forbidden Reach'
+- Updated: deDE, enUS, ruRU, zhCN localizations
+- Requires Arcane Wizard: Library revision 8 or later
+
 **v2.47 (2026-11-17)**
 - Added: A help command lists available slash commands, and unknown commands show a hint in chat
 - Requires Arcane Wizard: Library revision 6 or later

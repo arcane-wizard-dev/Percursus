@@ -12,6 +12,17 @@ PER.CHANGELOG = {
 		version = version,
 		date = buildDate ~= "" and buildDate or nil,
 		entries = {
+			"Added: Speedometer - Shows your speed during Skyriding races, on flights outside races, or both, with an optional numeric readout from 0 to 100",
+			"Added: In-game help answers common questions and explains each chat command. Open it from the addon settings or type the addon's slash command followed by 'help'",
+			"Updated: Race times for the area 'Forbidden Reach'",
+			"Updated: deDE, enUS, ruRU, zhCN localizations",
+			"Requires Arcane Wizard: Library revision 8 or later"
+		}
+	},
+	{
+		version = "v2.47",
+		date = "2026-11-17",
+		entries = {
 			"Added: A help command lists available slash commands, and unknown commands show a hint in chat",
 			"Requires Arcane Wizard: Library revision 6 or later"
 		}
@@ -81,14 +92,6 @@ PER.CHANGELOG = {
 			"Changed: Clarified labels and tooltips in the options menu",
 			"Changed: Limited loading to Retail",
 			"Updated: deDE, enUS, ruRU, zhCN localizations"
-		}
-	},
-	{
-		version = "v2.38",
-		date = "2026-10-29",
-		entries = {
-			"Added: TOC version for patch 12.1.7 [retail]",
-			"Removed: TOC version for patch 12.1.0 [retail]"
 		}
 	}
 	-- END GENERATED CHANGELOG
